@@ -1,0 +1,23 @@
+[ 사진 넣는 방법 ]
+
+이 폴더에 아래 이름으로 사진(.jpg)을 넣고 build.py 를 다시 실행하면
+해당 자리의 회색 자리표시가 실제 사진으로 자동 교체됩니다.
+
+■ 히어로(맨 위 큰 사진)
+   hero-usugwan.jpg                  ← 우수관 전체 공통
+   hero-usugwan-daejeon.jpg          ← 대전 페이지만 다른 사진 쓸 때 (선택)
+
+■ 갤러리(시공 사진 4칸)
+   usugwan-1.jpg  ~  usugwan-4.jpg              ← 우수관 메인 페이지
+   usugwan-daejeon-1.jpg ~ -4.jpg               ← 대전 페이지
+   usugwan-suwon-osan-1.jpg ~ -4.jpg            ← 수원·오산 페이지
+   usugwan-hwaseong-dongtan-1.jpg ~ -4.jpg      ← 화성·동탄
+   usugwan-siheung-ansan-1.jpg ~ -4.jpg         ← 시흥·안산
+   usugwan-seongnam-yongin-1.jpg ~ -4.jpg       ← 성남·용인
+   usugwan-pyeongtaek-anseong-1.jpg ~ -4.jpg    ← 평택·안성
+   usugwan-cheonan-asan-1.jpg ~ -4.jpg          ← 천안·아산
+   usugwan-cheongju-sejong-1.jpg ~ -4.jpg       ← 청주·세종
+
+■ 권장 규격
+   가로 사진, 가로 1600px 내외, 파일 1개당 300KB 이하 (너무 크면 로딩이 느려짐)
+   지역별 사진이 없으면 그 칸은 자리표시로 남습니다 — 있는 것부터 하나씩 채우면 됩니다.

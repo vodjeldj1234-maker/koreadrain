@@ -1,0 +1,6 @@
+# Netlify 빌드 설정
+# 이 파일이 있으면 Netlify 화면에서 따로 설정할 필요가 없다.
+
+[build]
+  command = "python3 build.py"
+  publish = "dist"
