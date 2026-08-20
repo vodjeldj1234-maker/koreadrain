@@ -30,10 +30,13 @@ def pick(basename, slug=None):
         return "/img/" + common
     return None
 
-def imgtag(src, alt, cls="ph"):
+def imgtag(src, alt, cls="ph", lazy=True):
     if not src:
         return '<div class="%s" aria-hidden="true"></div>' % cls
-    return '<img class="%s" src="%s" alt="%s">' % (cls, src, html.escape(alt))
+    # 첫 화면(히어로) 사진만 즉시 로딩, 나머지는 스크롤해서 보일 때 로딩한다.
+    # → 방문자 대부분이 아래까지 안 내려가므로 Netlify 대역폭(크레딧)이 크게 절약된다.
+    extra = ' loading="lazy" decoding="async"' if lazy else ' fetchpriority="high" decoding="async"'
+    return '<img class="%s" src="%s" alt="%s"%s>' % (cls, src, html.escape(alt), extra)
 
 # ─────────────────────────────────────────────────────────── 페이지 조각
 def head(title, desc, canonical, jsonld, is_index, og_img=None):
@@ -91,7 +94,7 @@ def hero(svc, region=None):
     <div class="tri">%s</div>
   </div></div>
 </div>
-""" % (imgtag(src, alt), top, svc["h1_top"], svc["h1_bottom"], svc["h1_tail"], svc["sub"], tri)
+""" % (imgtag(src, alt, lazy=False), top, svc["h1_top"], svc["h1_bottom"], svc["h1_tail"], svc["sub"], tri)
 
 def gallery(svc, region=None):
     slug = region["slug"] if region else None
