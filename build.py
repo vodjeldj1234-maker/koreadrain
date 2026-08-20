@@ -206,6 +206,33 @@ def write(path, text):
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)
 
+# ─────────────────────────────────────────────────────────── IndexNow (자동 색인 요청)
+# 네이버·Bing 등에 "이 주소들 바뀌었다"고 사이트가 직접 알린다.
+# 사람이 검색엔진에 들어가서 주소를 하나씩 넣던 일을 대신한다.
+# 구글은 IndexNow 에 참여하지 않는다. 구글은 sitemap.xml 이 담당한다.
+INDEXNOW_KEY = "23b09e70317a160a2a7caeaf1d88ae66"
+
+def indexnow(urls):
+    """Netlify 실서비스 배포일 때만 보낸다. 실패해도 배포는 절대 안 깨진다."""
+    if os.environ.get("CONTEXT") != "production":
+        print("IndexNow 건너뜀 (실서비스 배포가 아님)")
+        return
+    import json, urllib.request
+    body = json.dumps({
+        "host": SITE["domain"].split("//", 1)[1],
+        "key": INDEXNOW_KEY,
+        "keyLocation": "%s/%s.txt" % (SITE["domain"], INDEXNOW_KEY),
+        "urlList": [SITE["domain"] + u for u in urls],
+    }).encode("utf-8")
+    req = urllib.request.Request(
+        "https://api.indexnow.org/indexnow", data=body, method="POST",
+        headers={"Content-Type": "application/json; charset=utf-8"})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:
+            print("IndexNow 제출 완료 - 주소 %d개 (응답코드 %d)" % (len(urls), r.status))
+    except Exception as e:
+        print("IndexNow 제출 실패 - 무시하고 배포는 계속한다: %s" % e)
+
 # ─────────────────────────────────────────────────────────── 빌드
 def main():
     if os.path.isdir(DIST):
@@ -222,7 +249,7 @@ def main():
     if os.path.isdir(IMG):
         shutil.copytree(IMG, os.path.join(DIST, "img"))
 
-    # sitemap.xml  — lastmod 를 넣어야 검색엔진이 "바뀌었다"를 스스로 안다
+    # sitemap.xml  — lastmod 를 넣어야 검색엔진이 "바뀌었다"를 스스로 알다
     import datetime
     today = datetime.date.today().isoformat()
     items = "".join('<url><loc>%s%s</loc><lastmod>%s</lastmod>'
@@ -242,9 +269,14 @@ def main():
     rules += "\nhttp://koreadrain.kr/*   https://koreadrain.kr/:splat   301!\n"
     write(os.path.join(DIST, "_redirects"), rules)
 
+    # IndexNow 인증키 파일 - 사이트 루트에 있어야 검색엔진이 우리를 믿는다
+    write(os.path.join(DIST, INDEXNOW_KEY + ".txt"), INDEXNOW_KEY)
+
     print("빌드 완료 → %s/  (%d 페이지)" % (DIST, len(urls)))
     for u in urls:
         print("   ", u)
+
+    indexnow(urls)
 
 if __name__ == "__main__":
     main()
