@@ -108,7 +108,7 @@ def gallery(svc, region=None):
     where = (region["name"] + " ") if region else ""
     return """<section><div class="wrap">
   <div class="big-t"><div class="hr"></div><h2>직접 한 <em>시공 사진</em>입니다</h2>
-  <p>업체 고르시 때 결국 사진 보시잖아요. %s저희가 시공한 현장 그대로 올렸습니다.</p></div>
+  <p>업체 고르실 때 결국 사진 보시잖아요. %s저희가 시공한 현장 그대로 올렸습니다.</p></div>
   <div class="gal">%s</div>
   <div class="more"><a href="tel:%s">더 많은 시공 사진 보기</a></div>
 </div></section>
@@ -214,7 +214,12 @@ INDEXNOW_KEY = "23b09e70317a160a2a7caeaf1d88ae66"
 
 def indexnow(urls):
     """Netlify 실서비스 배포일 때만 보낸다. 실패해도 배포는 절대 안 깨진다."""
-    if os.environ.get("CONTEXT") != "production":
+    # Netlify 는 CONTEXT, Cloudflare Pages 는 CF_PAGES 로 실서비스 배포인지 알려준다.
+    # 둘 다 알아듣게 해두면 호스팅을 옮겨도 이 부분을 다시 고칠 필요가 없다.
+    on_netlify = os.environ.get("CONTEXT") == "production"
+    on_cloudflare = (os.environ.get("CF_PAGES") == "1"
+                     and os.environ.get("CF_PAGES_BRANCH") == "main")
+    if not (on_netlify or on_cloudflare):
         print("IndexNow 건너뜀 (실서비스 배포가 아님)")
         return
     import json, urllib.request
