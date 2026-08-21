@@ -68,6 +68,14 @@ section{padding:52px 0}
 .qcta a{display:inline-block;margin-top:14px;background:#E0521A;color:#fff;padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:900;font-size:19px}
 footer{background:#0f171f;color:#7b8894;padding:32px 0;font-size:13px;text-align:center}
 .fixed{position:fixed;bottom:0;left:0;right:0;background:#E0521A;color:#fff;text-align:center;padding:18px;font-weight:900;font-size:18px;text-decoration:none;z-index:60}
+/* FAQ */
+.faq{background:#f6f7f8}
+.fqlist{display:grid;gap:10px}
+.fq{background:#fff;border-radius:10px;padding:20px 22px;box-shadow:0 2px 10px rgba(22,32,42,.06)}
+.fq b{display:flex;gap:11px;align-items:flex-start;font-size:17.5px;line-height:1.5;color:#16202a;letter-spacing:-.5px}
+.fq b i{flex:0 0 24px;height:24px;margin-top:3px;background:#E0521A;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:normal;font-family:'IBM Plex Mono';font-size:13px;font-weight:600}
+.fq p{margin-top:10px;padding-left:35px;font-size:15px;line-height:1.85;color:#5d6b78}
+@media(max-width:760px){.fq{padding:17px 16px}.fq b{font-size:16px}.fq p{padding-left:0;margin-top:9px}}
 @media(max-width:760px){.hero h1{font-size:30px}.big-t h2{font-size:26px}.silbig{grid-template-columns:1fr}.gal{gap:10px}}
 @media(min-width:761px){.hero .ph{aspect-ratio:auto;height:min(48vh,470px)}.hero img.ph{height:min(48vh,470px);object-fit:cover}}
 """

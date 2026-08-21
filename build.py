@@ -129,6 +129,33 @@ def focus(svc, region=None):
 </div></section>
 """ % (f["h2"], f["sub"], shots, rows)
 
+def faq_items(svc, region=None):
+    """이 페이지에 나갈 FAQ 목록을 (질문, 답변) 으로 돌려준다.
+       지역 격리 — {region} 은 그 페이지 지역명으로만 치환된다."""
+    out = []
+    for scope, q, a in svc.get("faq", []):
+        if scope == "region" and region is None:
+            continue
+        if scope == "main" and region is not None:
+            continue
+        name = region["name"] if region else ""
+        out.append((q.format(region=name), a.format(region=name)))
+    return out
+
+def faq(svc, region=None):
+    items = faq_items(svc, region)
+    if not items:
+        return ""
+    rows = "".join(
+        '<div class="fq"><b><i>Q</i>%s</b><p>%s</p></div>'
+        % (html.escape(q), html.escape(a)) for q, a in items)
+    return """<section class="faq"><div class="wrap">
+  <div class="big-t"><div class="hr"></div><h2>자주 묻는 <em>질문</em></h2>
+  <p>전화 주시기 전에 궁금하신 것들, 먼저 정리해뒀습니다.</p></div>
+  <div class="fqlist">%s</div>
+</div></section>
+""" % rows
+
 def quote(svc, region=None):
     slug = region["slug"] if region else None
     cells = []
@@ -174,7 +201,21 @@ def jsonld(svc, region=None):
         "makesOffer": [{"@type": "Offer", "itemOffered": {
             "@type": "Service", "name": svc["offer"]}}],
     }
-    return json.dumps(d, ensure_ascii=False)
+    graph = [d]
+    # FAQPage — AI 검색·구글 스니펫이 질문-답변 쌍을 그대로 가져간다.
+    # 화면에 안 보이는 질문을 넣으면 규정 위반이므로, 반드시 faq() 가 출력하는 것과 같은 목록을 쓴다.
+    qas = faq_items(svc, region)
+    if qas:
+        graph.append({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": q,
+                "acceptedAnswer": {"@type": "Answer", "text": a},
+            } for q, a in qas],
+        })
+    return json.dumps(graph, ensure_ascii=False)
 
 # ─────────────────────────────────────────────────────────── URL / 출력
 def url_of(svc, region=None):
@@ -199,7 +240,8 @@ def page(svc, region=None):
     og_img = pick("hero-" + svc["key"], region["slug"] if region else None)
     return (head(title, desc, canonical, jsonld(svc, region), region is None, og_img)
             + header(svc, region) + hero(svc, region) + gallery(svc, region)
-            + focus(svc, region) + quote(svc, region) + footer(svc, region))
+            + focus(svc, region) + faq(svc, region)
+            + quote(svc, region) + footer(svc, region))
 
 def write(path, text):
     os.makedirs(os.path.dirname(path), exist_ok=True)
