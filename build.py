@@ -99,20 +99,45 @@ def hero(svc, region=None):
 def gallery(svc, region=None):
     slug = region["slug"] if region else None
     items = []
-    for i, (lb, title, desc) in enumerate(svc["gallery"], start=1):
+    for i, row in enumerate(svc["gallery"], start=1):
+        lb, title, desc = row[0], row[1], row[2]
+        loc = row[3] if len(row) > 3 else None      # 촬영지역 (지역 격리를 안 쓰는 서비스만)
         src = pick("%s-%d" % (svc["key"], i), slug)
+        loctag = ('<span class="loc">%s</span>' % html.escape(loc)) if loc else ""
         items.append(
             '<div class="item">%s<span class="lb">%s</span>'
-            '<div class="cp">%s<span>%s</span></div></div>'
-            % (imgtag(src, title), lb, title, desc))
-    where = (region["name"] + " ") if region else ""
+            '<div class="cp">%s%s<span>%s</span></div></div>'
+            % (imgtag(src, (loc + " " + title) if loc else title), lb, title, loctag, desc))
+    # 서비스가 자기 문구를 갖고 있으면 그걸 쓴다 (없으면 기본 문구)
+    if svc.get("gal_h2"):
+        h2, p = svc["gal_h2"], svc["gal_p"]
+    else:
+        where = (region["name"] + " ") if region else ""
+        h2 = "직접 한 <em>시공 사진</em>입니다"
+        p = "업체 고르실 때 결국 사진 보시잖아요. %s저희가 시공한 현장 그대로 올렸습니다." % where
     return """<section><div class="wrap">
-  <div class="big-t"><div class="hr"></div><h2>직접 한 <em>시공 사진</em>입니다</h2>
-  <p>업체 고르실 때 결국 사진 보시잖아요. %s저희가 시공한 현장 그대로 올렸습니다.</p></div>
+  <div class="big-t"><div class="hr"></div><h2>%s</h2>
+  <p>%s</p></div>
   <div class="gal">%s</div>
   <div class="more"><a href="tel:%s">더 많은 시공 사진 보기</a></div>
 </div></section>
-""" % (where, "".join(items), SITE["phone_raw"])
+""" % (h2, p, "".join(items), SITE["phone_raw"])
+
+
+def area(svc, region=None):
+    """출장 지역 공개 섹션. 지역 격리를 쓰지 않는 서비스에만 나온다."""
+    a = svc.get("area")
+    if not a or region is not None:
+        return ""
+    rows = "".join('<div class="ar"><b>%s</b><span>%s</span></div>' % (t, v)
+                   for t, v in a["groups"])
+    return """<section class="area"><div class="wrap">
+  <div class="big-t"><div class="hr"></div><h2>%s</h2>
+  <p>%s</p></div>
+  <div class="arlist">%s</div>
+  <p class="artail">%s</p>
+</div></section>
+""" % (a["h2"], a["sub"], rows, a["tail"])
 
 def focus(svc, region=None):
     slug = region["slug"] if region else None
@@ -187,8 +212,12 @@ def footer(svc, region=None):
 def jsonld(svc, region=None):
     import json
     hero = pick("hero-" + svc["key"], region["slug"] if region else None)
-    area = ([{"@type": "City", "name": c} for c in region["cities"]] if region
-            else [{"@type": "City", "name": c} for r in REGIONS for c in r["cities"]])
+    if region:
+        area = [{"@type": "City", "name": c} for c in region["cities"]]
+    elif svc.get("cities"):                      # 지역 격리를 안 쓰는 서비스는 자기 목록을 쓴다
+        area = [{"@type": "City", "name": c} for c in svc["cities"]]
+    else:
+        area = [{"@type": "City", "name": c} for r in REGIONS for c in r["cities"]]
     name = SITE["name"] + ((" " + region["name"]) if region else "")
     d = {
         "@context": "https://schema.org",
@@ -240,7 +269,7 @@ def page(svc, region=None):
     og_img = pick("hero-" + svc["key"], region["slug"] if region else None)
     return (head(title, desc, canonical, jsonld(svc, region), region is None, og_img)
             + header(svc, region) + hero(svc, region) + gallery(svc, region)
-            + focus(svc, region) + faq(svc, region)
+            + area(svc, region) + focus(svc, region) + faq(svc, region)
             + quote(svc, region) + footer(svc, region))
 
 def write(path, text):
@@ -291,8 +320,10 @@ def main():
     urls = []
     for svc in SERVICES:
         write(path_of(svc), page(svc));            urls.append(url_of(svc))
-        for r in REGIONS:
-            write(path_of(svc, r), page(svc, r));  urls.append(url_of(svc, r))
+        # regions=False 인 서비스는 지역 페이지를 만들지 않는다 (한 페이지 + 출장지역 공개 방식)
+        if svc.get("regions", True):
+            for r in REGIONS:
+                write(path_of(svc, r), page(svc, r));  urls.append(url_of(svc, r))
 
     # 사진 복사
     if os.path.isdir(IMG):

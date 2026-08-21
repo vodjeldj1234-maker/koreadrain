@@ -75,6 +75,19 @@ footer{background:#0f171f;color:#7b8894;padding:32px 0;font-size:13px;text-align
 .fq b{display:flex;gap:11px;align-items:flex-start;font-size:17.5px;line-height:1.5;color:#16202a;letter-spacing:-.5px}
 .fq b i{flex:0 0 24px;height:24px;margin-top:3px;background:#E0521A;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:normal;font-family:'IBM Plex Mono';font-size:13px;font-weight:600}
 .fq p{margin-top:10px;padding-left:35px;font-size:15px;line-height:1.85;color:#5d6b78}
+/* 갤러리 촬영지역 배지 */
+.gal .cp .loc{display:inline-block;margin-left:6px;vertical-align:2px;font-size:11.5px;font-weight:700;color:#E0521A;background:#FFF3E6;border-radius:4px;padding:2px 7px;letter-spacing:-.3px}
+/* 출장 지역 */
+.area{background:#16202a}
+.area .big-t h2{color:#fff}
+.area .big-t h2 em{color:#FFB443}
+.area .big-t p{color:#b7c3cd}
+.arlist{display:grid;gap:1px;background:#2c3a47;border-radius:10px;overflow:hidden}
+.ar{background:#1b2733;display:grid;grid-template-columns:108px 1fr;gap:14px;padding:16px 20px;align-items:baseline}
+.ar b{color:#FFB443;font-size:14.5px;letter-spacing:-.5px}
+.ar span{color:#dbe3ea;font-size:14.5px;line-height:1.75}
+.artail{margin-top:16px;text-align:center;color:#8b99a6;font-size:13.5px}
+@media(max-width:760px){.ar{grid-template-columns:1fr;gap:5px;padding:14px 16px}.ar b{font-size:13.5px}.ar span{font-size:14px}}
 @media(max-width:760px){.fq{padding:17px 16px}.fq b{font-size:16px}.fq p{padding-left:0;margin-top:9px}}
 @media(max-width:760px){.hero h1{font-size:30px}.big-t h2{font-size:26px}.silbig{grid-template-columns:1fr}.gal{gap:10px}}
 @media(min-width:761px){.hero .ph{aspect-ratio:auto;height:min(48vh,470px)}.hero img.ph{height:min(48vh,470px);object-fit:cover}}
