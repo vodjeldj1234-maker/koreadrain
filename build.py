@@ -219,7 +219,9 @@ def indexnow(urls):
     on_netlify = os.environ.get("CONTEXT") == "production"
     on_cloudflare = (os.environ.get("CF_PAGES") == "1"
                      and os.environ.get("CF_PAGES_BRANCH") == "main")
-    if not (on_netlify or on_cloudflare):
+    on_github = (os.environ.get("GITHUB_ACTIONS") == "true"
+                 and os.environ.get("GITHUB_REF_NAME") == "main")
+    if not (on_netlify or on_cloudflare or on_github):
         print("IndexNow 건너뜀 (실서비스 배포가 아님)")
         return
     import json, urllib.request
@@ -276,6 +278,12 @@ def main():
 
     # IndexNow 인증키 파일 - 사이트 루트에 있어야 검색엔진이 우리를 믿는다
     write(os.path.join(DIST, INDEXNOW_KEY + ".txt"), INDEXNOW_KEY)
+
+    # GitHub Pages 용
+    #  CNAME    : 이게 없으면 배포할 때마다 koreadrain.kr 연결이 풀린다
+    #  .nojekyll: GitHub 이 밑줄(_)로 시작하는 파일을 지워버리는 걸 막는다
+    write(os.path.join(DIST, "CNAME"), SITE["domain"].split("//", 1)[1] + "\n")
+    write(os.path.join(DIST, ".nojekyll"), "")
 
     print("빌드 완료 → %s/  (%d 페이지)" % (DIST, len(urls)))
     for u in urls:
