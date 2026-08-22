@@ -113,7 +113,7 @@ def gallery(svc, region=None):
         h2, p = svc["gal_h2"], svc["gal_p"]
     else:
         where = (region["name"] + " ") if region else ""
-        h2 = "직접 한 <em>시공 사진</em>입니다"
+        h2 = "다녀온 현장 <em>%d곳</em>에서 고른 사진입니다" % SITE["sites_done"]
         p = "업체 고르실 때 결국 사진 보시잖아요. %s저희가 시공한 현장 그대로 올렸습니다." % where
     return """<section><div class="wrap">
   <div class="big-t"><div class="hr"></div><h2>%s</h2>
