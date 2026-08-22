@@ -98,8 +98,14 @@ def hero(svc, region=None):
 
 def gallery(svc, region=None):
     slug = region["slug"] if region else None
+    # ⚠ 사진과 문구를 반드시 같이 본다.
+    #   지역 페이지는 지역 사진(usugwan-N-{slug}.jpg)을 쓰므로
+    #   문구도 그 지역 전용 문구(gallery_by_region)를 써야 어긋나지 않는다.
+    rows = svc["gallery"]
+    if slug:
+        rows = svc.get("gallery_by_region", {}).get(slug, rows)
     items = []
-    for i, row in enumerate(svc["gallery"], start=1):
+    for i, row in enumerate(rows, start=1):
         lb, title, desc = row[0], row[1], row[2]
         loc = row[3] if len(row) > 3 else None      # 촬영지역 (지역 격리를 안 쓰는 서비스만)
         src = pick("%s-%d" % (svc["key"], i), slug)
