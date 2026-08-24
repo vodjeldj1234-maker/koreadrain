@@ -67,6 +67,7 @@ section{padding:52px 0}
 .qcta .n{font-family:'IBM Plex Mono';font-size:34px;color:#FFB443;display:block}
 .qcta a{display:inline-block;margin-top:14px;background:#E0521A;color:#fff;padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:900;font-size:19px}
 footer{background:#0f171f;color:#7b8894;padding:32px 0;font-size:13px;text-align:center}
+footer .biz{display:block;margin-top:14px;padding-top:12px;border-top:1px solid #1c2731;color:#5f6d79;font-size:12px;line-height:1.7}
 .fixed{position:fixed;bottom:0;left:0;right:0;background:#E0521A;color:#fff;text-align:center;padding:18px;font-weight:900;font-size:18px;text-decoration:none;z-index:60}
 /* FAQ */
 .faq{background:#f6f7f8}

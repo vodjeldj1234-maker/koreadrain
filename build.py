@@ -210,9 +210,12 @@ def footer(svc, region=None):
     line = svc["foot"]
     if region:
         line = "%s %s" % (region["name"], line)
-    return """<footer>%s · %s<br>%s</footer>
+    return """<footer>%s · %s<br>%s
+<span class="biz">상호 %s &middot; 대표 %s &middot; 사업자등록번호 %s<br>%s</span></footer>
 <a class="fixed" href="tel:%s">📞 사진 보내고 견적 받기</a>
-</body></html>""" % (SITE["name"], SITE["phone"], line, SITE["phone_raw"])
+</body></html>""" % (SITE["name"], SITE["phone"], line,
+                     SITE["name"], SITE["biz_owner"], SITE["biz_no"], SITE["biz_addr"],
+                     SITE["phone_raw"])
 
 # ────────────────────────────────────────────────────────── JSON-LD
 def jsonld(svc, region=None):
