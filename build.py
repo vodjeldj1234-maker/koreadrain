@@ -259,11 +259,16 @@ def jsonld(svc, region=None):
 def url_of(svc, region=None):
     if region:
         return "/%s/%s.html" % (svc["dir"], region["slug"])
+    # "file" 이 있으면 그 서비스는 /{dir}/{file} 한 장으로 나간다 (하위 페이지).
+    if svc.get("file"):
+        return "/%s/%s" % (svc["dir"], svc["file"])
     return "/" if svc["at_root"] else "/%s/" % svc["dir"]
 
 def path_of(svc, region=None):
     if region:
         return os.path.join(DIST, svc["dir"], region["slug"] + ".html")
+    if svc.get("file"):
+        return os.path.join(DIST, svc["dir"], svc["file"])
     return os.path.join(DIST, "index.html") if svc["at_root"] \
         else os.path.join(DIST, svc["dir"], "index.html")
 
