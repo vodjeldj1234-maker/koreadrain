@@ -206,6 +206,23 @@ def quote(svc, region=None):
 </div></section>
 """ % ("".join(cells), SITE["phone"], SITE["phone_raw"])
 
+# ── 네이버 검색광고 전환추적 공통 스크립트 (2026-08-26 자가설치)
+#   네이버가 보낸 설치안내메일의 "2. 공통 스크립트" 원문 그대로다. 임의로 고치지 말 것.
+#   모든 페이지에 들어가야 해서 footer() 의 </body> 바로 앞에 붙인다 → 13페이지 전부.
+#   ⚠ 인증키는 data.py SITE["naver_wa"] 한 곳에서만 관리한다.
+#   ⚠ 설치 후 네이버에 "자가설치 후 검수요청" 을 해야 데이터 수집이 시작된다.
+NAVER_WCS = """<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add={};
+wcs_add["wa"] = "%s";
+if(!_nasa) var _nasa={};
+if(window.wcs){
+wcs.inflow();
+wcs_do();
+}
+</script>
+""" % SITE["naver_wa"]
+
 def footer(svc, region=None):
     line = svc["foot"]
     if region:
@@ -213,9 +230,9 @@ def footer(svc, region=None):
     return """<footer>%s · %s<br>%s
 <span class="biz">상호 %s &middot; 대표 %s &middot; 사업자등록번호 %s<br>%s</span></footer>
 <a class="fixed" href="tel:%s">📞 사진 보내고 견적 받기</a>
-</body></html>""" % (SITE["name"], SITE["phone"], line,
+%s</body></html>""" % (SITE["name"], SITE["phone"], line,
                      SITE["name"], SITE["biz_owner"], SITE["biz_no"], SITE["biz_addr"],
-                     SITE["phone_raw"])
+                     SITE["phone_raw"], NAVER_WCS)
 
 # ────────────────────────────────────────────────────────── JSON-LD
 def jsonld(svc, region=None):
