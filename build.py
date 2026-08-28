@@ -206,11 +206,22 @@ def quote(svc, region=None):
 </div></section>
 """ % ("".join(cells), SITE["phone"], SITE["phone_raw"])
 
-# ── 네이버 검색광고 전환추적 공통 스크립트 (2026-08-26 자가설치)
-#   네이버가 보낸 설치안내메일의 "2. 공통 스크립트" 원문 그대로다. 임의로 고치지 말 것.
-#   모든 페이지에 들어가야 해서 footer() 의 </body> 바로 앞에 붙인다 → 13페이지 전부.
+# ── 네이버 검색광고 전환추적 (2026-08-26 자가설치 · 2026-08-28 전환이벤트 추가)
+#
+#   [1] 공통 스크립트 — 네이버 설치안내메일의 "2. 공통 스크립트" 원문 그대로. 임의로 고치지 말 것.
+#   [2] 전환 스크립트 — 전화 링크 클릭을 "신청완료(lead)" 전환으로 보낸다.
+#
+#   ★ 전환유형을 lead 로 고른 근거 (naver.github.io/conversion-tracking 공식 가이드)
+#     - 우리 사이트는 가이드의 "2. 비커머스"(병원·제품소개·창업문의 사이트) 유형이다.
+#     - 신청완료의 코드명이 lead 다. 한글명을 넣으면 안 되고 반드시 코드명을 넣어야 한다.
+#     - 구매·장바구니·회원가입은 우리 사이트에 존재하지 않으므로 쓰면 안 된다.
+#   ★ 구 방식(wcs.cnv 숫자코드)과 신 방식(wcs.trans)을 섞지 말 것.
+#     같은 유형이 두 방식으로 들어오면 구 방식 전환이 영구 필터링된다. 우리는 trans 만 쓴다.
+#   ★ value(금액)는 lead 에서 선택항목이다. 견적 금액을 모르므로 넣지 않는다.
+#   ★ 한 페이지에서 여러 번 눌러도 전환은 1회만 보낸다 (중복 집계 방지).
+#   ★ 전화 링크는 헤더 전화번호·갤러리 하단·견적문의 버튼·하단 고정버튼 4곳 모두 잡힌다.
 #   ⚠ 인증키는 data.py SITE["naver_wa"] 한 곳에서만 관리한다.
-#   ⚠ 설치 후 네이버에 "자가설치 후 검수요청" 을 해야 데이터 수집이 시작된다.
+#   ⚠ 설치 후 네이버에 "데이터 검수요청"(전환유형 = 신청 완료)을 해야 수집이 시작된다.
 NAVER_WCS = """<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 <script type="text/javascript">
 if(!wcs_add) var wcs_add={};
@@ -220,6 +231,26 @@ if(window.wcs){
 wcs.inflow();
 wcs_do();
 }
+(function(){
+  var sent = false;
+  document.addEventListener("click", function(e){
+    if (sent) return;
+    var n = e.target;
+    while (n && n.nodeType === 1) {
+      if (n.tagName === "A" && (n.getAttribute("href") || "").indexOf("tel:") === 0) break;
+      n = n.parentNode;
+    }
+    if (!n || n.nodeType !== 1) return;
+    sent = true;
+    try {
+      if (window.wcs && wcs.trans) {
+        var _conv = {};
+        _conv.type = "lead";
+        wcs.trans(_conv);
+      }
+    } catch (err) {}
+  }, true);
+})();
 </script>
 """ % SITE["naver_wa"]
 
