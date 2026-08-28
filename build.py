@@ -57,6 +57,8 @@ def head(title, desc, canonical, jsonld, is_index, og_img=None):
 <title>%s</title>
 <meta name="description" content="%s">
 <link rel="canonical" href="%s">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 %s<meta property="og:type" content="website">
 <meta property="og:title" content="%s">
 <meta property="og:description" content="%s">
@@ -390,6 +392,12 @@ def main():
     # 사진 복사
     if os.path.isdir(IMG):
         shutil.copytree(IMG, os.path.join(DIST, "img"))
+
+    # 파비콘 — 없으면 네이버 서치어드바이저가 favicon.ico 를 400 으로 잡아
+    # "접근 불가한 페이지(수집제한)" 로 기록한다. (2026-08-28 실제로 1건 발생)
+    for f in ("favicon.ico", "apple-touch-icon.png"):
+        if os.path.exists(f):
+            shutil.copy2(f, os.path.join(DIST, f))
 
     # sitemap.xml  — lastmod 를 넣어야 검색엔진이 "바뀌었다"를 스스로 알다
     import datetime
