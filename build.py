@@ -133,9 +133,12 @@ def gallery(svc, region=None):
 
 
 def area(svc, region=None):
-    """출장 지역 공개 섹션. 지역 격리를 쓰지 않는 서비스에만 나온다."""
-    a = svc.get("area")
-    if not a or region is not None:
+    """출장 지역 섹션.
+    - 지역 페이지: region 자체에 "area" 가 있으면 그 권역만 보여준다 (지역 격리 유지)
+    - 메인/서비스 페이지: svc["area"] 를 쓴다 (트렌치처럼 격리 안 쓰는 서비스)
+    """
+    a = region.get("area") if region is not None else svc.get("area")
+    if not a:
         return ""
     rows = "".join('<div class="ar"><b>%s</b><span>%s</span></div>' % (t, v)
                    for t, v in a["groups"])
