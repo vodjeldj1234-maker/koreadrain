@@ -197,8 +197,12 @@ def quote(svc, region=None):
     cells = []
     for i, (t, d) in enumerate(svc["guide"], start=1):
         src = pick("%s-%d" % (svc["guide_img"], i), slug)
+        # ⚠ 2026-09-03 수정 — 사진이 없을 때 imgtag 가 빈 회색 박스를 내보내
+        #    새 서비스 페이지에 정체불명의 빈 칸이 그대로 배포된 사고가 있었다.
+        #    사진이 없으면 이미지 자리를 아예 만들지 않고 글자 카드만 낸다.
+        img = imgtag(src, "견적 사진 예시 " + t) if src else ""
         cells.append('<div class="cell">%s<div class="t"><b>%s</b><span>%s</span></div></div>'
-                     % (imgtag(src, "견적 사진 예시 " + t), t, d))
+                     % (img, t, d))
     return """<section class="q"><div class="wrap">
   <div class="big-t"><div class="hr"></div><h2>견적 문의</h2></div>
   <div class="warn"><b>사진을 꼭 보내주세요</b><span>사진 없이는 정확한 금액을 드릴 수 없습니다. 4장이면 충분합니다.</span></div>
