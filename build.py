@@ -255,7 +255,23 @@ def faq_items(svc, region=None):
             continue
         name = region["name"] if region else ""
         out.append((q.format(region=name), a.format(region=name)))
+    # 지역 전용 FAQ (2026-09-05) — 그 지역 페이지에만 붙는다
+    if region:
+        out += list(region.get("faq_r", []))
     return out
+
+def story(svc, region=None):
+    """지역 페이지 살붙이기 — REGIONS[i]["story"] 가 있을 때만 그린다 (2026-09-05).
+       지역 격리: 이 지역에서 한 일만. 없는 사실은 쓰지 않는다."""
+    if not region or not region.get("story"):
+        return ""
+    title, paras = region["story"]
+    body = "".join("<p>%s</p>" % html.escape(p) for p in paras)
+    return """<section class="story"><div class="wrap">
+  <div class="big-t"><div class="hr"></div><h2>%s</h2></div>
+  <div class="stext">%s</div>
+</div></section>
+""" % (html.escape(title), body)
 
 def faq(svc, region=None):
     items = faq_items(svc, region)
@@ -445,7 +461,7 @@ def page(svc, region=None):
     og_img = pick("hero-" + svc["key"], region["slug"] if region else None)
     return (head(title, desc, canonical, jsonld(svc, region), region is None, og_img)
             + header(svc, region) + hero(svc, region) + gallery(svc, region)
-            + area(svc, region) + focus(svc, region) + faq(svc, region)
+            + area(svc, region) + story(svc, region) + focus(svc, region) + faq(svc, region)
             + navlinks(svc, region) + quote(svc, region) + footer(svc, region))
 
 def write(path, text):

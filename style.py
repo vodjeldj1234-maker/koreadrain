@@ -100,6 +100,9 @@ footer .biz{display:block;margin-top:14px;padding-top:12px;border-top:1px solid 
 .fixed .f-call{background:#E0521A;color:#fff}
 .fixed .f-sms{background:#16202a;color:#fff;border-left:1px solid #2c3a47}
 /* FAQ */
+.story{background:#fff}
+.stext{max-width:640px;margin:0 auto;display:grid;gap:16px}
+.stext p{font-size:16px;line-height:1.9;color:#2b3742;letter-spacing:-.3px}
 .faq{background:#f6f7f8}
 .fqlist{display:grid;gap:10px}
 .fq{background:#fff;border-radius:10px;padding:20px 22px;box-shadow:0 2px 10px rgba(22,32,42,.06)}
