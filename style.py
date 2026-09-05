@@ -13,6 +13,19 @@ img.ph{object-fit:cover;width:100%;height:auto;display:block}
 header{background:#16202a;color:#fff}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
 .logo{font-weight:900;font-size:18px;letter-spacing:-.8px}
+a.logo{color:#fff;text-decoration:none;border-bottom:2px solid #FFB443;padding-bottom:1px}
+.crumb{background:#1f2b36;color:#b7c3cd;font-size:13px}
+.crumb .wrap{display:flex;gap:8px;align-items:center;min-height:36px}
+.crumb a{color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#FFB443;text-underline-offset:3px}
+.nav{background:#FFF3E6;border-top:1px solid #f1dcc8;padding:36px 0}
+.nav h2{font-size:20px;letter-spacing:-.8px}
+.nav p{color:#5d6b78;font-size:14px;margin-top:4px}
+.links{display:grid;gap:9px;margin-top:16px;max-width:560px}
+.links a{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid #efd9c3;border-radius:9px;padding:14px 16px;text-decoration:none;color:#16202a;font-weight:700;font-size:15.5px;letter-spacing:-.4px}
+.links a i{font-style:normal;color:#E0521A;font-weight:900;font-size:18px}
+.links a.me{background:#16202a;color:#fff;border-color:#16202a}
+.links a.me i{color:#FFB443;font-weight:400;font-size:12px}
+footer .fhome{color:#dbe3ea;font-weight:700;text-decoration:underline;text-decoration-color:#FFB443;text-underline-offset:3px}
 .hcall{color:#FFB443;font-family:'IBM Plex Mono';font-size:16px;text-decoration:none}
 /* 히어로: 큰 사진 + 큰 카피 */
 .hero{position:relative}

@@ -90,14 +90,74 @@ def head(title, desc, canonical, jsonld, is_index, og_img=None):
 """ % (html.escape(title), html.escape(desc), canonical, verify,
        html.escape(title), html.escape(desc), canonical, SITE["name"], og, CSS, jsonld)
 
+# ── 내부 링크 (2026-09-05 추가, 27째방)
+#   "서비스 격리" 는 서비스끼리의 얘기다. 같은 서비스 안에서는 이어도 된다.
+#   - 우수관: 지역 페이지 → 메인 "/" 만. 지역끼리는 잇지 않는다 (지역 격리).
+#             메인 → 지역도 잇지 않는다 (메인에 타 지역명 노출 금지).
+#   - 트렌치: /trench/ ↔ musoeum·gongsa·parking 서로.
+#   - 보도블록·카스토퍼: 혼자인 페이지라 링크 없음.
+#   ⚠ 서비스 간 링크는 여전히 절대 금지.
+def home_of(svc, region=None):
+    """이 페이지의 '첫 페이지' 서비스. 자기 자신이 첫 페이지면 None."""
+    if region:
+        return svc
+    return svc.get("parent")
+
+def crumb(svc, region=None):
+    home = home_of(svc, region)
+    if not home:
+        return ""
+    here = region["name"] if region else svc["label"]
+    return ('<div class="crumb"><div class="wrap"><a href="%s">%s</a><span>&rsaquo;</span>%s</div></div>\n'
+            % (url_of(home), home["home_label"], here))
+
+def _link(svc):
+    return '<a href="%s">%s<i>&rsaquo;</i></a>' % (url_of(svc), svc["label"])
+
+def navlinks(svc, region=None):
+    home = home_of(svc, region)
+    kids = svc.get("children")
+    if region:
+        # 지역 페이지 — 우수관 첫 페이지 하나만
+        return ('<section class="nav"><div class="wrap">\n'
+                '  <h2>우수관 교체 안내 전체 보기</h2>\n'
+                '  <div class="links"><a href="%s">%s<i>&rsaquo;</i></a></div>\n'
+                '</div></section>\n' % (url_of(home), home["home_label"]))
+    if kids:
+        # 첫 페이지 — 하위 페이지 목록
+        return ('<section class="nav"><div class="wrap">\n'
+                '  <h2>%s 자세히 보기</h2><p>상황별 안내 페이지로 이동합니다.</p>\n'
+                '  <div class="links">%s</div>\n'
+                '</div></section>\n' % (svc["nav_title"], "".join(_link(k) for k in kids)))
+    if home:
+        # 하위 페이지 — 형제 + 첫 페이지 (지금 페이지는 검게)
+        rows = ""
+        for k in home["children"]:
+            if k is svc:
+                rows += '<a class="me" aria-current="page">%s<i>지금 보는 페이지</i></a>' % k["label"]
+            else:
+                rows += _link(k)
+        rows += '<a href="%s">%s<i>&rsaquo;</i></a>' % (url_of(home), home["home_label"])
+        return ('<section class="nav"><div class="wrap">\n'
+                '  <h2>다른 %s 안내</h2>\n'
+                '  <div class="links">%s</div>\n'
+                '</div></section>\n' % (home["nav_title"], rows))
+    return ""
+
 def header(svc=None, region=None):
-    h = """<header><div class="wrap"><div class="logo">%s</div><a class="hcall" href="tel:%s">%s</a></div></header>
-""" % (SITE["name"], SITE["phone_raw"], SITE["phone"])
+    home = home_of(svc, region) if svc else None
+    if home:
+        logo = '<a class="logo" href="%s">%s</a>' % (url_of(home), SITE["name"])
+    else:
+        logo = '<div class="logo">%s</div>' % SITE["name"]
+    h = """<header><div class="wrap">%s<a class="hcall" href="tel:%s">%s</a></div></header>
+""" % (logo, SITE["phone_raw"], SITE["phone"])
     # ⚠ 서비스 격리 원칙 — 서비스 간 링크를 절대 넣지 않는다.
     #   우수관 문제로 들어온 사람에게 트렌치를, 트렌치 문제로 들어온 사람에게 외벽 작업을
     #   보여주면 이탈만 늘어난다. 각 서비스 페이지는 그 서비스만 보이는 독립 사이트처럼 동작한다.
     #   서비스 간 이동 경로는 만들지 않는다. 유입은 검색 + 사이트맵 + 블로그 링크로만 받는다.
-    return h
+    #   (같은 서비스 안의 링크는 허용 — 로고·crumb·navlinks·푸터. 2026-09-05)
+    return h + (crumb(svc, region) if svc else "")
 
 def hero(svc, region=None):
     slug = region["slug"] if region else None
@@ -310,10 +370,12 @@ def footer(svc, region=None):
     line = svc["foot"]
     if region:
         line = "%s %s" % (region["name"], line)
-    return """<footer>%s · %s<br>%s
+    home = home_of(svc, region)
+    homeln = ('<br><a class="fhome" href="%s">%s</a>' % (url_of(home), home["home_label"])) if home else ""
+    return """<footer>%s · %s<br>%s%s
 <span class="biz">상호 %s &middot; 대표 %s &middot; 사업자등록번호 %s<br>%s</span></footer>
 <div class="fixed"><a class="f-call" href="tel:%s">📞 전화 걸기</a><a class="f-sms" href="sms:%s">💬 사진 문자</a></div>
-%s%s</body></html>""" % (SITE["name"], SITE["phone"], line,
+%s%s</body></html>""" % (SITE["name"], SITE["phone"], line, homeln,
                      SITE["name"], SITE["biz_owner"], SITE["biz_no"], SITE["biz_addr"],
                      SITE["phone_raw"], SITE["phone_raw"], COPY_JS, NAVER_WCS)
 
@@ -384,7 +446,7 @@ def page(svc, region=None):
     return (head(title, desc, canonical, jsonld(svc, region), region is None, og_img)
             + header(svc, region) + hero(svc, region) + gallery(svc, region)
             + area(svc, region) + focus(svc, region) + faq(svc, region)
-            + quote(svc, region) + footer(svc, region))
+            + navlinks(svc, region) + quote(svc, region) + footer(svc, region))
 
 def write(path, text):
     os.makedirs(os.path.dirname(path), exist_ok=True)

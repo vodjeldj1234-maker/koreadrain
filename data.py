@@ -1043,3 +1043,11 @@ CARSTOP = {
 USUGWAN["area"] = TRENCH["area"]
 
 SERVICES = [USUGWAN, TRENCH, MUSOEUM, GONGSA, PARKING, BLOCK, CARSTOP]
+
+# ── 내부 링크 관계 (2026-09-05, 27째방) — 같은 서비스 안에서만 잇는다
+USUGWAN["home_label"] = "우수관 교체 · 홈통 · 빗물받이 (첫 페이지)"
+TRENCH["home_label"]  = "트렌치 보수 첫 페이지"
+TRENCH["nav_title"]   = "트렌치 공사"
+TRENCH["children"]    = [MUSOEUM, GONGSA, PARKING]
+for _c in TRENCH["children"]:
+    _c["parent"] = TRENCH
