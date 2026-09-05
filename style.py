@@ -65,10 +65,27 @@ section{padding:52px 0}
 .qg .t span{font-size:13.5px;color:#98a6b2}
 .qcta{text-align:center;border-top:1px solid #2c3a47;padding-top:26px}
 .qcta .n{font-family:'IBM Plex Mono';font-size:34px;color:#FFB443;display:block}
-.qcta a{display:inline-block;margin-top:14px;background:#E0521A;color:#fff;padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:900;font-size:19px}
+.qnote{color:#b7c3cd;font-size:14px;margin-top:15px}
+/* 전화 + 문자 두 버튼 (2026-09-05) — 전화만 두면 PC 손님이 연락을 못 한다 */
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:16px auto 0;max-width:430px}
+.btns .btn{display:block;text-align:center;padding:15px 6px;border-radius:8px;text-decoration:none;font-weight:900;font-size:16px;letter-spacing:-.6px}
+.btn.call{background:#E0521A;color:#fff}
+.btn.sms{background:#fff;color:#16202a}
+/* 첫 화면 신뢰 3줄 */
+.trust{display:grid;gap:7px;margin:18px auto 0;max-width:430px;text-align:left}
+.trust div{display:flex;gap:9px;align-items:flex-start;color:#dbe3ea;font-size:14.5px;line-height:1.6}
+.trust i{flex:0 0 19px;height:19px;margin-top:4px;background:#E0521A;color:#fff;border-radius:50%;font-style:normal;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center}
+/* 번호 복사 */
+.copy{display:block;width:100%;max-width:430px;margin:9px auto 0;background:transparent;border:1px dashed #4b5b6a;border-radius:8px;padding:12px;color:#FFB443;font-family:"IBM Plex Mono",monospace;font-size:15px;font-weight:600;cursor:pointer}
+.copy span{font-family:"Noto Sans KR",sans-serif;font-size:12px;color:#8b99a6;margin-left:8px;font-weight:400}
+.copy.done{border-style:solid;border-color:#E0521A;color:#fff}
+a:focus-visible,button:focus-visible{outline:3px solid #FFB443;outline-offset:2px}
 footer{background:#0f171f;color:#7b8894;padding:32px 0;font-size:13px;text-align:center}
 footer .biz{display:block;margin-top:14px;padding-top:12px;border-top:1px solid #1c2731;color:#5f6d79;font-size:12px;line-height:1.7}
-.fixed{position:fixed;bottom:0;left:0;right:0;background:#E0521A;color:#fff;text-align:center;padding:18px;font-weight:900;font-size:18px;text-decoration:none;z-index:60}
+.fixed{position:fixed;bottom:0;left:0;right:0;display:grid;grid-template-columns:1fr 1fr;z-index:60}
+.fixed a{display:block;text-align:center;padding:17px 6px;font-weight:900;font-size:17px;text-decoration:none;letter-spacing:-.6px}
+.fixed .f-call{background:#E0521A;color:#fff}
+.fixed .f-sms{background:#16202a;color:#fff;border-left:1px solid #2c3a47}
 /* FAQ */
 .faq{background:#f6f7f8}
 .fqlist{display:grid;gap:10px}
@@ -90,6 +107,6 @@ footer .biz{display:block;margin-top:14px;padding-top:12px;border-top:1px solid 
 .artail{margin-top:16px;text-align:center;color:#8b99a6;font-size:13.5px}
 @media(max-width:760px){.ar{grid-template-columns:1fr;gap:5px;padding:14px 16px}.ar b{font-size:13.5px}.ar span{font-size:14px}}
 @media(max-width:760px){.fq{padding:17px 16px}.fq b{font-size:16px}.fq p{padding-left:0;margin-top:9px}}
-@media(max-width:760px){.hero h1{font-size:30px}.big-t h2{font-size:26px}.silbig{grid-template-columns:1fr}.gal{gap:10px}}
+@media(max-width:760px){.btns .btn{font-size:15px;padding:14px 4px}.fixed a{font-size:15.5px;padding:16px 4px}.hero h1{font-size:30px}.big-t h2{font-size:26px}.silbig{grid-template-columns:1fr}.gal{gap:10px}}
 @media(min-width:761px){.hero .ph{aspect-ratio:auto;height:min(48vh,470px)}.hero img.ph{height:min(48vh,470px);object-fit:cover}}
 """

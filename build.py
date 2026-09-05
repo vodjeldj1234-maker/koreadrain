@@ -38,6 +38,23 @@ def imgtag(src, alt, cls="ph", lazy=True):
     extra = ' loading="lazy" decoding="async"' if lazy else ' fetchpriority="high" decoding="async"'
     return '<img class="%s" src="%s" alt="%s"%s>' % (cls, src, html.escape(alt), extra)
 
+# ── 연락 요소 (2026-09-05 추가)
+#   ⚠ 전화 링크 하나뿐이면 PC 로 보는 손님은 연락할 방법이 없다. 문자·번호복사를 같이 낸다.
+def trust(region=None):
+    """첫 화면 신뢰 3줄. 3번째는 그 페이지에 맞는 출장 범위."""
+    where = ("%s 인근까지 출장" % region["name"]) if region \
+            else "서울 · 인천 · 경기 전역, 충청 전 시군 출장"
+    return '<div class="trust">%s</div>' % "".join(
+        '<div><i>✓</i><span>%s</span></div>' % html.escape(t)
+        for t in list(SITE["trust"]) + [where])
+
+def ctabtns():
+    """전화 + 문자 두 버튼. sms: 는 본문 없이 번호만 넣어야 안드로이드·아이폰 둘 다 열린다."""
+    return ('<div class="btns">'
+            '<a class="btn call" href="tel:%s">📞 전화 걸기</a>'
+            '<a class="btn sms" href="sms:%s">💬 사진 문자 보내기</a></div>'
+            % (SITE["phone_raw"], SITE["phone_raw"]))
+
 # ─────────────────────────────────────────────────────────── 페이지 조각
 def head(title, desc, canonical, jsonld, is_index, og_img=None):
     verify = ""
@@ -93,10 +110,12 @@ def hero(svc, region=None):
   <div class="cap"><div class="wrap">
     <h1>%s%s<br><em>%s</em> %s</h1>
     <p>%s</p>
+%s%s
     <div class="tri">%s</div>
   </div></div>
 </div>
-""" % (imgtag(src, alt, lazy=False), top, svc["h1_top"], svc["h1_bottom"], svc["h1_tail"], svc["sub"], tri)
+""" % (imgtag(src, alt, lazy=False), top, svc["h1_top"], svc["h1_bottom"], svc["h1_tail"],
+       svc["sub"], trust(region), ctabtns(), tri)
 
 def gallery(svc, region=None):
     slug = region["slug"] if region else None
@@ -127,7 +146,7 @@ def gallery(svc, region=None):
   <div class="big-t"><div class="hr"></div><h2>%s</h2>
   <p>%s</p></div>
   <div class="gal">%s</div>
-  <div class="more"><a href="tel:%s">더 많은 시공 사진 보기</a></div>
+  <div class="more"><a href="tel:%s">전화 주시면 현장 사진 더 보내드립니다</a></div>
 </div></section>
 """ % (h2, p, "".join(items), SITE["phone_raw"])
 
@@ -208,12 +227,13 @@ def quote(svc, region=None):
   <div class="warn"><b>사진을 꼭 보내주세요</b><span>사진 없이는 정확한 금액을 드릴 수 없습니다. 4장이면 충분합니다.</span></div>
   <div class="qg">%s</div>
   <div class="qcta">
-    <p style="color:#b7c3cd">문자 · 카톡으로 사진 전송해주시면 확인 후 바로 금액 회신드립니다.</p>
     <span class="n">%s</span>
-    <a href="tel:%s">📞 전화 / 사진 전송</a>
+    %s
+    <button class="copy" type="button" data-num="%s">%s<span>PC 에서 쓰는 버튼</span></button>
+    <p class="qnote">문자로 사진 4장만 보내주시면 확인 후 금액 회신드립니다.</p>
   </div>
 </div></section>
-""" % ("".join(cells), SITE["phone"], SITE["phone_raw"])
+""" % ("".join(cells), SITE["phone"], ctabtns(), SITE["phone"], "번호 복사")
 
 # ── 네이버 검색광고 전환추적 (2026-08-26 자가설치 · 2026-08-28 전환이벤트 추가)
 #
@@ -246,7 +266,8 @@ wcs_do();
     if (sent) return;
     var n = e.target;
     while (n && n.nodeType === 1) {
-      if (n.tagName === "A" && (n.getAttribute("href") || "").indexOf("tel:") === 0) break;
+      if (n.tagName === "A" && /^(tel:|sms:)/.test(n.getAttribute("href") || "")) break;
+      if (n.tagName === "BUTTON" && n.className.indexOf("copy") >= 0) break;
       n = n.parentNode;
     }
     if (!n || n.nodeType !== 1) return;
@@ -263,16 +284,38 @@ wcs_do();
 </script>
 """ % SITE["naver_wa"]
 
+# 번호 복사 버튼 — PC 손님이 전화번호를 옮겨 적을 수 있게 한다.
+# https 사이트라 clipboard API 가 되지만, 안 되는 브라우저를 위해 옛 방식도 남겨둔다.
+COPY_JS = """<script>
+document.addEventListener("click", function (e) {
+  var b = e.target;
+  while (b && b.nodeType === 1 && !(b.tagName === "BUTTON" && b.className.indexOf("copy") >= 0)) b = b.parentNode;
+  if (!b || b.nodeType !== 1) return;
+  var num = b.getAttribute("data-num");
+  function done() { b.className = "copy done"; b.firstChild.nodeValue = "복사했습니다 " + num; }
+  function old() {
+    var t = document.createElement("textarea");
+    t.value = num; t.style.position = "fixed"; t.style.opacity = "0";
+    document.body.appendChild(t); t.select();
+    try { document.execCommand("copy"); done(); } catch (x) {}
+    document.body.removeChild(t);
+  }
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(num).then(done, old);
+  else old();
+});
+</script>
+"""
+
 def footer(svc, region=None):
     line = svc["foot"]
     if region:
         line = "%s %s" % (region["name"], line)
     return """<footer>%s · %s<br>%s
 <span class="biz">상호 %s &middot; 대표 %s &middot; 사업자등록번호 %s<br>%s</span></footer>
-<a class="fixed" href="tel:%s">📞 사진 보내고 견적 받기</a>
-%s</body></html>""" % (SITE["name"], SITE["phone"], line,
+<div class="fixed"><a class="f-call" href="tel:%s">📞 전화 걸기</a><a class="f-sms" href="sms:%s">💬 사진 문자</a></div>
+%s%s</body></html>""" % (SITE["name"], SITE["phone"], line,
                      SITE["name"], SITE["biz_owner"], SITE["biz_no"], SITE["biz_addr"],
-                     SITE["phone_raw"], NAVER_WCS)
+                     SITE["phone_raw"], SITE["phone_raw"], COPY_JS, NAVER_WCS)
 
 # ────────────────────────────────────────────────────────── JSON-LD
 def jsonld(svc, region=None):
