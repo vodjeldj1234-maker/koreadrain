@@ -30,13 +30,42 @@ def pick(basename, slug=None):
         return "/img/" + common
     return None
 
+_SIZE = {}
+def imgsize(src):
+    """/img/xx.jpg → (width, height). JPEG SOF 마커를 직접 읽는다 (Pillow 불필요).
+    2026-09-15 (29째방) — 검색 썸네일 조건. 크롤러가 미리 크기를 알아야 썸네일 후보가 된다."""
+    if src in _SIZE:
+        return _SIZE[src]
+    wh = None
+    try:
+        with open(os.path.join(IMG, os.path.basename(src)), "rb") as f:
+            b = f.read()
+        i = 2
+        while i < len(b) - 9:
+            if b[i] != 0xFF:
+                i += 1; continue
+            m = b[i + 1]
+            if m in (0xC0, 0xC1, 0xC2):          # SOF0/1/2
+                h = int.from_bytes(b[i + 5:i + 7], "big")
+                w = int.from_bytes(b[i + 7:i + 9], "big")
+                wh = (w, h); break
+            if m in (0xD8, 0x01) or 0xD0 <= m <= 0xD7:
+                i += 2; continue
+            i += 2 + int.from_bytes(b[i + 2:i + 4], "big")
+    except OSError:
+        pass
+    _SIZE[src] = wh
+    return wh
+
 def imgtag(src, alt, cls="ph", lazy=True):
     if not src:
         return '<div class="%s" aria-hidden="true"></div>' % cls
     # 첫 화면(히어로) 사진만 즉시 로딩, 나머지는 스크롤해서 보일 때 로딩한다.
     # → 방문자 대부분이 아래까지 안 내려가므로 Netlify 대역폭(크레딧)이 크게 절약된다.
     extra = ' loading="lazy" decoding="async"' if lazy else ' fetchpriority="high" decoding="async"'
-    return '<img class="%s" src="%s" alt="%s"%s>' % (cls, src, html.escape(alt), extra)
+    wh = imgsize(src)
+    size = (' width="%d" height="%d"' % wh) if wh else ""
+    return '<img class="%s" src="%s" alt="%s"%s%s>' % (cls, src, html.escape(alt), size, extra)
 
 # ── 연락 요소 (2026-09-05 추가)
 #   ⚠ 전화 링크 하나뿐이면 PC 로 보는 손님은 연락할 방법이 없다. 문자·번호복사를 같이 낸다.
@@ -65,9 +94,12 @@ def head(title, desc, canonical, jsonld, is_index, og_img=None):
     og = ""
     if og_img:
         abs_img = SITE["domain"] + og_img
-        og = ('<meta property="og:image" content="%s">\n'
+        wh = imgsize(og_img)
+        ogwh = ('<meta property="og:image:width" content="%d">\n'
+                '<meta property="og:image:height" content="%d">\n' % wh) if wh else ""
+        og = ('<meta property="og:image" content="%s">\n' % abs_img + ogwh +
               '<meta name="twitter:card" content="summary_large_image">\n'
-              '<meta name="twitter:image" content="%s">\n' % (abs_img, abs_img))
+              '<meta name="twitter:image" content="%s">\n' % abs_img)
     return """<!DOCTYPE html><html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -396,6 +428,30 @@ def footer(svc, region=None):
                      SITE["phone_raw"], SITE["phone_raw"], COPY_JS, NAVER_WCS)
 
 # ────────────────────────────────────────────────────────── JSON-LD
+def jsonld_images(svc, region=None):
+    """히어로 1 + 갤러리 6 을 ImageObject 로. 2026-09-15 (29째방) 검색 썸네일 조건.
+    화면에 실제로 보이는 사진·같은 설명만 넣는다 (gallery() 와 같은 목록)."""
+    slug = region["slug"] if region else None
+    rows = svc["gallery"]
+    if slug:
+        rows = svc.get("gallery_by_region", {}).get(slug, rows)
+    out = []
+    def add(src, cap):
+        if not src:
+            return
+        o = {"@type": "ImageObject", "contentUrl": SITE["domain"] + src, "name": cap}
+        wh = imgsize(src)
+        if wh:
+            o["width"], o["height"] = wh
+        out.append(o)
+    add(pick("hero-" + svc["key"], slug),
+        "%s%s 시공 현장" % ((region["name"] + " ") if region else "", svc["label"]))  # hero() 의 alt 와 동일
+    for i, row in enumerate(rows, start=1):
+        title = row[1]
+        loc = row[3] if len(row) > 3 else None
+        add(pick("%s-%d" % (svc["key"], i), slug), (loc + " " + title) if loc else title)
+    return out
+
 def jsonld(svc, region=None):
     import json
     hero = pick("hero-" + svc["key"], region["slug"] if region else None)
@@ -413,7 +469,7 @@ def jsonld(svc, region=None):
         "telephone": SITE["phone"],
         "url": SITE["domain"] + url_of(svc, region),
         "areaServed": area,
-        "image": ([SITE["domain"] + hero] if hero else []),
+        "image": jsonld_images(svc, region),
         "makesOffer": [{"@type": "Offer", "itemOffered": {
             "@type": "Service", "name": svc["offer"]}}],
     }
