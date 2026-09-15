@@ -209,6 +209,11 @@ def hero(svc, region=None):
 """ % (imgtag(src, alt, lazy=False), top, svc["h1_top"], svc["h1_bottom"], svc["h1_tail"],
        svc["sub"], trust(region), ctabtns(), tri)
 
+def gal_alt(svc, slug, i, default):
+    """갤러리 i번째 사진의 alt. svc["alt"][slug or ""] 에 검색어 문구가 있으면 그걸, 없으면 캡션 title (2026-09-15, 30째방)."""
+    lst = svc.get("alt", {}).get(slug or "", [])
+    return lst[i - 1] if i <= len(lst) and lst[i - 1] else default
+
 def gallery(svc, region=None):
     slug = region["slug"] if region else None
     # ⚠ 사진과 문구를 반드시 같이 본다.
@@ -226,7 +231,7 @@ def gallery(svc, region=None):
         items.append(
             '<div class="item">%s<span class="lb">%s</span>'
             '<div class="cp">%s%s<span>%s</span></div></div>'
-            % (imgtag(src, (loc + " " + title) if loc else title), lb, title, loctag, desc))
+            % (imgtag(src, gal_alt(svc, slug, i, (loc + " " + title) if loc else title)), lb, title, loctag, desc))
     # 서비스가 자기 문구를 갖고 있으면 그걸 쓴다 (없으면 기본 문구)
     if svc.get("gal_h2"):
         h2, p = svc["gal_h2"], svc["gal_p"]
@@ -449,7 +454,7 @@ def jsonld_images(svc, region=None):
     for i, row in enumerate(rows, start=1):
         title = row[1]
         loc = row[3] if len(row) > 3 else None
-        add(pick("%s-%d" % (svc["key"], i), slug), (loc + " " + title) if loc else title)
+        add(pick("%s-%d" % (svc["key"], i), slug), gal_alt(svc, slug, i, (loc + " " + title) if loc else title))
     return out
 
 def jsonld(svc, region=None):
