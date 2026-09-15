@@ -11,9 +11,10 @@ koreadrain.kr 정적 사이트 빌더
   우수관 페이지와 트렌치 페이지는 서로를 노출하지 않는다.
   서비스 간 링크도, 타 서비스 문구도 넣지 않는다. 각 서비스는 독립 사이트처럼 동작한다.
 """
-import os, shutil, html
+import os, sys, shutil, html
 from data import SITE, REGIONS, SERVICES
 from style import CSS
+import info                      # 정보글(/info/) 빌더 — 2026-09-16 워드프레스 방에서 이관
 
 DIST = "dist"
 IMG  = "img"
@@ -581,6 +582,9 @@ def main():
     # 사진 복사
     if os.path.isdir(IMG):
         shutil.copytree(IMG, os.path.join(DIST, "img"))
+
+    # 정보글 /info/ — posts/*.txt 가 있을 때만 만든다 (글 0편이면 빈 목록을 올리지 않는다)
+    urls += info.build(sys.modules[__name__])
 
     # 파비콘 — 없으면 네이버 서치어드바이저가 favicon.ico 를 400 으로 잡아
     # "접근 불가한 페이지(수집제한)" 로 기록한다. (2026-08-28 실제로 1건 발생)
