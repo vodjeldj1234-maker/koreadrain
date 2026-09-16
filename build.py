@@ -38,8 +38,12 @@ def imgsize(src):
     if src in _SIZE:
         return _SIZE[src]
     wh = None
+    # /img/info/xx.jpg 처럼 하위 폴더가 있는 경로도 찾는다 (31째방 — 정보글 사진)
+    path = src.lstrip("/").replace("/", os.sep)
+    if not os.path.exists(path):
+        path = os.path.join(IMG, os.path.basename(src))
     try:
-        with open(os.path.join(IMG, os.path.basename(src)), "rb") as f:
+        with open(path, "rb") as f:
             b = f.read()
         i = 2
         while i < len(b) - 9:
