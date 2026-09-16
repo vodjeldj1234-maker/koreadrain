@@ -20,6 +20,8 @@ build.py main() 에서 `urls += info.build()` 한 줄로 호출된다. 기존 17
 ■ 사진: img/info/{slug}-{N}.jpg  (없으면 [사진 N] 자리는 비운다. 사진에 안 찍힌 걸 캡션에 쓰지 않는다)
 ■ 원칙: 없는 사실 안 씀 / 금액·연수·건수 지어내지 않음 / "당일 출장·출동·방문" 금지 / 아파트 얘기 안 씀 / 동료 이름 안 씀
 ■ 링크: 글 끝에 "시공 문의는 포스원" → / (우수관 메인) 한 줄. 트렌치·보도블록 등 다른 서비스로는 잇지 않는다 (서비스 격리)
+■ 서비스 (31째방): 머리에 `서비스: 트렌치` 를 쓰면 /trench/info/ 로 나간다. 없으면 우수관 → /info/.
+  목록·관련 글·견적 버튼·crumb·푸터 링크가 전부 그 서비스 안에서만 이어진다 (서비스 격리).
 """
 import os, re, html, json, glob, datetime
 
@@ -27,6 +29,27 @@ POSTS_DIR = "posts"
 INFO_DIR  = "info"
 IMG_DIR   = os.path.join("img", "info")
 RELATED_N = 3
+
+# 서비스별 설정 (31째방 — 트렌치 정보글 추가)
+#   ⚠ 서비스 격리 — 글·목록·관련 글·견적 버튼·crumb·푸터 링크가 전부 자기 서비스 첫 페이지로만 간다.
+SERVICES = {
+    "우수관": {
+        "dir": "info", "home": "/",
+        "list_h1": "우수관 · 홈통 · 빗물받이 정보글",
+        "list_desc": "우수관 누수 원인, 교체 비용이 정해지는 기준, 막힘과 교체의 구분, 빗물받이·선홈통 시공 순서 — 현장에서 실제로 겪은 것만 정리했습니다.",
+        "cta_sub": "새는 자리 · 배관 라인 전체 · 배관 맨 아래 · 건물 외관",
+        "cta_link": "시공 문의는 %s 우수관 페이지에서",
+        "fhome": "우수관 · 홈통 · 빗물받이 시공 안내",
+    },
+    "트렌치": {
+        "dir": "trench/info", "home": "/trench/",
+        "list_h1": "트렌치 · 배수로 정보글",
+        "list_desc": "트렌치 · 배수로 보수와 신설에 대해 현장에서 실제로 겪은 것만 정리했습니다.",
+        "cta_sub": "배수로 전체 · 물 고이는 자리 · 파손 부위 근접 · 덮개와 앵글 상태",
+        "cta_link": "시공 문의는 %s 트렌치 페이지에서",
+        "fhome": "트렌치 · 배수로 시공 안내",
+    },
+}
 
 EXTRA_CSS = r"""
 .post{background:#fff}
@@ -91,6 +114,8 @@ def read_post(path):
             mm = re.match(r"\s*(\d+)\s*[:.]\s*(.+)", line)
             if mm:
                 captions[int(mm.group(1))] = mm.group(2).strip()
+    meta["서비스"] = meta.get("서비스") or "우수관"
+    assert meta["서비스"] in SERVICES, "%s: 서비스는 %s 중 하나" % (path, "/".join(SERVICES))
     meta["키워드목록"] = [t.strip() for t in re.split(r"[,，]", meta.get("키워드", "")) if t.strip()]
     meta["본문"] = body.strip("\n")
     meta["캡션"] = captions
@@ -173,7 +198,7 @@ def first_image(post):
     return None
 
 def related(post, posts):
-    """키워드 겹치는 수 → 최신순. 자기 자신 제외."""
+    """키워드 겹치는 수 → 최신순. 자기 자신 제외. posts 는 같은 서비스 글만 넘어온다."""
     def score(o):
         return len(set(o["키워드목록"]) & set(post["키워드목록"]))
     others = [o for o in posts if o["슬러그"] != post["슬러그"]]
@@ -181,23 +206,40 @@ def related(post, posts):
     return others[:RELATED_N]
 
 # ───────────────────────────────────────────── 페이지
-def url_of(post=None):
-    return "/%s/%s.html" % (INFO_DIR, post["슬러그"]) if post else "/%s/" % INFO_DIR
+def url_of(post=None, svc="우수관"):
+    d = SERVICES[post["서비스"] if post else svc]["dir"]
+    return "/%s/%s.html" % (d, post["슬러그"]) if post else "/%s/" % d
 
 def build(b):
     """b = build 모듈 (SITE, head, header, ctabtns, imgtag, footer 재료, write, DIST). 만든 URL 목록을 돌려준다."""
-    SITE = b.SITE
-    posts = load_posts()
+    posts_all = load_posts()
     urls = []
-    if not posts:
-        print("정보글 없음 → /%s/ 안 만듦" % INFO_DIR); return urls
-    crumb_tpl = '<div class="icrumb"><div class="wrap"><a href="/">%s</a><span>›</span><a href="%s">정보글</a>%s</div></div>\n'
+    for name, cfg in SERVICES.items():
+        posts = [p for p in posts_all if p["서비스"] == name]
+        if not posts:
+            print("정보글(%s) 없음 → /%s/ 안 만듦" % (name, cfg["dir"])); continue
+        urls += _build_service(b, name, cfg, posts)
+
+    # 사진 복사 (서비스 공통 폴더 — 파일 이름이 슬러그라 겹치지 않는다)
+    if os.path.isdir(IMG_DIR):
+        import shutil
+        dst = os.path.join(b.DIST, IMG_DIR)
+        if os.path.isdir(dst):
+            shutil.rmtree(dst)
+        shutil.copytree(IMG_DIR, dst)
+    return urls
+
+def _build_service(b, name, cfg, posts):
+    SITE = b.SITE
+    urls = []
+    home = cfg["home"]
+    crumb_tpl = '<div class="icrumb"><div class="wrap"><a href="%s">%s</a><span>›</span><a href="%s">정보글</a>%s</div></div>\n'
 
     def shell(title, desc, canonical, jsonld, body, og_img=None, crumb_tail=""):
         h = b.head(title, desc, canonical, jsonld, False, og_img)
         h = h.replace("</style>", EXTRA_CSS + "</style>", 1)
-        return (h + b.header(None) + crumb_tpl % (SITE["name"], url_of(), crumb_tail)
-                + body + _footer(b))
+        return (h + b.header(None) + crumb_tpl % (home, SITE["name"], url_of(svc=name), crumb_tail)
+                + body + _footer(b, cfg))
 
     # 글 페이지
     for p in posts:
@@ -212,11 +254,12 @@ def build(b):
 <h1>%s</h1>
 <div class="meta">%s · %s</div>
 %s
-<div class="cta"><b>사진 4장 보내주시면 당일 견적 회신</b><p>새는 자리 · 배관 라인 전체 · 배관 맨 아래 · 건물 외관</p>%s
-<a class="home" href="/">시공 문의는 %s 우수관 페이지에서</a></div>
+<div class="cta"><b>사진 4장 보내주시면 당일 견적 회신</b><p>%s</p>%s
+<a class="home" href="%s">%s</a></div>
 %s
 </div></section>
-""" % (html.escape(p["제목"]), p["날짜"], SITE["name"], body_html(p, b.imgtag), b.ctabtns(), SITE["name"], rel_html)
+""" % (html.escape(p["제목"]), p["날짜"], SITE["name"], body_html(p, b.imgtag), cfg["cta_sub"], b.ctabtns(),
+       home, cfg["cta_link"] % SITE["name"], rel_html)
         ld = {
             "@context": "https://schema.org",
             "@graph": [
@@ -227,47 +270,40 @@ def build(b):
                  "publisher": {"@type": "Organization", "name": SITE["name"], "url": SITE["domain"]},
                  **({"image": SITE["domain"] + og} if og else {})},
                 {"@type": "BreadcrumbList", "itemListElement": [
-                    {"@type": "ListItem", "position": 1, "name": SITE["name"], "item": SITE["domain"] + "/"},
-                    {"@type": "ListItem", "position": 2, "name": "정보글", "item": SITE["domain"] + url_of()},
+                    {"@type": "ListItem", "position": 1, "name": SITE["name"], "item": SITE["domain"] + home},
+                    {"@type": "ListItem", "position": 2, "name": "정보글", "item": SITE["domain"] + url_of(svc=name)},
                     {"@type": "ListItem", "position": 3, "name": p["제목"], "item": canonical}]},
             ]}
         page = shell(p["제목"] + " | " + SITE["name"], p["설명"], canonical,
                      json.dumps(ld, ensure_ascii=False), body, og,
                      '<span>›</span><span>%s</span>' % html.escape(p["제목"][:22] + ("…" if len(p["제목"]) > 22 else "")))
-        b.write(os.path.join(b.DIST, INFO_DIR, p["슬러그"] + ".html"), page)
+        b.write(os.path.join(b.DIST, cfg["dir"], p["슬러그"] + ".html"), page)
         urls.append(url_of(p))
 
     # 목록 페이지
     cards = "".join('<a class="card" href="%s"><b>%s</b><span>%s</span><small>%s</small></a>'
                     % (url_of(p), html.escape(p["제목"]), html.escape(p["설명"]), p["날짜"]) for p in posts)
-    title = "우수관 · 홈통 · 빗물받이 정보글 | %s" % SITE["name"]
-    desc = "우수관 누수 원인, 교체 비용이 정해지는 기준, 막힘과 교체의 구분, 빗물받이·선홈통 시공 순서 — 현장에서 실제로 겪은 것만 정리했습니다."
-    canonical = SITE["domain"] + url_of()
+    title = "%s | %s" % (cfg["list_h1"], SITE["name"])
+    desc = cfg["list_desc"]
+    canonical = SITE["domain"] + url_of(svc=name)
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": title, "description": desc, "url": canonical,
           "isPartOf": {"@type": "WebSite", "name": SITE["name"], "url": SITE["domain"]}}
     body = """<section class="plist"><div class="wrap">
-<h1>우수관 · 홈통 · 빗물받이 정보글</h1>
+<h1>%s</h1>
 <p class="intro">현장에서 실제로 겪은 것만 씁니다. 글 %d편.</p>
 %s
 </div></section>
-""" % (len(posts), cards)
-    b.write(os.path.join(b.DIST, INFO_DIR, "index.html"), shell(title, desc, canonical, json.dumps(ld, ensure_ascii=False), body))
-    urls.append(url_of())
-
-    # 사진 복사
-    if os.path.isdir(IMG_DIR):
-        import shutil
-        dst = os.path.join(b.DIST, IMG_DIR)
-        if os.path.isdir(dst):
-            shutil.rmtree(dst)
-        shutil.copytree(IMG_DIR, dst)
-    print("정보글 %d편 → /%s/" % (len(posts), INFO_DIR))
+""" % (cfg["list_h1"], len(posts), cards)
+    b.write(os.path.join(b.DIST, cfg["dir"], "index.html"), shell(title, desc, canonical, json.dumps(ld, ensure_ascii=False), body))
+    urls.append(url_of(svc=name))
+    print("정보글(%s) %d편 → /%s/" % (name, len(posts), cfg["dir"]))
     return urls
 
-def _footer(b):
+def _footer(b, cfg):
     SITE = b.SITE
-    return """<footer>%s · %s<br><a class="fhome" href="/">우수관 · 홈통 · 빗물받이 시공 안내</a>
+    return """<footer>%s · %s<br><a class="fhome" href="%s">%s</a>
 <span class="biz">상호 %s &middot; 대표 %s &middot; 사업자등록번호 %s<br>%s</span></footer>
 <div class="fixed"><a class="f-call" href="tel:%s">📞 전화 걸기</a><a class="f-sms" href="sms:%s">💬 사진 문자</a></div>
-%s%s</body></html>""" % (SITE["name"], SITE["phone"], SITE["name"], SITE["biz_owner"], SITE["biz_no"], SITE["biz_addr"],
+%s%s</body></html>""" % (SITE["name"], SITE["phone"], cfg["home"], cfg["fhome"],
+                         SITE["name"], SITE["biz_owner"], SITE["biz_no"], SITE["biz_addr"],
                          SITE["phone_raw"], SITE["phone_raw"], b.COPY_JS, b.NAVER_WCS)
