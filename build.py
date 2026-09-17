@@ -15,6 +15,7 @@ import os, sys, shutil, html
 from data import SITE, REGIONS, SERVICES
 from style import CSS
 import info                      # 정보글(/info/) 빌더 — 2026-09-16 워드프레스 방에서 이관
+import cases                     # 시공 사례(/trench/case/) 빌더 — 2026-09-17 31째방
 
 DIST = "dist"
 IMG  = "img"
@@ -157,9 +158,10 @@ def navlinks(svc, region=None):
     if region:
         # 지역 페이지 — 우수관 첫 페이지 하나만
         return ('<section class="nav"><div class="wrap">\n'
-                '  <h2>우수관 교체 안내 전체 보기</h2>\n'
+                '  <h2>%s</h2>\n'
                 '  <div class="links"><a href="%s">%s<i>&rsaquo;</i></a></div>\n'
-                '</div></section>\n' % (url_of(home), home["home_label"]))
+                '</div></section>\n' % (svc.get("nav_r_title", "우수관 교체 안내 전체 보기"),
+                                        url_of(home), home["home_label"]))
     if kids:
         # 첫 페이지 — 하위 페이지 목록
         return ('<section class="nav"><div class="wrap">\n'
@@ -230,7 +232,7 @@ def gallery(svc, region=None):
     items = []
     for i, row in enumerate(rows, start=1):
         lb, title, desc = row[0], row[1], row[2]
-        loc = row[3] if len(row) > 3 else None      # 촬영지역 (지역 격리를 안 쓰는 서비스만)
+        loc = row[3] if len(row) > 3 and not region else None   # 촬영지역 — 지역 페이지에선 안 보인다 (지역 격리)
         src = pick("%s-%d" % (svc["key"], i), slug)
         loctag = ('<span class="loc">%s</span>' % html.escape(loc)) if loc else ""
         items.append(
@@ -240,6 +242,8 @@ def gallery(svc, region=None):
     # 서비스가 자기 문구를 갖고 있으면 그걸 쓴다 (없으면 기본 문구)
     if svc.get("gal_h2"):
         h2, p = svc["gal_h2"], svc["gal_p"]
+        if region:   # 공통 문구에 다른 지역명이 있으므로 지역 페이지는 따로 (그 지역 사진이면 그 지역 문구)
+            p = region.get("gal_p") or svc.get("gal_p_r", p)
     else:
         where = (region["name"] + " ") if region else ""
         h2 = "다녀온 현장 <em>%d곳</em>에서 고른 사진입니다" % SITE["sites_done"]
@@ -314,6 +318,16 @@ def story(svc, region=None):
   <div class="stext">%s</div>
 </div></section>
 """ % (html.escape(title), body)
+
+def case_cards(svc, region=None):
+    """시공 사례 카드 (2026-09-17, 31째방). svc["cases"] 가 있는 서비스의 첫 페이지와 지역 페이지에 붙는다.
+       사례에는 지역명이 없으므로 어느 지역 페이지에나 똑같이 보여도 지역 격리가 깨지지 않는다.
+       지역마다 앞에 오는 사례만 돌려서 페이지끼리 덜 똑같게 한다."""
+    if not svc.get("cases"):
+        return ""
+    regs = svc.get("region_list") or []
+    offset = regs.index(region) if region in regs else 0
+    return cases.section(sys.modules[__name__], svc["cases"], offset)
 
 def faq(svc, region=None):
     items = faq_items(svc, region)
@@ -427,7 +441,7 @@ document.addEventListener("click", function (e) {
 def footer(svc, region=None):
     line = svc["foot"]
     if region:
-        line = "%s %s" % (region["name"], line)
+        line = "%s %s" % (region["name"], svc.get("foot_r", line))
     home = home_of(svc, region)
     homeln = ('<br><a class="fhome" href="%s">%s</a>' % (url_of(home), home["home_label"])) if home else ""
     return """<footer>%s · %s<br>%s%s
@@ -458,7 +472,7 @@ def jsonld_images(svc, region=None):
         "%s%s 시공 현장" % ((region["name"] + " ") if region else "", svc["label"]))  # hero() 의 alt 와 동일
     for i, row in enumerate(rows, start=1):
         title = row[1]
-        loc = row[3] if len(row) > 3 else None
+        loc = row[3] if len(row) > 3 and not region else None
         add(pick("%s-%d" % (svc["key"], i), slug), gal_alt(svc, slug, i, (loc + " " + title) if loc else title))
     return out
 
@@ -527,7 +541,7 @@ def page(svc, region=None):
     og_img = pick("hero-" + svc["key"], region["slug"] if region else None)
     return (head(title, desc, canonical, jsonld(svc, region), region is None, og_img)
             + header(svc, region) + hero(svc, region) + gallery(svc, region)
-            + area(svc, region) + story(svc, region) + focus(svc, region) + faq(svc, region)
+            + area(svc, region) + story(svc, region) + case_cards(svc, region) + focus(svc, region) + faq(svc, region)
             + navlinks(svc, region) + quote(svc, region) + footer(svc, region))
 
 def write(path, text):
@@ -579,9 +593,10 @@ def main():
     for svc in SERVICES:
         write(path_of(svc), page(svc));            urls.append(url_of(svc))
         # regions=False 인 서비스는 지역 페이지를 만들지 않는다 (한 페이지 + 출장지역 공개 방식)
-        if svc.get("regions", True):
-            for r in REGIONS:
-                write(path_of(svc, r), page(svc, r));  urls.append(url_of(svc, r))
+        # region_list 가 있으면 그 서비스 전용 지역 목록으로 만든다 (트렌치 — 2026-09-17, 31째방)
+        regs = svc.get("region_list") or (REGIONS if svc.get("regions", True) else [])
+        for r in regs:
+            write(path_of(svc, r), page(svc, r));  urls.append(url_of(svc, r))
 
     # 사진 복사
     if os.path.isdir(IMG):
@@ -589,6 +604,11 @@ def main():
 
     # 정보글 /info/ — posts/*.txt 가 있을 때만 만든다 (글 0편이면 빈 목록을 올리지 않는다)
     urls += info.build(sys.modules[__name__])
+
+    # 시공 사례 — svc["cases"] 가 있는 서비스 (지금은 트렌치)
+    for svc in SERVICES:
+        if svc.get("cases"):
+            urls += cases.build(sys.modules[__name__], svc["cases"])
 
     # 파비콘 — 없으면 네이버 서치어드바이저가 favicon.ico 를 400 으로 잡아
     # "접근 불가한 페이지(수집제한)" 로 기록한다. (2026-08-28 실제로 1건 발생)
