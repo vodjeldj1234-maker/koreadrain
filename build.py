@@ -32,6 +32,14 @@ def pick(basename, slug=None):
         return "/img/" + common
     return None
 
+def rimg(svc, region, name):
+    """지역 페이지 사진을 직접 지정한 경우 그 경로 (32째방, 2026-09-18).
+    svc["rimg"][slug] = {"hero": "/img/..", 1: "/img/..", ..., 6: "/img/.."}
+    같은 현장 사진을 다른 서비스 지역 페이지에 다시 쓸 때 파일을 복사하지 않고 경로만 가리킨다."""
+    if not region:
+        return None
+    return (svc.get("rimg", {}).get(region["slug"]) or {}).get(name)
+
 _SIZE = {}
 def imgsize(src):
     """/img/xx.jpg → (width, height). JPEG SOF 마커를 직접 읽는다 (Pillow 불필요).
@@ -200,7 +208,7 @@ def header(svc=None, region=None):
 
 def hero(svc, region=None):
     slug = region["slug"] if region else None
-    src  = pick("hero-" + svc["key"], slug)
+    src  = rimg(svc, region, "hero") or pick("hero-" + svc["key"], slug)
     top  = (region["name"] + " ") if region else ""
     alt  = "%s%s 시공 현장" % (top, svc["label"])
     tri  = "".join('<div><b>%s</b><span>%s</span></div>' % (a, b) for a, b in svc["tri"])
@@ -233,7 +241,7 @@ def gallery(svc, region=None):
     for i, row in enumerate(rows, start=1):
         lb, title, desc = row[0], row[1], row[2]
         loc = row[3] if len(row) > 3 and not region else None   # 촬영지역 — 지역 페이지에선 안 보인다 (지역 격리)
-        src = pick("%s-%d" % (svc["key"], i), slug)
+        src = rimg(svc, region, i) or pick("%s-%d" % (svc["key"], i), slug)
         loctag = ('<span class="loc">%s</span>' % html.escape(loc)) if loc else ""
         items.append(
             '<div class="item">%s<span class="lb">%s</span>'
@@ -244,6 +252,7 @@ def gallery(svc, region=None):
         h2, p = svc["gal_h2"], svc["gal_p"]
         if region:   # 공통 문구에 다른 지역명이 있으므로 지역 페이지는 따로 (그 지역 사진이면 그 지역 문구)
             p = region.get("gal_p") or svc.get("gal_p_r", p)
+            h2 = svc.get("gal_h2_r", h2)   # 지역 페이지 사진이 첫 페이지와 다른 구성일 때 (32째방)
     else:
         where = (region["name"] + " ") if region else ""
         h2 = "다녀온 현장 <em>%d곳</em>에서 고른 사진입니다" % SITE["sites_done"]
@@ -330,6 +339,21 @@ def case_cards(svc, region=None):
     regs = svc.get("region_list") or (REGIONS if svc.get("regions", True) else [])
     offset = regs.index(region) if region in regs else 0
     return cases.section(sys.modules[__name__], svc["cases"], svc["case_cfg"], offset)
+
+def info_list(svc, region=None):
+    """정보글 목록 (32째방, 2026-09-18). svc["info"] = info.SERVICES 의 이름.
+    ⚠ 서비스 격리 — 그 서비스 정보글만. 지역 페이지에는 붙이지 않는다 (지역 페이지 링크는 첫 페이지 하나로 둔다)."""
+    name = svc.get("info")
+    if region or not name:
+        return ""
+    posts = [p for p in info.load_posts() if p["서비스"] == name]
+    if not posts:
+        return ""
+    rows = "".join('<a href="%s">%s<i>&rsaquo;</i></a>' % (info.url_of(p), html.escape(p["제목"])) for p in posts[:6])
+    return ('<section class="nav"><div class="wrap">\n'
+            '  <h2>%s</h2><p>현장에서 실제로 겪은 것만 정리했습니다.</p>\n'
+            '  <div class="links">%s<a href="%s">정보글 전체 %d편 보기<i>&rsaquo;</i></a></div>\n'
+            '</div></section>\n' % (info.SERVICES[name]["list_h1"], rows, info.url_of(svc=name), len(posts)))
 
 def faq(svc, region=None):
     items = faq_items(svc, region)
@@ -470,17 +494,17 @@ def jsonld_images(svc, region=None):
         if wh:
             o["width"], o["height"] = wh
         out.append(o)
-    add(pick("hero-" + svc["key"], slug),
+    add(rimg(svc, region, "hero") or pick("hero-" + svc["key"], slug),
         "%s%s 시공 현장" % ((region["name"] + " ") if region else "", svc["label"]))  # hero() 의 alt 와 동일
     for i, row in enumerate(rows, start=1):
         title = row[1]
         loc = row[3] if len(row) > 3 and not region else None
-        add(pick("%s-%d" % (svc["key"], i), slug), gal_alt(svc, slug, i, (loc + " " + title) if loc else title))
+        add(rimg(svc, region, i) or pick("%s-%d" % (svc["key"], i), slug), gal_alt(svc, slug, i, (loc + " " + title) if loc else title))
     return out
 
 def jsonld(svc, region=None):
     import json
-    hero = pick("hero-" + svc["key"], region["slug"] if region else None)
+    hero = rimg(svc, region, "hero") or pick("hero-" + svc["key"], region["slug"] if region else None)
     if region:
         area = [{"@type": "City", "name": c} for c in region["cities"]]
     elif svc.get("cities"):                      # 지역 격리를 안 쓰는 서비스는 자기 목록을 쓴다
@@ -518,7 +542,8 @@ def jsonld(svc, region=None):
 # ─────────────────────────────────────────────────────────── URL / 출력
 def url_of(svc, region=None):
     if region:
-        return "/%s/%s.html" % (svc["dir"], region["slug"])
+        # rdir — 한 폴더에 서비스가 여럿인 경우 지역 페이지 폴더를 따로 쓴다 (32째방: /trench/musoeum/{지역}.html)
+        return "/%s/%s.html" % (svc.get("rdir", svc["dir"]), region["slug"])
     # "file" 이 있으면 그 서비스는 /{dir}/{file} 한 장으로 나간다 (하위 페이지).
     if svc.get("file"):
         return "/%s/%s" % (svc["dir"], svc["file"])
@@ -526,7 +551,7 @@ def url_of(svc, region=None):
 
 def path_of(svc, region=None):
     if region:
-        return os.path.join(DIST, svc["dir"], region["slug"] + ".html")
+        return os.path.join(DIST, *(svc.get("rdir", svc["dir"]).split("/") + [region["slug"] + ".html"]))
     if svc.get("file"):
         return os.path.join(DIST, svc["dir"], svc["file"])
     return os.path.join(DIST, "index.html") if svc["at_root"] \
@@ -540,11 +565,11 @@ def page(svc, region=None):
         title = svc["title_m"].format(site=SITE["name"])
         desc  = svc["desc_m"].format(phone=SITE["phone"])
     canonical = SITE["domain"] + url_of(svc, region)
-    og_img = pick("hero-" + svc["key"], region["slug"] if region else None)
+    og_img = rimg(svc, region, "hero") or pick("hero-" + svc["key"], region["slug"] if region else None)
     return (head(title, desc, canonical, jsonld(svc, region), region is None, og_img)
             + header(svc, region) + hero(svc, region) + gallery(svc, region)
             + area(svc, region) + story(svc, region) + case_cards(svc, region) + focus(svc, region) + faq(svc, region)
-            + navlinks(svc, region) + quote(svc, region) + footer(svc, region))
+            + info_list(svc, region) + navlinks(svc, region) + quote(svc, region) + footer(svc, region))
 
 def write(path, text):
     os.makedirs(os.path.dirname(path), exist_ok=True)

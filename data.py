@@ -1225,7 +1225,7 @@ USUGWAN["gallery_by_region"]['uijeongbu-yangju'] = [('시공 전', '옥상 주�
 USUGWAN["gallery_by_region"]['namyangju-guri'] = [('시공 전', '녹슨 기존 물홈통 안', '안쪽 배관이 삭아 있습니다'), ('철거', '물홈통을 떼어낸 자리', '벽에서 나온 녹슨 배관 끝'), ('확인', '떼어낸 옛 관 속', '녹과 찌꺼기로 막혀 있습니다'), ('설치', '배관 끝에 새로 단 물홈통', '녹슨 배관 끝을 받칩니다'), ('고정', '새 선홈통 밴드 고정', '벽에 밴드로 잡습니다'), ('하단', '바닥까지 내린 새 선홈통', '하단까지 새것으로')]
 USUGWAN["gallery_by_region"]['gimpo-bucheon'] = [('시공 전', '벽에서 짧게 나온 배관과 물자국', '물이 벽을 타고 흘렀습니다'), ('자재', 'PVC 엘보와 부속', '길이에 맞춰 준비합니다'), ('고정', '벽에 박은 브라켓 밴드', '관을 잡아 줄 자리'), ('연결', '배관 끝에 이은 엘보', '벽에서 나온 배관에 끼웁니다'), ('고정', '밴드로 잡은 PVC 관', '위에서 아래로 곧게'), ('완료', '바닥까지 내린 PVC 우수관', '')]
 USUGWAN["gallery_by_region"]['anyang-gwangmyeong'] = [('타공', '옥상 벽 아래를 뚫은 구멍', '코어 드릴로 관통합니다'), ('타공', '코어 드릴 작업', '옥상 모서리 쪽'), ('설치', '벽 밖으로 나온 PVC 관', '타공한 구멍에 관을 심었습니다'), ('마감', '옥상 쪽 관통부 마감', '관 둘레를 막습니다'), ('로프', '로프를 타고 외벽 작업', '골목 쪽 벽은 로프로 내려갑니다'), ('완료', '외벽을 따라 내린 PVC 우수관', '바닥까지 설치')]
-USUGWAN["gallery_by_region"]['icheon-yeoju'] = [('시공 전', '물받이 없는 처마 밑 바닥', '떨어진 물이 바닥을 때린 자국'), ('시공 전', '벽을 타고 내린 이끼 줄', '처마에서 떨어진 물 자국'), ('설치', '지붕 골 끝 실리콘', '지붕 판과 물받이 사이를 막습니다'), ('고정', '걸쇠 철물과 실리콘', '지붕 판재를 눌러 접어 물받이를 잡습니다'), ('연결', '물받이 바닥 선홈통 구멍', '집수기가 달릴 자리'), ('완료', '창문 면 선홈통', '바닥까지 내린 각형 선홈통')]
+USUGWAN["gallery_by_region"]['icheon-yeoju'] = [('시공 전', '물받이 없는 처마 밑 바닥', '떨어진 물이 바닥을 때린 자국'), ('시공 전', '벽을 타고 내린 이끼 줄', '처마에서 떨어진 물 자국'), ('설치', '지붕 골 끝 실리콘', '지붕 판과 물받이 사이를 막습니다'), ('고정', '걸쇠 철물과 실리콘', '지붕 판재를 눌러 접어 물받이를 잡습니다'), ('연결', '물받이 바닥 선홈통 구멍', '선홈통이 이어질 자리'), ('완료', '창문 면 선홈통', '바닥까지 내린 각형 선홈통')]
 USUGWAN["gallery_by_region"]['gwangju-hanam'] = [('시공 전', '슬래브 밑 토출구 아래 물때', '벽을 타고 흐른 자국'), ('설치', '토출구 바로 아래 물홈통', '나온 물을 바로 받습니다'), ('근접', '물홈통 안으로 들어간 토출구', '빈틈 없이 받칩니다'), ('고정', '징크 각관 밴드 고정', '벽에 밴드로 잡습니다'), ('이음', '겹쳐서 피스로 이은 각관', '징크 각관 잇는 방법'), ('꺾음', '단차를 피해 ㄱ자로 꺾은 각관', '다시 곧게 내립니다')]
 USUGWAN["gallery_by_region"]['jincheon-eumseong'] = [('시공 전', '주택 모서리의 기존 관', '창문 옆으로 내려온 PVC 관'), ('시공 전', '페인트가 벗겨진 낡은 관', '엘보 둘레가 들떠 있습니다'), ('자재', '새로 자른 PVC 관', '길이에 맞춰 재단합니다'), ('자재', 'PVC 엘보 이음', '꺾이는 자리에 씁니다'), ('고정', '벽돌 벽에 고정 철물 박기', '관을 잡아 줄 자리'), ('시공 전', '관이 지나가는 주택 외벽', '처마 아래로 내려온 기존 관')]
 USUGWAN["gallery_by_region"]['okcheon-yeongdong'] = [('시공 전', '녹슨 기존 관 이음부', '이음 자리부터 삭았습니다'), ('시공 전', '녹물이 흘러내린 관', '이음부 아래로 번진 자국'), ('고정', '석재 벽에 단 새 밴드', '관을 잡아 줄 자리'), ('물홈통', '상단 스텐 물홈통', '위에서 내려온 물을 받습니다'), ('설치', '모서리를 따라 내린 스텐관', '위에서 아래로 곧게'), ('하단', '바닥 배수구로 꽂은 스텐 엘보', '모인 물을 배수구로 넘깁니다')]
@@ -1377,3 +1377,435 @@ USUGWAN_CASES = [
 USUGWAN["cases"] = USUGWAN_CASES
 USUGWAN["case_cfg"] = {"dir": "usugwan/case", "label": "우수관", "info": "우수관", "crumb_name": "우수관 · 홈통 · 빗물받이",
     "list_desc": "우수관 교체 · 신설, 매립 우수관 누수, 빗물받이 · 선홈통 설치 — 현장마다 시공 전부터 완료까지 사진 순서대로 정리했습니다."}
+
+# ══════════════════════════════════════════════════════════════════
+# 32째방 (2026-09-18) — 트렌치 하위 × 지역 72장 · 보도블록/카스토퍼 지역 48장 · 에어컨 배관 서비스
+#  ⚠ 이 줄 아래는 홈페이지_작업도구/32째방/gen32.py 가 통째로 다시 쓴다. 손으로 고치면 gen32 원본도 고칠 것.
+#  ⚠ 지역 목록은 TRENCH_REGIONS 의 이름·도시·출장지역만 복사한다 (story·gal_p 는 트렌치 현장 얘기라 뺀다).
+#  ⚠ 사진은 지역 상관없이 쓴다 (주인님 지시). story · gal_p 는 그 지역에서 실제로 한 현장일 때만.
+#  ⚠ rimg = 이미 사이트에 있는 사진을 다시 쓸 때 파일을 복사하지 않고 경로만 가리킨다 (build.py rimg()).
+# ══════════════════════════════════════════════════════════════════
+def _regions_like_trench(extra=None):
+    out = []
+    for r in TRENCH_REGIONS:
+        d = {"slug": r["slug"], "name": r["name"], "cities": r["cities"], "area": r["area"]}
+        d.update((extra or {}).get(r["slug"], {}))
+        out.append(d)
+    return out
+
+# 정보글 목록을 붙일 서비스 이름 (info.SERVICES 의 키) — build.py info_list()
+USUGWAN["info"] = "우수관"
+for _s in (TRENCH, MUSOEUM, GONGSA, PARKING):
+    _s["info"] = "트렌치"
+BLOCK["info"] = "보도블록"
+CARSTOP["info"] = "카스토퍼"
+
+_GAL_P_R = "다녀온 현장 %d곳 중 일부입니다." % SITE["sites_done"]
+_R_WHERE = ("region", "{region} 어디든 와주시나요?",
+            "{region} 전 지역 작업합니다. 사진과 함께 현장 위치를 보내주시면 가능한 일정까지 같이 회신드립니다.")
+def _r_quote(four):
+    return ("region", "{region}인데 견적은 얼마나 걸리나요?",
+            "사진 보내주시면 당일 견적 가능합니다. " + four + " 4장이면 충분합니다. "
+            "당일 방문은 어렵고, 방문 일정은 견적 드리면서 같이 잡습니다.")
+
+# ── 무소음 트렌치 × 지역 (/trench/musoeum/{지역}.html)
+MUSOEUM["region_list"] = _regions_like_trench({})
+MUSOEUM["rdir"] = 'trench/musoeum'
+MUSOEUM['home_label'] = '무소음 트렌치 첫 페이지'
+MUSOEUM['nav_r_title'] = '무소음 트렌치 교체 안내 전체 보기'
+MUSOEUM['foot_r'] = '무소음 트렌치 덮개 교체 · 받침 앵글 교체 · 측구 보수'
+MUSOEUM["gal_p_r"] = _GAL_P_R
+MUSOEUM["faq"] += [_R_WHERE, _r_quote("배수로 전체 · 덮개 상태 근접 · 파손 부위 · 쌓인 이물이나 물 고임")]
+MUSOEUM["gallery_by_region"] = {
+    'seoul': [('시공 전', '낙엽이 찬 측구', '덮개 아래가 막혀 있습니다'), ('컷팅', '측구 옆 바닥 컷팅', '폭을 맞춰 잘라 냅니다'), ('보강', '철근을 넣은 측벽 자리', '새로 채울 콘크리트를 잡아 줍니다'), ('거푸집', '앵글 사이 거푸집', '측벽 모양대로 타설할 준비'), ('덮개', '새로 얹은 무소음 덮개', '둘레 몰탈이 마르는 중입니다'), ('완료', '무소음 덮개로 마친 측구', '테이프로 막고 굳힙니다')],
+    'incheon': [('시공 전', '낙엽이 찬 측구', '덮개 아래가 막혀 있습니다'), ('파쇄', '깨어 낸 측구 자리', '무너진 측벽을 들어냅니다'), ('앵글', '철근 위에 앉힌 새 앵글', '덮개가 앉을 받침'), ('거푸집', '측구를 따라 세운 거푸집', '철근을 넣고 틀을 잡습니다'), ('완료', '무소음 덮개를 얹은 측구', '가까이서 본 모습'), ('완료', '건물 앞을 따라 이어진 덮개', '끝까지 한 줄로 맞췄습니다')],
+    'goyang-paju': [('시공 전', '진입로의 기존 배수로 덮개', '차가 드나드는 자리'), ('준비', '라바콘으로 막은 램프', '차가 들어오지 않게 막습니다'), ('자재', '교체할 무소음 덮개', '기존 덮개 옆에 대 봅니다'), ('철거', '덮개를 걷어낸 배수로 안', '흙과 부스러기가 차 있습니다'), ('복원', '앵글 둘레 몰탈 채움', '측벽 모양을 다시 만듭니다'), ('채움', '측벽 위에 채운 몰탈', '덮개가 앉을 자리를 고릅니다')],
+    'uijeongbu-yangju': [('컷팅', '측구 옆 바닥 컷팅', '폭을 맞춰 잘라 냅니다'), ('파쇄', '깨어 낸 측구 자리', '무너진 측벽을 들어냅니다'), ('앵글', '철근 위에 앉힌 새 앵글', '덮개가 앉을 받침'), ('거푸집', '측구를 따라 세운 거푸집', '철근을 넣고 틀을 잡습니다'), ('덮개', '새로 얹은 무소음 덮개', '둘레 몰탈이 마르는 중입니다'), ('완료', '무소음 덮개로 마친 측구', '테이프로 막고 굳힙니다')],
+    'namyangju-guri': [('시공 전', '진입로의 기존 배수로 덮개', '차가 드나드는 자리'), ('준비', '라바콘으로 막은 램프', '차가 들어오지 않게 막습니다'), ('철거', '덮개를 걷어낸 배수로 안', '흙과 부스러기가 차 있습니다'), ('앵글', '새 앵글을 앉힌 배수로', '덮개가 앉을 받침입니다'), ('채움', '양쪽으로 채운 몰탈', '덮개 폭에 맞춰 채웁니다'), ('완료', '무소음 덮개로 바꾼 진입로', '라바콘으로 막고 진행')],
+    'suwon-osan': [('컷팅', '측구 옆 바닥 컷팅', '폭을 맞춰 잘라 냅니다'), ('보강', '철근을 넣은 측벽 자리', '새로 채울 콘크리트를 잡아 줍니다'), ('거푸집', '앵글 사이 거푸집', '측벽 모양대로 타설할 준비'), ('거푸집', '측구를 따라 세운 거푸집', '철근을 넣고 틀을 잡습니다'), ('완료', '무소음 덮개를 얹은 측구', '가까이서 본 모습'), ('완료', '건물 앞을 따라 이어진 덮개', '끝까지 한 줄로 맞췄습니다')],
+    'hwaseong-dongtan': [('자재', '교체할 무소음 덮개', '기존 덮개 옆에 대 봅니다'), ('앵글', '새 앵글을 앉힌 배수로', '덮개가 앉을 받침입니다'), ('복원', '앵글 둘레 몰탈 채움', '측벽 모양을 다시 만듭니다'), ('채움', '측벽 위에 채운 몰탈', '덮개가 앉을 자리를 고릅니다'), ('채움', '양쪽으로 채운 몰탈', '덮개 폭에 맞춰 채웁니다'), ('완료', '무소음 덮개로 바꾼 진입로', '라바콘으로 막고 진행')],
+    'seongnam-yongin': [('확인', '덮개를 걷어낸 배수로 안', '측벽과 앵글 상태를 봅니다'), ('자재', '교체할 무소음 덮개', '현장에 들여온 새 덮개'), ('철거', '걷어낸 앵글 조각', '덮개와 받침을 들어냅니다'), ('철거', '걷어낸 앵글과 열린 배수로', '받침까지 들어냅니다'), ('완료', '무소음 덮개로 바꾼 배수로', '라바콘으로 막고 진행'), ('완료', '석재 바닥 사이 무소음 덮개', '끝까지 이어 얹은 모습')],
+    'gimpo-bucheon': [('파쇄', '깨어 낸 측구 자리', '무너진 측벽을 들어냅니다'), ('보강', '철근을 넣은 측벽 자리', '새로 채울 콘크리트를 잡아 줍니다'), ('앵글', '철근 위에 앉힌 새 앵글', '덮개가 앉을 받침'), ('거푸집', '앵글 사이 거푸집', '측벽 모양대로 타설할 준비'), ('덮개', '새로 얹은 무소음 덮개', '둘레 몰탈이 마르는 중입니다'), ('완료', '무소음 덮개를 얹은 측구', '가까이서 본 모습')],
+    'siheung-ansan': [('시공 전', '진입로의 기존 배수로 덮개', '차가 드나드는 자리'), ('자재', '교체할 무소음 덮개', '기존 덮개 옆에 대 봅니다'), ('철거', '덮개를 걷어낸 배수로 안', '흙과 부스러기가 차 있습니다'), ('앵글', '새 앵글을 앉힌 배수로', '덮개가 앉을 받침입니다'), ('복원', '앵글 둘레 몰탈 채움', '측벽 모양을 다시 만듭니다'), ('채움', '양쪽으로 채운 몰탈', '덮개 폭에 맞춰 채웁니다')],
+    'anyang-gwangmyeong': [('확인', '덮개를 걷어낸 배수로 안', '측벽과 앵글 상태를 봅니다'), ('자재', '교체할 무소음 덮개', '현장에 들여온 새 덮개'), ('철거', '걷어낸 앵글 조각', '덮개와 받침을 들어냅니다'), ('철거', '걷어낸 앵글과 열린 배수로', '받침까지 들어냅니다'), ('완료', '무소음 덮개로 바꾼 배수로', '라바콘으로 막고 진행'), ('완료', '가까이서 본 무소음 덮개', '덮개와 받침이 맞물리는 구조')],
+    'pyeongtaek-anseong': [('시공 전', '낡은 주철 덮개', '진입로를 가로지르는 측구'), ('확인', '덮개를 걷어낸 측구 안', '삭은 앵글이 드러납니다'), ('앵글', '새 앵글을 넣은 배수로', '받침을 새로 만듭니다'), ('앵글', '측벽 위에 앉힌 새 앵글', '둘레를 몰탈로 채웁니다'), ('설치', '앵글을 앉히는 중인 측구', '새 덮개를 옆에 준비'), ('완료', '무소음 덮개로 바꾼 측구', '가까이서 본 모습')],
+    'icheon-yeoju': [('시공 전', '낙엽이 찬 측구', '덮개 아래가 막혀 있습니다'), ('컷팅', '측구 옆 바닥 컷팅', '폭을 맞춰 잘라 냅니다'), ('보강', '철근을 넣은 측벽 자리', '새로 채울 콘크리트를 잡아 줍니다'), ('거푸집', '측구를 따라 세운 거푸집', '철근을 넣고 틀을 잡습니다'), ('완료', '무소음 덮개로 마친 측구', '테이프로 막고 굳힙니다'), ('완료', '건물 앞을 따라 이어진 덮개', '끝까지 한 줄로 맞췄습니다')],
+    'gwangju-hanam': [('시공 전', '진입로의 기존 배수로 덮개', '차가 드나드는 자리'), ('준비', '라바콘으로 막은 램프', '차가 들어오지 않게 막습니다'), ('자재', '교체할 무소음 덮개', '기존 덮개 옆에 대 봅니다'), ('채움', '측벽 위에 채운 몰탈', '덮개가 앉을 자리를 고릅니다'), ('채움', '양쪽으로 채운 몰탈', '덮개 폭에 맞춰 채웁니다'), ('완료', '무소음 덮개로 바꾼 진입로', '라바콘으로 막고 진행')],
+    'cheongju-jeungpyeong': [('확인', '덮개를 걷어낸 배수로 안', '측벽과 앵글 상태를 봅니다'), ('자재', '교체할 무소음 덮개', '현장에 들여온 새 덮개'), ('철거', '걷어낸 앵글 조각', '덮개와 받침을 들어냅니다'), ('철거', '걷어낸 앵글과 열린 배수로', '받침까지 들어냅니다'), ('완료', '석재 바닥 사이 무소음 덮개', '끝까지 이어 얹은 모습'), ('완료', '가까이서 본 무소음 덮개', '덮개와 받침이 맞물리는 구조')],
+    'jincheon-eumseong': [('시공 전', '낡은 주철 덮개', '진입로를 가로지르는 측구'), ('확인', '덮개를 걷어낸 측구 안', '삭은 앵글이 드러납니다'), ('앵글', '새 앵글을 넣은 배수로', '받침을 새로 만듭니다'), ('앵글', '측벽 위에 앉힌 새 앵글', '둘레를 몰탈로 채웁니다'), ('설치', '앵글을 앉히는 중인 측구', '새 덮개를 옆에 준비'), ('완료', '무소음 덮개로 바꾼 측구', '가까이서 본 모습')],
+    'chungju-jecheon': [('시공 전', '낙엽이 찬 측구', '덮개 아래가 막혀 있습니다'), ('파쇄', '깨어 낸 측구 자리', '무너진 측벽을 들어냅니다'), ('앵글', '철근 위에 앉힌 새 앵글', '덮개가 앉을 받침'), ('거푸집', '앵글 사이 거푸집', '측벽 모양대로 타설할 준비'), ('덮개', '새로 얹은 무소음 덮개', '둘레 몰탈이 마르는 중입니다'), ('완료', '무소음 덮개로 마친 측구', '테이프로 막고 굳힙니다')],
+    'okcheon-yeongdong': [('준비', '라바콘으로 막은 램프', '차가 들어오지 않게 막습니다'), ('철거', '덮개를 걷어낸 배수로 안', '흙과 부스러기가 차 있습니다'), ('앵글', '새 앵글을 앉힌 배수로', '덮개가 앉을 받침입니다'), ('복원', '앵글 둘레 몰탈 채움', '측벽 모양을 다시 만듭니다'), ('채움', '측벽 위에 채운 몰탈', '덮개가 앉을 자리를 고릅니다'), ('완료', '무소음 덮개로 바꾼 진입로', '라바콘으로 막고 진행')],
+    'cheonan-asan': [('확인', '덮개를 걷어낸 배수로 안', '측벽과 앵글 상태를 봅니다'), ('자재', '교체할 무소음 덮개', '현장에 들여온 새 덮개'), ('철거', '걷어낸 앵글 조각', '덮개와 받침을 들어냅니다'), ('완료', '무소음 덮개로 바꾼 배수로', '라바콘으로 막고 진행'), ('완료', '석재 바닥 사이 무소음 덮개', '끝까지 이어 얹은 모습'), ('완료', '가까이서 본 무소음 덮개', '덮개와 받침이 맞물리는 구조')],
+    'seosan-dangjin': [('시공 전', '낡은 주철 덮개', '진입로를 가로지르는 측구'), ('확인', '덮개를 걷어낸 측구 안', '삭은 앵글이 드러납니다'), ('앵글', '새 앵글을 넣은 배수로', '받침을 새로 만듭니다'), ('앵글', '측벽 위에 앉힌 새 앵글', '둘레를 몰탈로 채웁니다'), ('설치', '앵글을 앉히는 중인 측구', '새 덮개를 옆에 준비'), ('완료', '무소음 덮개로 바꾼 측구', '가까이서 본 모습')],
+    'boryeong-buyeo': [('시공 전', '낙엽이 찬 측구', '덮개 아래가 막혀 있습니다'), ('컷팅', '측구 옆 바닥 컷팅', '폭을 맞춰 잘라 냅니다'), ('파쇄', '깨어 낸 측구 자리', '무너진 측벽을 들어냅니다'), ('거푸집', '앵글 사이 거푸집', '측벽 모양대로 타설할 준비'), ('완료', '무소음 덮개를 얹은 측구', '가까이서 본 모습'), ('완료', '건물 앞을 따라 이어진 덮개', '끝까지 한 줄로 맞췄습니다')],
+    'sejong-gongju': [('시공 전', '진입로의 기존 배수로 덮개', '차가 드나드는 자리'), ('준비', '라바콘으로 막은 램프', '차가 들어오지 않게 막습니다'), ('앵글', '새 앵글을 앉힌 배수로', '덮개가 앉을 받침입니다'), ('복원', '앵글 둘레 몰탈 채움', '측벽 모양을 다시 만듭니다'), ('채움', '측벽 위에 채운 몰탈', '덮개가 앉을 자리를 고릅니다'), ('채움', '양쪽으로 채운 몰탈', '덮개 폭에 맞춰 채웁니다')],
+    'daejeon': [('자재', '교체할 무소음 덮개', '현장에 들여온 새 덮개'), ('철거', '걷어낸 앵글 조각', '덮개와 받침을 들어냅니다'), ('철거', '걷어낸 앵글과 열린 배수로', '받침까지 들어냅니다'), ('완료', '무소음 덮개로 바꾼 배수로', '라바콘으로 막고 진행'), ('완료', '석재 바닥 사이 무소음 덮개', '끝까지 이어 얹은 모습'), ('완료', '가까이서 본 무소음 덮개', '덮개와 받침이 맞물리는 구조')],
+    'nonsan-geumsan': [('시공 전', '낡은 주철 덮개', '진입로를 가로지르는 측구'), ('확인', '덮개를 걷어낸 측구 안', '삭은 앵글이 드러납니다'), ('앵글', '새 앵글을 넣은 배수로', '받침을 새로 만듭니다'), ('앵글', '측벽 위에 앉힌 새 앵글', '둘레를 몰탈로 채웁니다'), ('설치', '앵글을 앉히는 중인 측구', '새 덮개를 옆에 준비'), ('완료', '무소음 덮개로 바꾼 측구', '가까이서 본 모습')],
+}
+MUSOEUM["rimg"] = {
+    'seoul': {'hero': '/img/hero-trench-pyeongtaek-anseong.jpg', 1: '/img/trench-1-pyeongtaek-anseong.jpg', 2: '/img/musoeum-2-seoul.jpg', 3: '/img/trench-3-pyeongtaek-anseong.jpg', 4: '/img/trench-5-pyeongtaek-anseong.jpg', 5: '/img/musoeum-5-seoul.jpg', 6: '/img/musoeum-6-seoul.jpg'},
+    'incheon': {'hero': '/img/hero-musoeum-incheon.jpg', 1: '/img/trench-1-pyeongtaek-anseong.jpg', 2: '/img/trench-2-pyeongtaek-anseong.jpg', 3: '/img/trench-4-pyeongtaek-anseong.jpg', 4: '/img/musoeum-4-incheon.jpg', 5: '/img/trench-6-pyeongtaek-anseong.jpg', 6: '/img/musoeum-6-incheon.jpg'},
+    'goyang-paju': {'hero': '/img/hero-trench-seongnam-yongin.jpg', 1: '/img/trench-1-seongnam-yongin.jpg', 2: '/img/musoeum-2-goyang-paju.jpg', 3: '/img/trench-3-seongnam-yongin.jpg', 4: '/img/trench-2-seongnam-yongin.jpg', 5: '/img/trench-5-seongnam-yongin.jpg', 6: '/img/musoeum-6-goyang-paju.jpg'},
+    'uijeongbu-yangju': {'hero': '/img/hero-trench-pyeongtaek-anseong.jpg', 1: '/img/musoeum-2-seoul.jpg', 2: '/img/trench-2-pyeongtaek-anseong.jpg', 3: '/img/trench-4-pyeongtaek-anseong.jpg', 4: '/img/musoeum-4-incheon.jpg', 5: '/img/musoeum-5-seoul.jpg', 6: '/img/musoeum-6-seoul.jpg'},
+    'namyangju-guri': {'hero': '/img/hero-trench-seongnam-yongin.jpg', 1: '/img/trench-1-seongnam-yongin.jpg', 2: '/img/musoeum-2-goyang-paju.jpg', 3: '/img/trench-2-seongnam-yongin.jpg', 4: '/img/trench-4-seongnam-yongin.jpg', 5: '/img/musoeum-5-namyangju-guri.jpg', 6: '/img/trench-6-seongnam-yongin.jpg'},
+    'suwon-osan': {'hero': '/img/hero-musoeum-incheon.jpg', 1: '/img/musoeum-2-seoul.jpg', 2: '/img/trench-3-pyeongtaek-anseong.jpg', 3: '/img/trench-5-pyeongtaek-anseong.jpg', 4: '/img/musoeum-4-incheon.jpg', 5: '/img/trench-6-pyeongtaek-anseong.jpg', 6: '/img/musoeum-6-incheon.jpg'},
+    'hwaseong-dongtan': {'hero': '/img/hero-trench-seongnam-yongin.jpg', 1: '/img/trench-3-seongnam-yongin.jpg', 2: '/img/trench-4-seongnam-yongin.jpg', 3: '/img/trench-5-seongnam-yongin.jpg', 4: '/img/musoeum-6-goyang-paju.jpg', 5: '/img/musoeum-5-namyangju-guri.jpg', 6: '/img/trench-6-seongnam-yongin.jpg'},
+    'seongnam-yongin': {'hero': '/img/hero-trench-goyang-paju.jpg', 1: '/img/trench-1-goyang-paju.jpg', 2: '/img/trench-2-goyang-paju.jpg', 3: '/img/trench-3-goyang-paju.jpg', 4: '/img/musoeum-4-seongnam-yongin.jpg', 5: '/img/trench-4-goyang-paju.jpg', 6: '/img/trench-5-goyang-paju.jpg'},
+    'gimpo-bucheon': {'hero': '/img/hero-trench-pyeongtaek-anseong.jpg', 1: '/img/trench-2-pyeongtaek-anseong.jpg', 2: '/img/trench-3-pyeongtaek-anseong.jpg', 3: '/img/trench-4-pyeongtaek-anseong.jpg', 4: '/img/trench-5-pyeongtaek-anseong.jpg', 5: '/img/musoeum-5-seoul.jpg', 6: '/img/trench-6-pyeongtaek-anseong.jpg'},
+    'siheung-ansan': {'hero': '/img/hero-musoeum-siheung-ansan.jpg', 1: '/img/trench-1-seongnam-yongin.jpg', 2: '/img/trench-3-seongnam-yongin.jpg', 3: '/img/trench-2-seongnam-yongin.jpg', 4: '/img/trench-4-seongnam-yongin.jpg', 5: '/img/trench-5-seongnam-yongin.jpg', 6: '/img/musoeum-5-namyangju-guri.jpg'},
+    'anyang-gwangmyeong': {'hero': '/img/hero-trench-goyang-paju.jpg', 1: '/img/trench-1-goyang-paju.jpg', 2: '/img/trench-2-goyang-paju.jpg', 3: '/img/trench-3-goyang-paju.jpg', 4: '/img/musoeum-4-seongnam-yongin.jpg', 5: '/img/trench-4-goyang-paju.jpg', 6: '/img/trench-6-goyang-paju.jpg'},
+    'pyeongtaek-anseong': {'hero': '/img/hero-trench-siheung-ansan.jpg', 1: '/img/trench-1-siheung-ansan.jpg', 2: '/img/trench-2-siheung-ansan.jpg', 3: '/img/trench-3-siheung-ansan.jpg', 4: '/img/trench-4-siheung-ansan.jpg', 5: '/img/trench-5-siheung-ansan.jpg', 6: '/img/trench-6-siheung-ansan.jpg'},
+    'icheon-yeoju': {'hero': '/img/hero-trench-pyeongtaek-anseong.jpg', 1: '/img/trench-1-pyeongtaek-anseong.jpg', 2: '/img/musoeum-2-seoul.jpg', 3: '/img/trench-3-pyeongtaek-anseong.jpg', 4: '/img/musoeum-4-incheon.jpg', 5: '/img/musoeum-6-seoul.jpg', 6: '/img/musoeum-6-incheon.jpg'},
+    'gwangju-hanam': {'hero': '/img/hero-trench-seongnam-yongin.jpg', 1: '/img/trench-1-seongnam-yongin.jpg', 2: '/img/musoeum-2-goyang-paju.jpg', 3: '/img/trench-3-seongnam-yongin.jpg', 4: '/img/musoeum-6-goyang-paju.jpg', 5: '/img/musoeum-5-namyangju-guri.jpg', 6: '/img/trench-6-seongnam-yongin.jpg'},
+    'cheongju-jeungpyeong': {'hero': '/img/hero-trench-goyang-paju.jpg', 1: '/img/trench-1-goyang-paju.jpg', 2: '/img/trench-2-goyang-paju.jpg', 3: '/img/trench-3-goyang-paju.jpg', 4: '/img/musoeum-4-seongnam-yongin.jpg', 5: '/img/trench-5-goyang-paju.jpg', 6: '/img/trench-6-goyang-paju.jpg'},
+    'jincheon-eumseong': {'hero': '/img/hero-trench-siheung-ansan.jpg', 1: '/img/trench-1-siheung-ansan.jpg', 2: '/img/trench-2-siheung-ansan.jpg', 3: '/img/trench-3-siheung-ansan.jpg', 4: '/img/trench-4-siheung-ansan.jpg', 5: '/img/trench-5-siheung-ansan.jpg', 6: '/img/trench-6-siheung-ansan.jpg'},
+    'chungju-jecheon': {'hero': '/img/hero-trench-pyeongtaek-anseong.jpg', 1: '/img/trench-1-pyeongtaek-anseong.jpg', 2: '/img/trench-2-pyeongtaek-anseong.jpg', 3: '/img/trench-4-pyeongtaek-anseong.jpg', 4: '/img/trench-5-pyeongtaek-anseong.jpg', 5: '/img/musoeum-5-seoul.jpg', 6: '/img/musoeum-6-seoul.jpg'},
+    'okcheon-yeongdong': {'hero': '/img/hero-trench-seongnam-yongin.jpg', 1: '/img/musoeum-2-goyang-paju.jpg', 2: '/img/trench-2-seongnam-yongin.jpg', 3: '/img/trench-4-seongnam-yongin.jpg', 4: '/img/trench-5-seongnam-yongin.jpg', 5: '/img/musoeum-6-goyang-paju.jpg', 6: '/img/trench-6-seongnam-yongin.jpg'},
+    'cheonan-asan': {'hero': '/img/hero-trench-goyang-paju.jpg', 1: '/img/trench-1-goyang-paju.jpg', 2: '/img/trench-2-goyang-paju.jpg', 3: '/img/trench-3-goyang-paju.jpg', 4: '/img/trench-4-goyang-paju.jpg', 5: '/img/trench-5-goyang-paju.jpg', 6: '/img/trench-6-goyang-paju.jpg'},
+    'seosan-dangjin': {'hero': '/img/hero-trench-siheung-ansan.jpg', 1: '/img/trench-1-siheung-ansan.jpg', 2: '/img/trench-2-siheung-ansan.jpg', 3: '/img/trench-3-siheung-ansan.jpg', 4: '/img/trench-4-siheung-ansan.jpg', 5: '/img/trench-5-siheung-ansan.jpg', 6: '/img/trench-6-siheung-ansan.jpg'},
+    'boryeong-buyeo': {'hero': '/img/hero-musoeum-boryeong-buyeo.jpg', 1: '/img/trench-1-pyeongtaek-anseong.jpg', 2: '/img/musoeum-2-seoul.jpg', 3: '/img/trench-2-pyeongtaek-anseong.jpg', 4: '/img/trench-5-pyeongtaek-anseong.jpg', 5: '/img/trench-6-pyeongtaek-anseong.jpg', 6: '/img/musoeum-6-incheon.jpg'},
+    'sejong-gongju': {'hero': '/img/hero-trench-seongnam-yongin.jpg', 1: '/img/trench-1-seongnam-yongin.jpg', 2: '/img/musoeum-2-goyang-paju.jpg', 3: '/img/trench-4-seongnam-yongin.jpg', 4: '/img/trench-5-seongnam-yongin.jpg', 5: '/img/musoeum-6-goyang-paju.jpg', 6: '/img/musoeum-5-namyangju-guri.jpg'},
+    'daejeon': {'hero': '/img/hero-trench-goyang-paju.jpg', 1: '/img/trench-2-goyang-paju.jpg', 2: '/img/trench-3-goyang-paju.jpg', 3: '/img/musoeum-4-seongnam-yongin.jpg', 4: '/img/trench-4-goyang-paju.jpg', 5: '/img/trench-5-goyang-paju.jpg', 6: '/img/trench-6-goyang-paju.jpg'},
+    'nonsan-geumsan': {'hero': '/img/hero-trench-siheung-ansan.jpg', 1: '/img/trench-1-siheung-ansan.jpg', 2: '/img/trench-2-siheung-ansan.jpg', 3: '/img/trench-3-siheung-ansan.jpg', 4: '/img/trench-4-siheung-ansan.jpg', 5: '/img/trench-5-siheung-ansan.jpg', 6: '/img/trench-6-siheung-ansan.jpg'},
+}
+
+# ── 트렌치 공사 × 지역 (/trench/gongsa/{지역}.html)
+GONGSA["region_list"] = _regions_like_trench({})
+GONGSA["rdir"] = 'trench/gongsa'
+GONGSA['home_label'] = '트렌치 공사 첫 페이지'
+GONGSA['nav_r_title'] = '트렌치 공사 안내 전체 보기'
+GONGSA['foot_r'] = '트렌치 공사 · 배수로 신설 · 측구 복원 · 그레이팅 교체'
+GONGSA["gal_p_r"] = _GAL_P_R
+GONGSA["gal_h2_r"] = '트렌치 공사 <em>현장 사진</em>입니다'
+GONGSA["faq"] += [_R_WHERE, _r_quote("설치할 위치 · 물 고이는 자리 · 깨지고 부서진 곳 · 집수정과 연결부")]
+GONGSA["gallery_by_region"] = {
+    'seoul': [('시공 전', '벽을 따라 트렌치를 낼 바닥', '작업 전 실내 바닥'), ('컷팅', '집진기를 달고 컷팅', '먼지를 잡으며 자릅니다'), ('파쇄', '브레이커로 깨어 낸 홈', '벽을 따라 길게'), ('채움', '몸체 둘레 몰탈 채움', '빈틈 없이 채워 고정합니다'), ('설치', '홈에 앉힌 스텐 몸체', '높이를 맞춰 내려놓습니다'), ('보양', '비닐로 덮어 둔 스텐 몸체', '채우는 동안 더러워지지 않게')],
+    'incheon': [('시공 전', '벽을 따라 트렌치를 낼 바닥', '작업 전 실내 바닥'), ('컷팅', '집진기를 달고 컷팅', '먼지를 잡으며 자릅니다'), ('파쇄', '브레이커로 깨어 낸 홈', '벽을 따라 길게'), ('채움', '몸체 둘레 몰탈 채움', '빈틈 없이 채워 고정합니다'), ('설치', '홈에 앉힌 스텐 몸체', '높이를 맞춰 내려놓습니다'), ('보양', '비닐로 덮어 둔 스텐 몸체', '채우는 동안 더러워지지 않게')],
+    'goyang-paju': [('표시', '테이프로 잡은 집수정 자리', '깨어 낼 자리를 먼저 표시합니다'), ('굴착', '네모나게 파낸 집수정 자리', '흙까지 파내 자리를 잡습니다'), ('배관', '트렌치 끝에 이은 T자 배관', '이음 자리를 막아 붙입니다'), ('설치', '홈에 내려놓은 트렌치 몸체', '배관과 나란히 놓고 맞춥니다'), ('연결', '집수정 그레이팅과 배관', '벽에서 나온 배관을 받습니다'), ('완료', '덮개까지 올린 실내 트렌치', '배수로가 없던 바닥에 새로 냈습니다')],
+    'uijeongbu-yangju': [('시공 전', '벽 옆 콘크리트 바닥', '트렌치를 새로 낼 자리'), ('컷팅', '벽을 따라 두 줄로 낸 컷팅', '들어낼 폭을 잡습니다'), ('파쇄', '깨어 낸 홈', '벽 옆으로 길게'), ('앵글', '문 앞까지 이어 놓은 앵글', '양쪽에 나란히 앉힙니다'), ('채움', '앵글 사이 몰탈 채움', '높이를 맞춰 채웁니다'), ('완료', '벽을 따라 낸 트렌치', '스텐 덮개까지 올린 모습')],
+    'namyangju-guri': [('철거', '트렌치 폭만큼 걷어낸 타일', '벽을 따라 한 줄로 걷어냅니다'), ('설치', '벽을 따라 앉힌 몸체', '길게 이어 앉힙니다'), ('설치', '홈에 앉힌 트렌치와 덮개', '타일 높이에 맞춰 앉힙니다'), ('보양', '비닐로 덮은 작업 구간', '집기와 벽을 가리고 시작합니다'), ('보양', '비닐로 가린 실내', '집기와 벽을 먼저 덮습니다'), ('마감', '트렌치 끝 마감', '틈을 메워 마무리합니다')],
+    'suwon-osan': [('먹줄', '바닥에 표시한 트렌치 자리', '선을 그어 위치를 잡습니다'), ('파쇄', '깨어 낸 홈', '트렌치가 들어갈 자리'), ('설치', '홈에 앉힌 트렌치 몸체', '격자 모양으로 이어 앉힙니다'), ('덮개', '벽돌 벽 끝까지 얹은 덮개', '한 장씩 이어 올립니다'), ('덮개', '덮개를 이어 얹는 중', '한 칸씩 이어 올립니다'), ('마감', '테이프로 가린 가장자리', '경계를 깔끔하게 남깁니다')],
+    'hwaseong-dongtan': [('시공 전', '낙엽이 쌓인 기존 배수로', '안이 거의 다 막혔습니다'), ('시공 전', '외벽 옆 바닥', '배수로를 새로 낼 자리'), ('파쇄', '걷어낸 콘크리트 조각', '벽을 따라 깨어 냈습니다'), ('홈', '깨어 낸 홈', '배수로가 들어갈 자리'), ('바닥', '홈 바닥 몰탈 타설', '앵글이 앉을 바닥'), ('완료', '외벽 모서리를 따라 낸 그레이팅', '새로 낸 배수로')],
+    'seongnam-yongin': [('시공 전', '설비 옆 좁은 배수로 자리', '덮개 없이 트여 있습니다'), ('앵글', '벽을 따라 놓은 새 앵글', '덮개가 앉을 받침입니다'), ('앵글', '벽을 따라 앉힌 앵글', '덮개가 앉을 받침'), ('앵글', '고정 철물로 잡은 앵글', '철물로 자리를 잡습니다'), ('집수', '배관 옆 집수구 그레이팅', '모인 물이 빠지는 자리'), ('완료', '모서리를 돌아 이은 덮개', '벽 끝까지 이어 마감했습니다')],
+    'gimpo-bucheon': [('시공 전', '배수로가 없던 실내 바닥', '이 바닥에 트렌치를 새로 냅니다'), ('시공 전', '배수로가 없던 실내 바닥', '이 바닥에 새로 냅니다'), ('자재', '들여놓은 트렌치 몸체와 덮개', '바닥에 늘어놓고 시작합니다'), ('파쇄', '컷팅한 줄 따라 바닥 깨기', '정해 둔 폭만큼만 깨어 냅니다'), ('파쇄', '길게 깨어 낸 트렌치 홈', '몸체가 들어갈 자리입니다'), ('파쇄', '벽 쪽으로 꺾어 낸 홈', '꺾이는 자리까지 깨어 냅니다')],
+    'siheung-ansan': [('시공 전', '낙엽이 찬 측구', '덮개 아래가 막혀 있습니다'), ('컷팅', '측구 옆 바닥 컷팅', '폭을 맞춰 잘라 냅니다'), ('보강', '철근을 넣은 측벽 자리', '새로 채울 콘크리트를 잡아 줍니다'), ('거푸집', '앵글 사이 거푸집', '측벽 모양대로 타설할 준비'), ('덮개', '새로 얹은 무소음 덮개', '둘레 몰탈이 마르는 중입니다'), ('완료', '무소음 덮개로 마친 측구', '테이프로 막고 굳힙니다')],
+    'anyang-gwangmyeong': [('시공 전', '벽을 따라 트렌치를 낼 바닥', '작업 전 실내 바닥'), ('컷팅', '집진기를 달고 컷팅', '먼지를 잡으며 자릅니다'), ('파쇄', '브레이커로 깨어 낸 홈', '벽을 따라 길게'), ('채움', '몸체 둘레 몰탈 채움', '빈틈 없이 채워 고정합니다'), ('설치', '홈에 앉힌 스텐 몸체', '높이를 맞춰 내려놓습니다'), ('보양', '비닐로 덮어 둔 스텐 몸체', '채우는 동안 더러워지지 않게')],
+    'pyeongtaek-anseong': [('파쇄', '표시한 자리를 깨어 내기', '브레이커로 네모나게 깨어 냅니다'), ('집수정', '새로 묻을 집수정', '건물 밖 바닥에 앉힙니다'), ('배관', '바닥 홈에 배관 앉히기', '트렌치 끝에서 벽 쪽으로 보냅니다'), ('실링', '이음 자리에 바른 실링재', '모서리 틈을 막습니다'), ('보양', '종이로 감아 둔 트렌치', '마감 전까지 덮어 둡니다'), ('근접', '그레이팅 위 엘보', '물이 집수정으로 떨어집니다')],
+    'icheon-yeoju': [('컷팅', '벽을 따라 두 줄 컷팅', '트렌치 폭만큼 자릅니다'), ('컷팅', '문 아래까지 이어진 컷팅', '끝까지 반듯하게 자릅니다'), ('파쇄', '깨어 낸 홈', '벽을 따라 길게'), ('앵글', '홈 양쪽에 앉힌 앵글', '덮개가 앉을 받침'), ('채움', '앵글 사이 몰탈 채움', '손으로 고르게 채웁니다'), ('완료', '문 옆까지 이어진 슬롯 덮개', '새로 낸 실내 트렌치')],
+    'gwangju-hanam': [('컷팅', '벽을 따라 컷팅', '집진기로 먼지를 잡습니다'), ('파쇄', '타일 아래 바닥 깨어 내기', '트렌치가 들어갈 깊이까지'), ('덮개', '벽 끝까지 이어 얹은 덮개', '좁은 폭으로 맞춰 올립니다'), ('보양', '비닐로 덮은 매장 안', '집기와 벽을 가립니다'), ('보양', '경계에 붙인 테이프', '마감 전에 타일을 가립니다'), ('완료', '벽을 따라 낸 실내 트렌치', '좁은 덮개까지 올린 모습')],
+    'cheongju-jeungpyeong': [('파쇄', '깨어 낸 홈과 잔해', '트렌치가 들어갈 자리'), ('파쇄', '두 줄 사이를 깨어 낸 홈', '잔해를 담아 치웁니다'), ('설치', '모서리에서 만나는 몸체', '꺾이는 자리를 맞춰 잇습니다'), ('덮개', '몸체 위에 얹을 덮개', '몸체 옆에 늘어놓고 맞춥니다'), ('마감', '테이프로 가린 경계', '트렌치 가장자리를 깔끔하게'), ('완료', '바닥에 격자로 낸 트렌치', '덮개까지 올린 모습')],
+    'jincheon-eumseong': [('시공 전', '외벽 옆 콘크리트 바닥', '배수로가 없던 자리'), ('파쇄', '굴삭기로 깨어 내기', '외벽을 따라 길게'), ('파쇄', '깨어 낸 바닥 잔해', '외벽 모서리까지'), ('바닥', '홈 바닥에 편 몰탈', '벽을 따라 길게 고릅니다'), ('앵글', '홈 위에 앉힌 앵글', '그레이팅이 앉을 받침'), ('집수', '집수구 그레이팅', '모인 물이 빠지는 자리')],
+    'chungju-jecheon': [('시공 전', '벽 옆 바닥', '트렌치를 새로 낼 자리'), ('앵글', '홈 양쪽에 앉힌 앵글', '길게 이어 붙입니다'), ('앵글', '모서리를 돌아가는 앵글', '꺾이는 자리까지 이어 앉힙니다'), ('채움', '앵글 둘레 몰탈 채움', '높이를 맞춰 채웁니다'), ('덮개', '집수구까지 이어진 슬롯 덮개', '물이 모이는 자리로 보냅니다'), ('완료', '벽을 따라 이어진 슬롯 덮개', '모서리까지 마감')],
+    'okcheon-yeongdong': [('시공 전', '배수로가 없던 실내 바닥', '이 바닥에 트렌치를 새로 냅니다'), ('시공 전', '자국만 남은 빈 실내 바닥', '작업 전 바닥 상태'), ('컷팅', '절단기로 바닥 자르기', '먼지를 날리며 줄을 냅니다'), ('파쇄', '컷팅 선을 따라 깨어 낸 바닥', '조각을 걷어내며 나아갑니다'), ('홈', '가지로 갈라지는 홈', '배관이 지나갈 자리까지'), ('홈', '트렌치가 들어갈 홈', '배관이 지나갈 가지 홈까지 같이 냅니다')],
+    'cheonan-asan': [('시공 전', '낙엽이 찬 측구', '덮개 아래가 막혀 있습니다'), ('파쇄', '깨어 낸 측구 자리', '무너진 측벽을 들어냅니다'), ('앵글', '철근 위에 앉힌 새 앵글', '덮개가 앉을 받침'), ('거푸집', '측구를 따라 세운 거푸집', '철근을 넣고 틀을 잡습니다'), ('완료', '무소음 덮개를 얹은 측구', '가까이서 본 모습'), ('완료', '건물 앞을 따라 이어진 덮개', '끝까지 한 줄로 맞췄습니다')],
+    'seosan-dangjin': [('시공 전', '짧게 끊긴 기존 트렌치', '이 옆으로 이어 늘립니다'), ('자재', '보호 필름을 씌운 스텐 몸체', '깨어 낸 홈 옆에 놓았습니다'), ('바닥', '홈 바닥에 넣은 몰탈', '몸체가 앉을 바닥을 만듭니다'), ('설치', '문 옆으로 앉힌 스텐 몸체', '덮개를 맞춰 올립니다'), ('덮개', '타일 바닥 트렌치에 얹는 덮개', '한 장씩 끝까지 잇습니다'), ('완료', '문 앞을 가로지르는 트렌치', '타일 높이에 맞춰 마감')],
+    'boryeong-buyeo': [('시공 전', '기존 덮개가 놓인 석재 바닥', '덮개가 여기서 끊깁니다'), ('시공 전', '석재 바닥 끝의 기존 덮개', '작업 전 바닥 상태'), ('파쇄', '석재를 걷고 깨어 낸 홈', '트렌치가 들어갈 자리'), ('몰탈', '고무통에 갠 몰탈', '둘레를 채울 만큼 비빕니다'), ('설치', '홈에 내려놓은 스텐 몸체', '길이를 맞춰 앉힙니다'), ('완료', '그레이팅까지 얹은 모습', '석재 바닥 사이 새 트렌치')],
+    'sejong-gongju': [('시공 전', '트렌치가 없던 실내 바닥', '이 바닥에 새로 냅니다'), ('먹줄', '바닥에 그은 트렌치 자리', '줄을 그어 폭을 잡습니다'), ('파쇄', '줄을 따라 깨어 낸 바닥', '조각을 걷어내며 나아갑니다'), ('파쇄', '줄 따라 깨어 낸 바닥', '트렌치가 들어갈 홈'), ('설치', '꺾어 이어 앉힌 트렌치 몸체', '둘레를 채워 고정합니다'), ('마감', '문 앞 바닥을 메운 자리', '그레이팅까지 이어 마감')],
+    'daejeon': [('시공 전', '녹슨 기존 그레이팅', '주차장 진입로 배수로'), ('컷팅', '옆 바닥 컷팅', '들어낼 폭을 반듯하게 자릅니다'), ('파쇄', '삭은 받침을 깨어 낸 자리', '깨진 조각을 걷어냅니다'), ('앵글', '새 앵글과 거친 측벽', '앵글을 앉혀 높이를 잡습니다'), ('거푸집', '앵글 사이 거푸집', '측벽 모양대로 채울 준비'), ('완료', '새 그레이팅까지 얹은 모습', '복원한 측벽 위에 앉힙니다')],
+    'nonsan-geumsan': [('시공 전', '깨지고 흙이 찬 측구', '측벽이 부서져 있습니다'), ('철거', '걷어낸 기존 그레이팅', '측구 안을 비웁니다'), ('파쇄', '부서진 측벽과 측구 안', '깨진 자리를 정리합니다'), ('거푸집', '측벽 자리에 댄 거푸집', '새 측벽 모양을 잡습니다'), ('복원', '거푸집을 뗀 새 측벽', '옆에 새 그레이팅을 준비'), ('덮개', '측구에 얹은 새 그레이팅', '테이프로 막고 굳힙니다')],
+}
+GONGSA["rimg"] = {
+    'seoul': {'hero': '/img/hero-trench-icheon-yeoju.jpg', 1: '/img/trench-1-icheon-yeoju.jpg', 2: '/img/trench-2-boryeong-buyeo.jpg', 3: '/img/trench-3-icheon-yeoju.jpg', 4: '/img/trench-5-icheon-yeoju.jpg', 5: '/img/trench-4-icheon-yeoju.jpg', 6: '/img/gongsa-6-seoul.jpg'},
+    'incheon': {'hero': '/img/hero-trench-boryeong-buyeo.jpg', 1: '/img/trench-1-icheon-yeoju.jpg', 2: '/img/trench-2-boryeong-buyeo.jpg', 3: '/img/trench-3-icheon-yeoju.jpg', 4: '/img/trench-5-icheon-yeoju.jpg', 5: '/img/trench-4-icheon-yeoju.jpg', 6: '/img/gongsa-6-seoul.jpg'},
+    'goyang-paju': {'hero': '/img/hero-trench-suwon-osan.jpg', 1: '/img/gongsa-1-goyang-paju.jpg', 2: '/img/gongsa-2-goyang-paju.jpg', 3: '/img/gongsa-3-goyang-paju.jpg', 4: '/img/gongsa-4-goyang-paju.jpg', 5: '/img/trench-5-okcheon-yeongdong.jpg', 6: '/img/trench-6-suwon-osan.jpg'},
+    'uijeongbu-yangju': {'hero': '/img/hero-trench-jincheon-eumseong.jpg', 1: '/img/trench-1-nonsan-geumsan.jpg', 2: '/img/gongsa-2-uijeongbu-yangju.jpg', 3: '/img/trench-2-jincheon-eumseong.jpg', 4: '/img/gongsa-4-uijeongbu-yangju.jpg', 5: '/img/trench-4-jincheon-eumseong.jpg', 6: '/img/trench-5-jincheon-eumseong.jpg'},
+    'namyangju-guri': {'hero': '/img/hero-trench-seoul.jpg', 1: '/img/trench-2-seoul.jpg', 2: '/img/trench-3-sejong-gongju.jpg', 3: '/img/gongsa-3-namyangju-guri.jpg', 4: '/img/trench-1-seoul.jpg', 5: '/img/gongsa-5-namyangju-guri.jpg', 6: '/img/gongsa-6-namyangju-guri.jpg'},
+    'suwon-osan': {'hero': '/img/hero-trench-uijeongbu-yangju.jpg', 1: '/img/trench-1-cheonan-asan.jpg', 2: '/img/trench-2-cheonan-asan.jpg', 3: '/img/trench-3-cheonan-asan.jpg', 4: '/img/gongsa-4-suwon-osan.jpg', 5: '/img/trench-4-uijeongbu-yangju.jpg', 6: '/img/gongsa-6-suwon-osan.jpg'},
+    'hwaseong-dongtan': {'hero': '/img/hero-trench-cheongju-jeungpyeong.jpg', 1: '/img/gongsa-1-hwaseong-dongtan.jpg', 2: '/img/trench-1-cheongju-jeungpyeong.jpg', 3: '/img/gongsa-3-hwaseong-dongtan.jpg', 4: '/img/trench-3-cheongju-jeungpyeong.jpg', 5: '/img/trench-4-cheongju-jeungpyeong.jpg', 6: '/img/trench-6-cheongju-jeungpyeong.jpg'},
+    'seongnam-yongin': {'hero': '/img/hero-trench-daejeon.jpg', 1: '/img/gongsa-1-seongnam-yongin.jpg', 2: '/img/gongsa-2-seongnam-yongin.jpg', 3: '/img/trench-2-daejeon.jpg', 4: '/img/gongsa-4-seongnam-yongin.jpg', 5: '/img/trench-5-daejeon.jpg', 6: '/img/gongsa-6-seongnam-yongin.jpg'},
+    'gimpo-bucheon': {'hero': '/img/hero-gongsa-gimpo-bucheon.jpg', 1: '/img/trench-1-suwon-osan.jpg', 2: '/img/trench-1-okcheon-yeongdong.jpg', 3: '/img/gongsa-3-gimpo-bucheon.jpg', 4: '/img/trench-2-suwon-osan.jpg', 5: '/img/gongsa-5-gimpo-bucheon.jpg', 6: '/img/gongsa-6-gimpo-bucheon.jpg'},
+    'siheung-ansan': {'hero': '/img/hero-trench-pyeongtaek-anseong.jpg', 1: '/img/trench-1-pyeongtaek-anseong.jpg', 2: '/img/musoeum-2-seoul.jpg', 3: '/img/trench-3-pyeongtaek-anseong.jpg', 4: '/img/trench-5-pyeongtaek-anseong.jpg', 5: '/img/musoeum-5-seoul.jpg', 6: '/img/musoeum-6-seoul.jpg'},
+    'anyang-gwangmyeong': {'hero': '/img/hero-gongsa-anyang-gwangmyeong.jpg', 1: '/img/trench-1-icheon-yeoju.jpg', 2: '/img/trench-2-boryeong-buyeo.jpg', 3: '/img/trench-3-icheon-yeoju.jpg', 4: '/img/trench-5-icheon-yeoju.jpg', 5: '/img/trench-4-icheon-yeoju.jpg', 6: '/img/gongsa-6-seoul.jpg'},
+    'pyeongtaek-anseong': {'hero': '/img/hero-trench-okcheon-yeongdong.jpg', 1: '/img/gongsa-1-pyeongtaek-anseong.jpg', 2: '/img/trench-4-okcheon-yeongdong.jpg', 3: '/img/trench-4-suwon-osan.jpg', 4: '/img/gongsa-4-pyeongtaek-anseong.jpg', 5: '/img/gongsa-5-pyeongtaek-anseong.jpg', 6: '/img/trench-6-okcheon-yeongdong.jpg'},
+    'icheon-yeoju': {'hero': '/img/hero-trench-nonsan-geumsan.jpg', 1: '/img/trench-1-jincheon-eumseong.jpg', 2: '/img/trench-2-nonsan-geumsan.jpg', 3: '/img/trench-3-nonsan-geumsan.jpg', 4: '/img/trench-3-jincheon-eumseong.jpg', 5: '/img/trench-5-nonsan-geumsan.jpg', 6: '/img/trench-6-nonsan-geumsan.jpg'},
+    'gwangju-hanam': {'hero': '/img/hero-trench-sejong-gongju.jpg', 1: '/img/trench-2-sejong-gongju.jpg', 2: '/img/trench-3-seoul.jpg', 3: '/img/gongsa-3-gwangju-hanam.jpg', 4: '/img/trench-1-sejong-gongju.jpg', 5: '/img/trench-4-sejong-gongju.jpg', 6: '/img/trench-6-seoul.jpg'},
+    'cheongju-jeungpyeong': {'hero': '/img/hero-trench-cheonan-asan.jpg', 1: '/img/trench-1-uijeongbu-yangju.jpg', 2: '/img/gongsa-2-cheongju-jeungpyeong.jpg', 3: '/img/gongsa-3-cheongju-jeungpyeong.jpg', 4: '/img/trench-3-uijeongbu-yangju.jpg', 5: '/img/trench-5-uijeongbu-yangju.jpg', 6: '/img/trench-6-cheonan-asan.jpg'},
+    'jincheon-eumseong': {'hero': '/img/hero-trench-seosan-dangjin.jpg', 1: '/img/trench-1-seosan-dangjin.jpg', 2: '/img/trench-2-cheongju-jeungpyeong.jpg', 3: '/img/trench-2-seosan-dangjin.jpg', 4: '/img/gongsa-4-jincheon-eumseong.jpg', 5: '/img/trench-5-cheongju-jeungpyeong.jpg', 6: '/img/trench-5-seosan-dangjin.jpg'},
+    'chungju-jecheon': {'hero': '/img/hero-gongsa-chungju-jecheon.jpg', 1: '/img/trench-1-daejeon.jpg', 2: '/img/gongsa-2-chungju-jecheon.jpg', 3: '/img/trench-4-daejeon.jpg', 4: '/img/trench-3-daejeon.jpg', 5: '/img/gongsa-5-chungju-jecheon.jpg', 6: '/img/trench-6-daejeon.jpg'},
+    'okcheon-yeongdong': {'hero': '/img/hero-gongsa-okcheon-yeongdong.jpg', 1: '/img/trench-1-suwon-osan.jpg', 2: '/img/gongsa-2-okcheon-yeongdong.jpg', 3: '/img/gongsa-3-okcheon-yeongdong.jpg', 4: '/img/gongsa-4-okcheon-yeongdong.jpg', 5: '/img/trench-2-okcheon-yeongdong.jpg', 6: '/img/trench-3-suwon-osan.jpg'},
+    'cheonan-asan': {'hero': '/img/hero-musoeum-incheon.jpg', 1: '/img/trench-1-pyeongtaek-anseong.jpg', 2: '/img/trench-2-pyeongtaek-anseong.jpg', 3: '/img/trench-4-pyeongtaek-anseong.jpg', 4: '/img/musoeum-4-incheon.jpg', 5: '/img/trench-6-pyeongtaek-anseong.jpg', 6: '/img/musoeum-6-incheon.jpg'},
+    'seosan-dangjin': {'hero': '/img/hero-trench-gwangju-hanam.jpg', 1: '/img/trench-1-gwangju-hanam.jpg', 2: '/img/gongsa-2-seosan-dangjin.jpg', 3: '/img/gongsa-3-seosan-dangjin.jpg', 4: '/img/gongsa-4-seosan-dangjin.jpg', 5: '/img/gongsa-5-seosan-dangjin.jpg', 6: '/img/gongsa-6-seosan-dangjin.jpg'},
+    'boryeong-buyeo': {'hero': '/img/hero-trench-incheon.jpg', 1: '/img/gongsa-1-boryeong-buyeo.jpg', 2: '/img/trench-1-incheon.jpg', 3: '/img/trench-2-incheon.jpg', 4: '/img/gongsa-4-boryeong-buyeo.jpg', 5: '/img/trench-4-incheon.jpg', 6: '/img/trench-6-incheon.jpg'},
+    'sejong-gongju': {'hero': '/img/hero-trench-hwaseong-dongtan.jpg', 1: '/img/trench-1-hwaseong-dongtan.jpg', 2: '/img/trench-2-hwaseong-dongtan.jpg', 3: '/img/gongsa-3-sejong-gongju.jpg', 4: '/img/trench-3-hwaseong-dongtan.jpg', 5: '/img/gongsa-5-sejong-gongju.jpg', 6: '/img/gongsa-6-sejong-gongju.jpg'},
+    'daejeon': {'hero': '/img/hero-trench-gimpo-bucheon.jpg', 1: '/img/trench-1-gimpo-bucheon.jpg', 2: '/img/trench-2-gimpo-bucheon.jpg', 3: '/img/parking-3-seoul.jpg', 4: '/img/trench-4-gimpo-bucheon.jpg', 5: '/img/trench-5-gimpo-bucheon.jpg', 6: '/img/trench-6-gimpo-bucheon.jpg'},
+    'nonsan-geumsan': {'hero': '/img/hero-trench-anyang-gwangmyeong.jpg', 1: '/img/trench-1-anyang-gwangmyeong.jpg', 2: '/img/gongsa-2-nonsan-geumsan.jpg', 3: '/img/gongsa-3-nonsan-geumsan.jpg', 4: '/img/trench-3-anyang-gwangmyeong.jpg', 5: '/img/trench-4-anyang-gwangmyeong.jpg', 6: '/img/gongsa-6-nonsan-geumsan.jpg'},
+}
+
+# ── 주차장 트렌치 × 지역 (/trench/parking/{지역}.html)
+PARKING["region_list"] = _regions_like_trench({})
+PARKING["rdir"] = 'trench/parking'
+PARKING['home_label'] = '주차장 트렌치 첫 페이지'
+PARKING['nav_r_title'] = '주차장 트렌치 교체 안내 전체 보기'
+PARKING['foot_r'] = '주차장 · 지하주차장 트렌치 교체 · 받침 앵글 교체 · 배수로 보수'
+PARKING["gal_p_r"] = _GAL_P_R
+PARKING["gal_h2_r"] = '주차장 · 진입로 <em>배수로 현장</em>입니다'
+PARKING["faq"] += [_R_WHERE, _r_quote("트렌치 전체 · 깨지고 내려앉은 곳 · 덮개 상태 · 차 지나는 자리")]
+PARKING["gallery_by_region"] = {
+    'seoul': [('시공 전', '녹슨 기존 그레이팅', '주차장 진입로 배수로'), ('컷팅', '옆 바닥 컷팅', '들어낼 폭을 반듯하게 자릅니다'), ('파쇄', '삭은 받침을 깨어 낸 자리', '깨진 조각을 걷어냅니다'), ('앵글', '새 앵글과 거친 측벽', '앵글을 앉혀 높이를 잡습니다'), ('거푸집', '앵글 사이 거푸집', '측벽 모양대로 채울 준비'), ('완료', '새 그레이팅까지 얹은 모습', '복원한 측벽 위에 앉힙니다')],
+    'incheon': [('시공 전', '녹슨 기존 그레이팅', '주차장 진입로 배수로'), ('컷팅', '옆 바닥 컷팅', '들어낼 폭을 반듯하게 자릅니다'), ('파쇄', '깨어 낸 측벽 자리', '상한 콘크리트를 들어냅니다'), ('앵글', '받침 자리에 맞춘 새 앵글', '나무로 간격을 잡습니다'), ('거푸집', '측벽을 세울 거푸집', '틀을 대고 채울 준비를 합니다'), ('완료', '새 덮개로 바꾼 진입로 배수로', '기존 그레이팅과 이어 마감')],
+    'goyang-paju': [('시공 전', '녹슬어 내려앉은 그레이팅', '가운데가 내려앉았습니다'), ('시공 전', '녹슬고 휜 기존 그레이팅', '지하주차장 바닥 배수로'), ('확인', '덮개를 걷어낸 배수로', '삭은 받침이 드러납니다'), ('철거', '녹슨 옛 그레이팅', '걷어내 교체합니다'), ('앵글', '배수로 양쪽에 앉힌 앵글', '덮개가 맞물릴 받침입니다'), ('설치', '앵글을 앉힌 배수로', '옆에 새 그레이팅을 준비')],
+    'uijeongbu-yangju': [('시공 전', '진입로를 가로지르는 그레이팅', '차가 지나는 자리입니다'), ('시공 전', '진입로를 가로지르는 기존 그레이팅', '작업 전 배수로'), ('자재', '현장에 들인 새 덮개', '기존 덮개 옆에 늘어놓습니다'), ('자재', '새 덮개와 기존 그레이팅', '교체할 덮개를 옆에 대 봅니다'), ('보수', '깨진 모서리를 걷어낸 자리', '받침이 다시 앉을 자리'), ('설치', '덮개를 걷은 배수로와 새 덮개', '한 줄로 늘어놓고 맞춥니다')],
+    'namyangju-guri': [('파쇄', '삭은 받침을 깨어 낸 자리', '깨진 조각을 걷어냅니다'), ('파쇄', '깨어 낸 측벽 자리', '상한 콘크리트를 들어냅니다'), ('앵글', '새 앵글과 거친 측벽', '앵글을 앉혀 높이를 잡습니다'), ('앵글', '받침 자리에 맞춘 새 앵글', '나무로 간격을 잡습니다'), ('거푸집', '앵글 사이 거푸집', '측벽 모양대로 채울 준비'), ('거푸집', '측벽을 세울 거푸집', '틀을 대고 채울 준비를 합니다')],
+    'suwon-osan': [('시공 전', '진입로의 기존 배수로 덮개', '차가 드나드는 자리'), ('준비', '라바콘으로 막은 램프', '차가 들어오지 않게 막습니다'), ('자재', '교체할 무소음 덮개', '기존 덮개 옆에 대 봅니다'), ('철거', '덮개를 걷어낸 배수로 안', '흙과 부스러기가 차 있습니다'), ('복원', '앵글 둘레 몰탈 채움', '측벽 모양을 다시 만듭니다'), ('채움', '측벽 위에 채운 몰탈', '덮개가 앉을 자리를 고릅니다')],
+    'hwaseong-dongtan': [('시공 전', '녹슬어 내려앉은 그레이팅', '가운데가 내려앉았습니다'), ('시공 전', '녹슬고 휜 기존 그레이팅', '지하주차장 바닥 배수로'), ('확인', '덮개를 걷어낸 배수로 안', '측벽과 받침 상태를 봅니다'), ('앵글', '새 앵글과 용접 장비', '받침부터 다시 앉힙니다'), ('앵글', '새 앵글 앉히기', '덮개가 앉을 받침'), ('완료', '새 그레이팅으로 바꾼 배수로', '지하주차장 바닥')],
+    'seongnam-yongin': [('시공 전', '진입로를 가로지르는 그레이팅', '차가 지나는 자리입니다'), ('시공 전', '진입로를 가로지르는 기존 그레이팅', '작업 전 배수로'), ('자재', '현장에 들인 새 덮개', '기존 덮개 옆에 늘어놓습니다'), ('덮개', '한 줄로 이어 얹는 새 덮개', '끝에서부터 맞춰 올립니다'), ('보수', '걷어낸 모서리 근접', '깨진 부분만 들어냅니다'), ('완료', '새 덮개로 바꾼 배수로', '노란색 · 검은색 줄무늬 덮개')],
+    'gimpo-bucheon': [('시공 전', '진입로의 기존 배수로 덮개', '차가 드나드는 자리'), ('준비', '라바콘으로 막은 램프', '차가 들어오지 않게 막습니다'), ('철거', '덮개를 걷어낸 배수로 안', '흙과 부스러기가 차 있습니다'), ('앵글', '새 앵글을 앉힌 배수로', '덮개가 앉을 받침입니다'), ('채움', '양쪽으로 채운 몰탈', '덮개 폭에 맞춰 채웁니다'), ('완료', '무소음 덮개로 바꾼 진입로', '라바콘으로 막고 진행')],
+    'siheung-ansan': [('컷팅', '옆 바닥 컷팅', '들어낼 폭을 반듯하게 자릅니다'), ('파쇄', '깨어 낸 측벽 자리', '상한 콘크리트를 들어냅니다'), ('앵글', '새 앵글과 거친 측벽', '앵글을 앉혀 높이를 잡습니다'), ('거푸집', '앵글 사이 거푸집', '측벽 모양대로 채울 준비'), ('완료', '새 그레이팅까지 얹은 모습', '복원한 측벽 위에 앉힙니다'), ('완료', '새 덮개로 바꾼 진입로 배수로', '기존 그레이팅과 이어 마감')],
+    'anyang-gwangmyeong': [('확인', '덮개를 걷어낸 배수로', '삭은 받침이 드러납니다'), ('확인', '덮개를 걷어낸 배수로 안', '측벽과 받침 상태를 봅니다'), ('철거', '녹슨 옛 그레이팅', '걷어내 교체합니다'), ('앵글', '새 앵글과 용접 장비', '받침부터 다시 앉힙니다'), ('앵글', '배수로 양쪽에 앉힌 앵글', '덮개가 맞물릴 받침입니다'), ('앵글', '새 앵글 앉히기', '덮개가 앉을 받침')],
+    'pyeongtaek-anseong': [('자재', '새 덮개와 기존 그레이팅', '교체할 덮개를 옆에 대 봅니다'), ('덮개', '한 줄로 이어 얹는 새 덮개', '끝에서부터 맞춰 올립니다'), ('보수', '깨진 모서리를 걷어낸 자리', '받침이 다시 앉을 자리'), ('보수', '걷어낸 모서리 근접', '깨진 부분만 들어냅니다'), ('설치', '덮개를 걷은 배수로와 새 덮개', '한 줄로 늘어놓고 맞춥니다'), ('완료', '새 덮개로 바꾼 배수로', '노란색 · 검은색 줄무늬 덮개')],
+    'icheon-yeoju': [('자재', '교체할 무소음 덮개', '기존 덮개 옆에 대 봅니다'), ('앵글', '새 앵글을 앉힌 배수로', '덮개가 앉을 받침입니다'), ('복원', '앵글 둘레 몰탈 채움', '측벽 모양을 다시 만듭니다'), ('채움', '측벽 위에 채운 몰탈', '덮개가 앉을 자리를 고릅니다'), ('채움', '양쪽으로 채운 몰탈', '덮개 폭에 맞춰 채웁니다'), ('완료', '무소음 덮개로 바꾼 진입로', '라바콘으로 막고 진행')],
+    'gwangju-hanam': [('시공 전', '낡은 주철 덮개', '진입로를 가로지르는 측구'), ('확인', '덮개를 걷어낸 측구 안', '삭은 앵글이 드러납니다'), ('앵글', '새 앵글을 넣은 배수로', '받침을 새로 만듭니다'), ('앵글', '측벽 위에 앉힌 새 앵글', '둘레를 몰탈로 채웁니다'), ('설치', '앵글을 앉히는 중인 측구', '새 덮개를 옆에 준비'), ('완료', '무소음 덮개로 바꾼 측구', '가까이서 본 모습')],
+    'cheongju-jeungpyeong': [('시공 전', '녹슨 기존 그레이팅', '주차장 진입로 배수로'), ('파쇄', '삭은 받침을 깨어 낸 자리', '깨진 조각을 걷어냅니다'), ('앵글', '받침 자리에 맞춘 새 앵글', '나무로 간격을 잡습니다'), ('거푸집', '측벽을 세울 거푸집', '틀을 대고 채울 준비를 합니다'), ('완료', '새 그레이팅까지 얹은 모습', '복원한 측벽 위에 앉힙니다'), ('완료', '새 덮개로 바꾼 진입로 배수로', '기존 그레이팅과 이어 마감')],
+    'jincheon-eumseong': [('시공 전', '녹슬고 휜 기존 그레이팅', '지하주차장 바닥 배수로'), ('확인', '덮개를 걷어낸 배수로 안', '측벽과 받침 상태를 봅니다'), ('철거', '녹슨 옛 그레이팅', '걷어내 교체합니다'), ('앵글', '배수로 양쪽에 앉힌 앵글', '덮개가 맞물릴 받침입니다'), ('설치', '앵글을 앉힌 배수로', '옆에 새 그레이팅을 준비'), ('완료', '새 그레이팅으로 바꾼 배수로', '지하주차장 바닥')],
+    'chungju-jecheon': [('시공 전', '진입로를 가로지르는 그레이팅', '차가 지나는 자리입니다'), ('시공 전', '진입로를 가로지르는 기존 그레이팅', '작업 전 배수로'), ('자재', '새 덮개와 기존 그레이팅', '교체할 덮개를 옆에 대 봅니다'), ('덮개', '한 줄로 이어 얹는 새 덮개', '끝에서부터 맞춰 올립니다'), ('보수', '걷어낸 모서리 근접', '깨진 부분만 들어냅니다'), ('설치', '덮개를 걷은 배수로와 새 덮개', '한 줄로 늘어놓고 맞춥니다')],
+    'okcheon-yeongdong': [('시공 전', '낡은 주철 덮개', '진입로를 가로지르는 측구'), ('확인', '덮개를 걷어낸 측구 안', '삭은 앵글이 드러납니다'), ('앵글', '새 앵글을 넣은 배수로', '받침을 새로 만듭니다'), ('앵글', '측벽 위에 앉힌 새 앵글', '둘레를 몰탈로 채웁니다'), ('설치', '앵글을 앉히는 중인 측구', '새 덮개를 옆에 준비'), ('완료', '무소음 덮개로 바꾼 측구', '가까이서 본 모습')],
+    'cheonan-asan': [('시공 전', '진입로의 기존 배수로 덮개', '차가 드나드는 자리'), ('자재', '교체할 무소음 덮개', '기존 덮개 옆에 대 봅니다'), ('철거', '덮개를 걷어낸 배수로 안', '흙과 부스러기가 차 있습니다'), ('앵글', '새 앵글을 앉힌 배수로', '덮개가 앉을 받침입니다'), ('복원', '앵글 둘레 몰탈 채움', '측벽 모양을 다시 만듭니다'), ('채움', '양쪽으로 채운 몰탈', '덮개 폭에 맞춰 채웁니다')],
+    'seosan-dangjin': [('시공 전', '녹슨 기존 그레이팅', '주차장 진입로 배수로'), ('컷팅', '옆 바닥 컷팅', '들어낼 폭을 반듯하게 자릅니다'), ('파쇄', '깨어 낸 측벽 자리', '상한 콘크리트를 들어냅니다'), ('앵글', '받침 자리에 맞춘 새 앵글', '나무로 간격을 잡습니다'), ('거푸집', '앵글 사이 거푸집', '측벽 모양대로 채울 준비'), ('완료', '새 그레이팅까지 얹은 모습', '복원한 측벽 위에 앉힙니다')],
+    'boryeong-buyeo': [('시공 전', '녹슬어 내려앉은 그레이팅', '가운데가 내려앉았습니다'), ('확인', '덮개를 걷어낸 배수로', '삭은 받침이 드러납니다'), ('앵글', '새 앵글과 용접 장비', '받침부터 다시 앉힙니다'), ('앵글', '새 앵글 앉히기', '덮개가 앉을 받침'), ('설치', '앵글을 앉힌 배수로', '옆에 새 그레이팅을 준비'), ('완료', '새 그레이팅으로 바꾼 배수로', '지하주차장 바닥')],
+    'sejong-gongju': [('시공 전', '진입로를 가로지르는 그레이팅', '차가 지나는 자리입니다'), ('자재', '현장에 들인 새 덮개', '기존 덮개 옆에 늘어놓습니다'), ('자재', '새 덮개와 기존 그레이팅', '교체할 덮개를 옆에 대 봅니다'), ('보수', '깨진 모서리를 걷어낸 자리', '받침이 다시 앉을 자리'), ('보수', '걷어낸 모서리 근접', '깨진 부분만 들어냅니다'), ('완료', '새 덮개로 바꾼 배수로', '노란색 · 검은색 줄무늬 덮개')],
+    'daejeon': [('시공 전', '진입로의 기존 배수로 덮개', '차가 드나드는 자리'), ('준비', '라바콘으로 막은 램프', '차가 들어오지 않게 막습니다'), ('자재', '교체할 무소음 덮개', '기존 덮개 옆에 대 봅니다'), ('채움', '측벽 위에 채운 몰탈', '덮개가 앉을 자리를 고릅니다'), ('채움', '양쪽으로 채운 몰탈', '덮개 폭에 맞춰 채웁니다'), ('완료', '무소음 덮개로 바꾼 진입로', '라바콘으로 막고 진행')],
+    'nonsan-geumsan': [('시공 전', '낡은 주철 덮개', '진입로를 가로지르는 측구'), ('확인', '덮개를 걷어낸 측구 안', '삭은 앵글이 드러납니다'), ('앵글', '새 앵글을 넣은 배수로', '받침을 새로 만듭니다'), ('앵글', '측벽 위에 앉힌 새 앵글', '둘레를 몰탈로 채웁니다'), ('설치', '앵글을 앉히는 중인 측구', '새 덮개를 옆에 준비'), ('완료', '무소음 덮개로 바꾼 측구', '가까이서 본 모습')],
+}
+PARKING["rimg"] = {
+    'seoul': {'hero': '/img/hero-trench-gimpo-bucheon.jpg', 1: '/img/trench-1-gimpo-bucheon.jpg', 2: '/img/trench-2-gimpo-bucheon.jpg', 3: '/img/parking-3-seoul.jpg', 4: '/img/trench-4-gimpo-bucheon.jpg', 5: '/img/trench-5-gimpo-bucheon.jpg', 6: '/img/trench-6-gimpo-bucheon.jpg'},
+    'incheon': {'hero': '/img/hero-trench-gimpo-bucheon.jpg', 1: '/img/trench-1-gimpo-bucheon.jpg', 2: '/img/trench-2-gimpo-bucheon.jpg', 3: '/img/trench-3-gimpo-bucheon.jpg', 4: '/img/parking-4-incheon.jpg', 5: '/img/parking-5-incheon.jpg', 6: '/img/parking-6-incheon.jpg'},
+    'goyang-paju': {'hero': '/img/hero-trench-chungju-jecheon.jpg', 1: '/img/parking-1-goyang-paju.jpg', 2: '/img/trench-1-chungju-jecheon.jpg', 3: '/img/trench-2-chungju-jecheon.jpg', 4: '/img/trench-3-chungju-jecheon.jpg', 5: '/img/parking-5-goyang-paju.jpg', 6: '/img/trench-5-chungju-jecheon.jpg'},
+    'uijeongbu-yangju': {'hero': '/img/hero-trench-namyangju-guri.jpg', 1: '/img/parking-1-uijeongbu-yangju.jpg', 2: '/img/trench-1-namyangju-guri.jpg', 3: '/img/parking-3-uijeongbu-yangju.jpg', 4: '/img/trench-2-namyangju-guri.jpg', 5: '/img/trench-3-namyangju-guri.jpg', 6: '/img/trench-5-namyangju-guri.jpg'},
+    'namyangju-guri': {'hero': '/img/hero-trench-gimpo-bucheon.jpg', 1: '/img/parking-3-seoul.jpg', 2: '/img/trench-3-gimpo-bucheon.jpg', 3: '/img/trench-4-gimpo-bucheon.jpg', 4: '/img/parking-4-incheon.jpg', 5: '/img/trench-5-gimpo-bucheon.jpg', 6: '/img/parking-5-incheon.jpg'},
+    'suwon-osan': {'hero': '/img/hero-trench-seongnam-yongin.jpg', 1: '/img/trench-1-seongnam-yongin.jpg', 2: '/img/musoeum-2-goyang-paju.jpg', 3: '/img/trench-3-seongnam-yongin.jpg', 4: '/img/trench-2-seongnam-yongin.jpg', 5: '/img/trench-5-seongnam-yongin.jpg', 6: '/img/musoeum-6-goyang-paju.jpg'},
+    'hwaseong-dongtan': {'hero': '/img/hero-trench-chungju-jecheon.jpg', 1: '/img/parking-1-goyang-paju.jpg', 2: '/img/trench-1-chungju-jecheon.jpg', 3: '/img/parking-3-hwaseong-dongtan.jpg', 4: '/img/parking-4-hwaseong-dongtan.jpg', 5: '/img/trench-4-chungju-jecheon.jpg', 6: '/img/trench-6-chungju-jecheon.jpg'},
+    'seongnam-yongin': {'hero': '/img/hero-trench-namyangju-guri.jpg', 1: '/img/parking-1-uijeongbu-yangju.jpg', 2: '/img/trench-1-namyangju-guri.jpg', 3: '/img/parking-3-uijeongbu-yangju.jpg', 4: '/img/parking-4-seongnam-yongin.jpg', 5: '/img/trench-4-namyangju-guri.jpg', 6: '/img/trench-6-namyangju-guri.jpg'},
+    'gimpo-bucheon': {'hero': '/img/hero-trench-seongnam-yongin.jpg', 1: '/img/trench-1-seongnam-yongin.jpg', 2: '/img/musoeum-2-goyang-paju.jpg', 3: '/img/trench-2-seongnam-yongin.jpg', 4: '/img/trench-4-seongnam-yongin.jpg', 5: '/img/musoeum-5-namyangju-guri.jpg', 6: '/img/trench-6-seongnam-yongin.jpg'},
+    'siheung-ansan': {'hero': '/img/hero-trench-gimpo-bucheon.jpg', 1: '/img/trench-2-gimpo-bucheon.jpg', 2: '/img/trench-3-gimpo-bucheon.jpg', 3: '/img/trench-4-gimpo-bucheon.jpg', 4: '/img/trench-5-gimpo-bucheon.jpg', 5: '/img/trench-6-gimpo-bucheon.jpg', 6: '/img/parking-6-incheon.jpg'},
+    'anyang-gwangmyeong': {'hero': '/img/hero-trench-chungju-jecheon.jpg', 1: '/img/trench-2-chungju-jecheon.jpg', 2: '/img/parking-3-hwaseong-dongtan.jpg', 3: '/img/trench-3-chungju-jecheon.jpg', 4: '/img/parking-4-hwaseong-dongtan.jpg', 5: '/img/parking-5-goyang-paju.jpg', 6: '/img/trench-4-chungju-jecheon.jpg'},
+    'pyeongtaek-anseong': {'hero': '/img/hero-trench-namyangju-guri.jpg', 1: '/img/trench-2-namyangju-guri.jpg', 2: '/img/parking-4-seongnam-yongin.jpg', 3: '/img/trench-3-namyangju-guri.jpg', 4: '/img/trench-4-namyangju-guri.jpg', 5: '/img/trench-5-namyangju-guri.jpg', 6: '/img/trench-6-namyangju-guri.jpg'},
+    'icheon-yeoju': {'hero': '/img/hero-trench-seongnam-yongin.jpg', 1: '/img/trench-3-seongnam-yongin.jpg', 2: '/img/trench-4-seongnam-yongin.jpg', 3: '/img/trench-5-seongnam-yongin.jpg', 4: '/img/musoeum-6-goyang-paju.jpg', 5: '/img/musoeum-5-namyangju-guri.jpg', 6: '/img/trench-6-seongnam-yongin.jpg'},
+    'gwangju-hanam': {'hero': '/img/hero-trench-siheung-ansan.jpg', 1: '/img/trench-1-siheung-ansan.jpg', 2: '/img/trench-2-siheung-ansan.jpg', 3: '/img/trench-3-siheung-ansan.jpg', 4: '/img/trench-4-siheung-ansan.jpg', 5: '/img/trench-5-siheung-ansan.jpg', 6: '/img/trench-6-siheung-ansan.jpg'},
+    'cheongju-jeungpyeong': {'hero': '/img/hero-trench-gimpo-bucheon.jpg', 1: '/img/trench-1-gimpo-bucheon.jpg', 2: '/img/parking-3-seoul.jpg', 3: '/img/parking-4-incheon.jpg', 4: '/img/parking-5-incheon.jpg', 5: '/img/trench-6-gimpo-bucheon.jpg', 6: '/img/parking-6-incheon.jpg'},
+    'jincheon-eumseong': {'hero': '/img/hero-parking-jincheon-eumseong.jpg', 1: '/img/trench-1-chungju-jecheon.jpg', 2: '/img/parking-3-hwaseong-dongtan.jpg', 3: '/img/trench-3-chungju-jecheon.jpg', 4: '/img/parking-5-goyang-paju.jpg', 5: '/img/trench-5-chungju-jecheon.jpg', 6: '/img/trench-6-chungju-jecheon.jpg'},
+    'chungju-jecheon': {'hero': '/img/hero-trench-namyangju-guri.jpg', 1: '/img/parking-1-uijeongbu-yangju.jpg', 2: '/img/trench-1-namyangju-guri.jpg', 3: '/img/trench-2-namyangju-guri.jpg', 4: '/img/parking-4-seongnam-yongin.jpg', 5: '/img/trench-4-namyangju-guri.jpg', 6: '/img/trench-5-namyangju-guri.jpg'},
+    'okcheon-yeongdong': {'hero': '/img/hero-trench-siheung-ansan.jpg', 1: '/img/trench-1-siheung-ansan.jpg', 2: '/img/trench-2-siheung-ansan.jpg', 3: '/img/trench-3-siheung-ansan.jpg', 4: '/img/trench-4-siheung-ansan.jpg', 5: '/img/trench-5-siheung-ansan.jpg', 6: '/img/trench-6-siheung-ansan.jpg'},
+    'cheonan-asan': {'hero': '/img/hero-musoeum-siheung-ansan.jpg', 1: '/img/trench-1-seongnam-yongin.jpg', 2: '/img/trench-3-seongnam-yongin.jpg', 3: '/img/trench-2-seongnam-yongin.jpg', 4: '/img/trench-4-seongnam-yongin.jpg', 5: '/img/trench-5-seongnam-yongin.jpg', 6: '/img/musoeum-5-namyangju-guri.jpg'},
+    'seosan-dangjin': {'hero': '/img/hero-parking-seosan-dangjin.jpg', 1: '/img/trench-1-gimpo-bucheon.jpg', 2: '/img/trench-2-gimpo-bucheon.jpg', 3: '/img/trench-3-gimpo-bucheon.jpg', 4: '/img/parking-4-incheon.jpg', 5: '/img/trench-5-gimpo-bucheon.jpg', 6: '/img/trench-6-gimpo-bucheon.jpg'},
+    'boryeong-buyeo': {'hero': '/img/hero-trench-chungju-jecheon.jpg', 1: '/img/parking-1-goyang-paju.jpg', 2: '/img/trench-2-chungju-jecheon.jpg', 3: '/img/parking-4-hwaseong-dongtan.jpg', 4: '/img/trench-4-chungju-jecheon.jpg', 5: '/img/trench-5-chungju-jecheon.jpg', 6: '/img/trench-6-chungju-jecheon.jpg'},
+    'sejong-gongju': {'hero': '/img/hero-trench-namyangju-guri.jpg', 1: '/img/parking-1-uijeongbu-yangju.jpg', 2: '/img/parking-3-uijeongbu-yangju.jpg', 3: '/img/trench-2-namyangju-guri.jpg', 4: '/img/trench-3-namyangju-guri.jpg', 5: '/img/trench-4-namyangju-guri.jpg', 6: '/img/trench-6-namyangju-guri.jpg'},
+    'daejeon': {'hero': '/img/hero-trench-seongnam-yongin.jpg', 1: '/img/trench-1-seongnam-yongin.jpg', 2: '/img/musoeum-2-goyang-paju.jpg', 3: '/img/trench-3-seongnam-yongin.jpg', 4: '/img/musoeum-6-goyang-paju.jpg', 5: '/img/musoeum-5-namyangju-guri.jpg', 6: '/img/trench-6-seongnam-yongin.jpg'},
+    'nonsan-geumsan': {'hero': '/img/hero-trench-siheung-ansan.jpg', 1: '/img/trench-1-siheung-ansan.jpg', 2: '/img/trench-2-siheung-ansan.jpg', 3: '/img/trench-3-siheung-ansan.jpg', 4: '/img/trench-4-siheung-ansan.jpg', 5: '/img/trench-5-siheung-ansan.jpg', 6: '/img/trench-6-siheung-ansan.jpg'},
+}
+
+# ── 보도블록 · 경계석 × 지역 (/block/{지역}.html)
+BLOCK["region_list"] = _regions_like_trench({'seoul': {'gal_p': '업체 고르실 때 결국 사진 보시잖아요. 서울에서 저희가 시공한 현장 그대로 올렸습니다.', 'story': ('서울에서 한 보도블록 · 점자블록 공사', ['서울 은평구의 한 건물에서는 테라조 바닥과 화강석 바닥에 점자블록을 새로 넣었습니다. 바닥에 절단선을 그어 블록이 들어갈 자리를 잘라내고, 모르타르로 바탕을 편 뒤 기존 바닥과 높이를 맞춰 앉혔습니다.', '마곡동에서는 광장 화단 둘레의 직각 경계석을 곡선 돌로 바꿨습니다. 옛 돌을 빼낸 자리를 파내고 새 곡선 돌을 한 개씩 맞춰 앉혀 화단 모서리를 둥글게 마감했습니다.', '신사동의 상가 출입구에서도 유리문 앞 화강석 바닥을 잘라 점자블록을 한 줄 넣고, 문 안쪽과 바깥쪽을 이어 깔았습니다.'])}, 'incheon': {'gal_p': '업체 고르실 때 결국 사진 보시잖아요. 인천에서 저희가 시공한 현장 그대로 올렸습니다.', 'story': ('인천에서 한 점자블록 공사', ['인천 부평의 한 건물 출입구는 점자블록이 없던 자리였습니다. 석재 바닥에 절단선을 내고 블록 폭대로 잘라낸 뒤, 문 앞과 통로에 점자블록을 한 줄씩 이어 깔아 기존 바닥 높이에 맞췄습니다.', '연수구에서는 출입 발판 틀에 끼워져 있던 점자블록이 깨지고 금이 가 있어, 깨진 자리만 같은 크기의 새 블록으로 바꿨습니다.'])}, 'goyang-paju': {'gal_p': '업체 고르실 때 결국 사진 보시잖아요. 고양에서 저희가 시공한 현장 그대로 올렸습니다.', 'story': ('고양·파주에서 한 보도블록 공사', ['고양의 한 대형 전시장 앞 광장은 블록을 걷어내고 넓은 면을 다시 포장한 현장이었습니다. 걷어낸 자리에 모래를 나눠 부어 바닥을 고르고, 팔레트로 들여온 새 블록을 이어 깔았습니다.', '포장이 끝난 뒤에는 흰 모래를 부어 쓸어 넣어 줄눈을 채워 마감했습니다.'])}, 'cheonan-asan': {'gal_p': '업체 고르실 때 결국 사진 보시잖아요. 천안에서 저희가 시공한 현장 그대로 올렸습니다.', 'story': ('천안·아산에서 한 보도블록 공사', ['천안 입장의 도로변 보도는 가로등 기초만 남은 채 블록이 빠져 있던 구간이었습니다. 보도를 길게 걷어내 모래 바닥을 고른 뒤 블록을 다시 깔고, 가로등 기둥 밑동 둘레는 블록을 잘라 맞춰 채웠습니다.', '마지막에 모래를 뿌려 줄눈 사이로 쓸어 넣어 마감했습니다.'])}})
+BLOCK['home_label'] = '보도블록 · 경계석 첫 페이지'
+BLOCK['nav_r_title'] = '보도블록 · 경계석 시공 안내 전체 보기'
+BLOCK['foot_r'] = '보도블록 포장 · 단차 보수 · 경계석 교체 · 점자블록'
+BLOCK["gal_p_r"] = _GAL_P_R
+BLOCK["gal_h2_r"] = '보도블록 · 경계석 <em>시공 현장</em>입니다'
+BLOCK["faq"] += [_r_quote("손볼 구간 전체 · 파손 부위 근접 · 옆 바닥과 높이 · 장비 진입로")]
+BLOCK["gallery_by_region"] = {
+    'seoul': [('표시', '테라조 바닥에 그은 절단선', '옆에 새 점자블록을 놓아 두었습니다'), ('절단', '선을 따라 칼집을 낸 바닥', ''), ('절단', '물을 뿌리며 자른 화강석 바닥', '블록 들어갈 자리를 네모나게 잘랐습니다'), ('바닥 정리', '모르타르를 채운 블록 자리', '평평하게 펴 높이를 잡습니다'), ('설치', '막 앉힌 점자블록', '겉에 묻은 모르타르는 닦아 냅니다'), ('완료', '테라조와 맞닿은 점자블록 이음', '')],
+    'incheon': [('시공 전', '출입구 앞 석재 바닥과 자갈 자리', '점자블록이 없던 상태입니다'), ('자재', '바닥에 늘어놓아 길이를 맞춘 블록', '문 앞 폭에 맞춰 놓아 봅니다'), ('절단', '석재 바닥에 낸 절단선', '블록 폭대로 잘라 냈습니다'), ('깔기', '잘라 낸 자리에 넣은 점자블록 줄', ''), ('완료', '출입구 안팎으로 이어 깐 점자블록', '문 앞과 통로에 한 줄씩 넣었습니다'), ('완료', '기존 바닥 높이에 맞춘 블록', '')],
+    'goyang-paju': [('자재', '쌓아 둔 블록과 모래 무더기', '넓은 바닥에 모래를 부어 두었습니다'), ('자재', '팔레트에 실려 온 새 블록', ''), ('철거', '걷어낸 옛 블록 더미', '깨진 조각도 섞여 있습니다'), ('바닥 정리', '블록을 걷어내고 고른 모래 바닥', '가장자리에 기존 블록이 남아 있습니다'), ('바닥 정리', '모래를 나눠 부어 둔 넓은 바닥', '군데군데 모래를 부어 두었습니다'), ('깔기', '유리벽 앞 모래 바닥과 블록', '벽 쪽으로 블록을 이어 깔아 나갑니다')],
+    'uijeongbu-yangju': [('시공 전', '유리문 옆 계단 앞 석재 바닥', '점자블록이 없던 자리입니다'), ('자재', '계단 앞에 대어 본 점자블록', '놓을 자리에 올려 위치를 봅니다'), ('자재', '포개 둔 새 점형 블록', ''), ('바닥 정리', '모르타르를 편 블록 자리', '흙손으로 펴 바른 자국이 남아 있습니다'), ('설치', '모르타르 끝에 먼저 놓은 블록', '손으로 편 자국이 남아 있습니다'), ('완료', '바닥 높이에 맞춰 묻힌 점자블록', '')],
+    'namyangju-guri': [('시공 전', '금이 가고 깨진 옛 점자블록', '돌기가 닳고 조각이 떨어졌습니다'), ('시공 전', '실금이 길게 간 점자블록', ''), ('표시', '구멍 자리에 붙인 표시 테이프', '바닥에 앵커 구멍을 뚫었습니다'), ('교체', '발판 틀에 끼운 새 점자블록', '같은 크기로 맞춰 넣었습니다'), ('교체', '새것과 쓰던 것이 섞인 줄', '깨진 자리만 새 블록으로 바꿨습니다'), ('설치', '피스로 조여 고정한 점자블록', '돌기 사이 구멍에 피스를 박습니다')],
+    'suwon-osan': [('시공 전', '깨지고 틈이 벌어진 판석', '모서리가 부서지고 틈에 흙이 찼습니다'), ('시공 전', '물결처럼 들뜬 판석 바닥', '판석끼리 턱이 지고 금이 갔습니다'), ('시공 전', '가라앉아 줄이 흐트러진 판석', ''), ('바닥 정리', '판석을 걷어낸 자리의 모래', '새 판석을 놓을 바닥을 채웠습니다'), ('보수', '기둥 옆 바닥에 채운 회색 반죽', '판석이 빠진 자리를 메웠습니다'), ('줄눈', '밀대로 줄눈을 채운 판석', '틈에 밀어 넣고 겉을 닦아 냅니다')],
+    'hwaseong-dongtan': [('시공 전', '계단 앞 화강석 바닥', '아직 점자블록이 없는 상태입니다'), ('표시', '테이프로 표시한 블록 자리', '계단 바로 앞에 노란 테이프를 둘렀습니다'), ('철거', '화강석을 깨 낸 자리', '테이프 안쪽 석재를 걷어냈습니다'), ('절단', '테이프 안쪽을 잘라 낸 석재', '블록 들어갈 자리를 따라 칼집을 냈습니다'), ('설치', '모르타르 위에 앉힌 점자블록', '남은 칸에도 이어서 놓습니다'), ('완료', '계단참 위아래에 깐 점자블록', '')],
+    'seongnam-yongin': [('시공 전', '금이 가고 깨진 옛 점자블록', '돌기가 닳고 조각이 떨어졌습니다'), ('시공 전', '깨져 밑판이 드러난 블록', '조각이 빠져 안쪽이 보입니다'), ('교체', '문 앞 발판에 새로 넣은 블록', '낡은 것만 골라 바꿉니다'), ('설치', '바닥에 박아 넣은 고정 앵커', ''), ('완료', '발판 줄에 맞춰 마친 교체', ''), ('완료', '피스로 잡아 둔 점자블록 줄', '')],
+    'gimpo-bucheon': [('시공 전', '깨지고 틈이 벌어진 판석', '모서리가 부서지고 틈에 흙이 찼습니다'), ('시공 전', '물결처럼 들뜬 판석 바닥', '판석끼리 턱이 지고 금이 갔습니다'), ('철거', '걷어낸 판석 조각 더미', '깨진 판석을 들어내 한쪽에 모았습니다'), ('깔기', '기존 바닥 사이 새 판석 구간', '밝은 새 판석을 이어 깔았습니다'), ('줄눈', '줄눈을 채운 새 판석 근접', ''), ('완료', '보수를 마친 판석 바닥', '새 판석과 기존 판석이 한 면으로 이어집니다')],
+    'siheung-ansan': [('시공 전', '유리문 앞 화강석 바닥', '점자블록이 없던 문 앞입니다'), ('자재', '문 앞에 늘어놓은 새 점자블록', '자리와 길이를 맞춰 봅니다'), ('철거', '석재를 걷어낸 자리', '깨진 조각이 남아 있습니다'), ('철거', '문 앞을 길게 걷어낸 자리', ''), ('깔기', '모르타르 위에 놓기 시작한 블록', '한 장씩 눌러 높이를 맞춥니다'), ('완료', '안쪽과 바깥쪽 두 줄 점자블록', '')],
+    'anyang-gwangmyeong': [('시공 전', '차량 진입로 블록 바닥', '줄이 고르지 않고 모래가 번져 있습니다'), ('철거', '노란 턱 옆 걷어낸 블록 자리', '지렛대로 한 장씩 들어냅니다'), ('철거', '걷어낸 자리에 남은 옛 줄눈 자국', '들어낸 블록은 옆에 세워 두었습니다'), ('바닥 정리', '블록 자국이 남은 모래 바닥', '걷어낸 블록 자리대로 흰 줄이 남았습니다'), ('바닥 정리', '새 모래를 채운 블록 자리', '높이를 맞춰 고르게 폅니다'), ('깔기', '노란 섬을 따라 블록 다시 놓기', '턱 쪽 빈자리에 블록을 채워 나갑니다')],
+    'pyeongtaek-anseong': [('시공 전', '직각으로 꺾인 화단 경계석', '둘레에 배수 홈이 붙어 있습니다'), ('철거', '경계석 안쪽을 파낸 자리', '덮개를 깔아 포장을 보호했습니다'), ('철거', '화단 흙을 따라 길게 파낸 자리', ''), ('설치', '모서리에 앉힌 곡선 경계석', '직각이던 자리를 둥글게 바꿉니다'), ('설치', '화단 둘레를 돌아가는 새 경계석', '모서리를 곡선으로 이었습니다'), ('완료', '곡선 경계석 이음 근접', '돌끼리 바짝 맞춰 붙였습니다')],
+    'icheon-yeoju': [('시공 전', '경계석과 블록 사이 벌어진 틈', '틈에 흙과 부스러기가 끼어 있습니다'), ('시공 전', '들떠서 어긋난 헤링본 블록', '내려앉은 자리에 흙과 풀이 보입니다'), ('철거', '걷어낸 자리에 드러난 잘린 뿌리', '뿌리와 전선이 흙 속에 드러나 있습니다'), ('철거', '경계석 옆 블록 들어내기', '장갑 낀 손으로 한 장씩 걷어냅니다'), ('바닥 정리', '산울타리 옆 걷어낸 구간', '걷어낸 블록은 가장자리에 쌓아 두었습니다'), ('깔기', '모래 위 빈칸에 블록 끼우기', '헤링본 무늬에 맞춰 채워 나갑니다')],
+    'gwangju-hanam': [('시공 전', '테이프로 막아 둔 깨진 점자블록', '떨어진 돌기 자리를 테이프로 붙여 두었습니다'), ('시공 전', '유리벽 앞 점자블록 줄', '이음부 모서리가 부서져 있습니다'), ('시공 전', '모서리가 부서져 속이 드러난 블록', ''), ('철거', '한 장을 깨 낸 점자블록 자리', '깨진 조각이 옆에 모여 있습니다'), ('바닥 정리', '긁어내 정리한 블록 자리', '바탕을 긁어내 평평하게 만들었습니다'), ('완료', '테두리를 메운 새 점자블록', '가장자리 틈을 흰 줄눈으로 채웠습니다')],
+    'cheongju-jeungpyeong': [('시공 전', '석재 벽 밑단 옆 꺼진 블록', '틈으로 풀이 올라와 있습니다'), ('시공 전', '건물 앞 들뜬 블록 바닥', '틈에 이끼가 끼고 줄이 흐트러졌습니다'), ('시공 전', '배수구 둘레 어긋난 블록', '관 옆으로 블록이 내려앉았습니다'), ('철거', '벽 밑단을 따라 걷어낸 블록', '걷어낸 블록은 옆에 쌓았습니다'), ('바닥 정리', '기둥 옆까지 고른 모래 바닥', ''), ('완료', '기둥 옆을 마무리한 블록 바닥', '')],
+    'jincheon-eumseong': [('시공 전', '자리에서 빠져나온 화단 경계석', '곡선 구간 돌이 길 쪽으로 밀렸습니다'), ('자재', '곡선으로 다듬은 새 화강석 경계석', ''), ('철거', '들어낸 옛 경계석 조각', '돌을 뺀 자리에 흙이 드러났습니다'), ('바닥 정리', '경계석을 뺀 뒤 파낸 자리', '화단 흙 쪽을 따라 길게 팠습니다'), ('설치', '기존 돌에 맞대어 놓은 새 경계석', '고무망치로 두드려 높이를 맞춥니다'), ('설치', '곡선 경계석과 남은 자투리 돌', '이음부를 맞추며 한 개씩 앉혔습니다')],
+    'chungju-jecheon': [('시공 전', '밀려 나와 어긋난 경계석', '돌이 길 쪽으로 밀려 턱이 졌습니다'), ('시공 전', '틈이 벌어진 곡선 구간 경계석', '돌 사이가 벌어지고 흙이 쓸려 나갔습니다'), ('철거', '경계석을 들어내고 파낸 자리', '빼낸 돌은 길가에 내려놓았습니다'), ('설치', '모르타르를 채워 다시 앉힌 돌', '장갑 낀 손으로 자리를 잡습니다'), ('설치', '이음부를 메운 경계석 모서리', ''), ('완료', '잔디밭 둘레 경계석 보수 완료', '')],
+    'okcheon-yeongdong': [('시공 전', '부서져 내려앉은 반원 경계석', '조각이 갈라져 풀 사이로 밀렸습니다'), ('시공 전', '화단 끝 깨진 반원 경계석', '노란 선 안쪽으로 돌이 벌어졌습니다'), ('철거', '옛 경계석을 빼낸 자리', '밑에 깔린 흙이 드러났습니다'), ('철거', '떼어 낸 반원 돌과 빈 모서리', '부서진 돌을 들어냈습니다'), ('완료', '다시 앉힌 반원 경계석', '밑을 모르타르로 받쳐 고정했습니다'), ('완료', '위에서 본 반원 마감', '')],
+    'cheonan-asan': [('시공 전', '가로등 기초만 남은 보도', '기초 볼트와 전선이 드러나 있습니다'), ('시공 전', '블록 사이 가로등 기초 근접', '기초 자리에 블록이 빠져 있습니다'), ('철거', '걷어낸 자리와 쌓아 둔 블록', '모래 바닥에 블록 자국이 남았습니다'), ('철거', '길게 걷어낸 보도 구간', '걷어낸 블록은 벽 쪽에 쌓았습니다'), ('마감', '모래를 뿌려 마감한 보도', '줄눈 사이로 모래를 쓸어 넣었습니다'), ('완료', '가로등 기둥 둘레 블록 마감', '기둥 밑동에 맞춰 둘레를 채웠습니다')],
+    'seosan-dangjin': [('시공 전', '나무 옆에서 틈이 벌어진 블록', '줄이 어긋나고 틈에 흙이 찼습니다'), ('철거', '나무 둘레까지 걷어낸 블록', '걷어낸 블록은 화단 쪽에 쌓아 두었습니다'), ('철거', '화단 옆 길게 드러난 흙바닥', ''), ('깔기', '모래를 편 자리에 이어 까는 블록', '화단 옆 구간을 채워 나갑니다'), ('마감', '모래를 뿌린 나무 둘레 블록', '줄눈 사이로 모래를 쓸어 넣었습니다'), ('완료', '나무 사이로 이어진 복구 구간', '모래를 뿌려 마감한 긴 구간입니다')],
+    'boryeong-buyeo': [('시공 전', '나무 둘레 경계석 옆 블록 틈', '틈 사이로 풀이 올라왔습니다'), ('시공 전', '뿌리 옆에서 어긋난 경계석', '굵은 뿌리가 흙 위로 드러나 있습니다'), ('철거', '나무 옆 네모나게 걷어낸 자리', '걷어낸 블록은 나무 둘레에 쌓았습니다'), ('바닥 정리', '갈퀴로 고르는 모래 바닥', ''), ('마감', '나무 자리 둘레 경계석과 블록', '경계석 선에 맞춰 블록을 붙였습니다'), ('완료', '나무 둘레 경계석과 블록 복구', '경계석을 따라 블록을 맞춰 깔았습니다')],
+    'sejong-gongju': [('표시', '계단 아래 바닥에 두른 테이프', '블록이 들어갈 자리를 먼저 표시합니다'), ('표시', '석재 위 노란 테이프 표시 근접', ''), ('설치', '바탕 위에 먼저 놓은 한 장', ''), ('줄눈', '테두리를 메운 직후의 점자블록', '돌기에 묻은 자국은 닦아 냅니다'), ('완료', '계단 첫 단 앞에 깐 점자블록', ''), ('완료', '계단 아래에서 본 점자블록', '')],
+    'daejeon': [('표시', '내려가는 계단 앞 테이프 표시', '계단 첫 단 바로 앞 자리를 잡았습니다'), ('철거', '석재를 깨 내고 드러난 바탕', '테이프 선 안쪽만 걷어냈습니다'), ('줄눈', '모르타르로 테두리를 채운 블록', '겉에 묻은 모르타르는 닦아 냅니다'), ('마감', '한 번 닦아 낸 점자블록', ''), ('완료', '계단 앞에 자리 잡은 점자블록', ''), ('완료', '바닥과 높이를 맞춘 점자블록 근접', '')],
+    'nonsan-geumsan': [('시공 전', '갈라지고 모서리가 깨진 경계석', ''), ('자재', '새로 끼울 화강석 경계석', '옆에 내려놓고 자리를 잡습니다'), ('철거', '옛 경계석을 빼낸 긴 홈', ''), ('바닥 정리', '새 경계석 놓을 자리 바탕', '모르타르로 바탕을 골라 두었습니다'), ('완료', '양옆 돌과 이어진 새 경계석', '밑부분을 모르타르로 메웠습니다'), ('완료', '화단 앞 일자 경계석 교체 구간', '')],
+}
+BLOCK["rimg"] = {
+    'seoul': {'hero': '/img/hero-block-seoul.jpg', 1: '/img/block-1-seoul.jpg', 2: '/img/block-2-seoul.jpg', 3: '/img/block-3-seoul.jpg', 4: '/img/block-4-seoul.jpg', 5: '/img/block-5-seoul.jpg', 6: '/img/block-6-seoul.jpg'},
+    'incheon': {'hero': '/img/hero-block-incheon.jpg', 1: '/img/block-1-incheon.jpg', 2: '/img/block-2-incheon.jpg', 3: '/img/block-3-incheon.jpg', 4: '/img/block-4-incheon.jpg', 5: '/img/block-5-incheon.jpg', 6: '/img/block-6-incheon.jpg'},
+    'goyang-paju': {'hero': '/img/hero-block-goyang-paju.jpg', 1: '/img/block-1-goyang-paju.jpg', 2: '/img/block-2-goyang-paju.jpg', 3: '/img/block-3-goyang-paju.jpg', 4: '/img/block-4-goyang-paju.jpg', 5: '/img/block-5-goyang-paju.jpg', 6: '/img/block-6-goyang-paju.jpg'},
+    'uijeongbu-yangju': {'hero': '/img/hero-block-seoul.jpg', 1: '/img/block-1-uijeongbu-yangju.jpg', 2: '/img/block-2-uijeongbu-yangju.jpg', 3: '/img/block-3-uijeongbu-yangju.jpg', 4: '/img/block-4-uijeongbu-yangju.jpg', 5: '/img/block-5-uijeongbu-yangju.jpg', 6: '/img/block-6-uijeongbu-yangju.jpg'},
+    'namyangju-guri': {'hero': '/img/hero-block-namyangju-guri.jpg', 1: '/img/block-1-namyangju-guri.jpg', 2: '/img/block-2-namyangju-guri.jpg', 3: '/img/block-3-namyangju-guri.jpg', 4: '/img/block-4-namyangju-guri.jpg', 5: '/img/block-5-namyangju-guri.jpg', 6: '/img/block-6-namyangju-guri.jpg'},
+    'suwon-osan': {'hero': '/img/hero-block-suwon-osan.jpg', 1: '/img/block-1-suwon-osan.jpg', 2: '/img/block-2-suwon-osan.jpg', 3: '/img/block-3-suwon-osan.jpg', 4: '/img/block-4-suwon-osan.jpg', 5: '/img/block-5-suwon-osan.jpg', 6: '/img/block-6-suwon-osan.jpg'},
+    'hwaseong-dongtan': {'hero': '/img/hero-block-hwaseong-dongtan.jpg', 1: '/img/block-1-hwaseong-dongtan.jpg', 2: '/img/block-2-hwaseong-dongtan.jpg', 3: '/img/block-3-hwaseong-dongtan.jpg', 4: '/img/block-4-hwaseong-dongtan.jpg', 5: '/img/block-5-hwaseong-dongtan.jpg', 6: '/img/block-6-hwaseong-dongtan.jpg'},
+    'seongnam-yongin': {'hero': '/img/hero-block-seongnam-yongin.jpg', 1: '/img/block-1-namyangju-guri.jpg', 2: '/img/block-2-seongnam-yongin.jpg', 3: '/img/block-3-seongnam-yongin.jpg', 4: '/img/block-4-seongnam-yongin.jpg', 5: '/img/block-5-seongnam-yongin.jpg', 6: '/img/block-6-seongnam-yongin.jpg'},
+    'gimpo-bucheon': {'hero': '/img/hero-block-gimpo-bucheon.jpg', 1: '/img/block-1-suwon-osan.jpg', 2: '/img/block-2-suwon-osan.jpg', 3: '/img/block-3-gimpo-bucheon.jpg', 4: '/img/block-4-gimpo-bucheon.jpg', 5: '/img/block-5-gimpo-bucheon.jpg', 6: '/img/block-6-gimpo-bucheon.jpg'},
+    'siheung-ansan': {'hero': '/img/hero-block-siheung-ansan.jpg', 1: '/img/block-1-siheung-ansan.jpg', 2: '/img/block-2-siheung-ansan.jpg', 3: '/img/block-3-siheung-ansan.jpg', 4: '/img/block-4-siheung-ansan.jpg', 5: '/img/block-5-siheung-ansan.jpg', 6: '/img/block-6-siheung-ansan.jpg'},
+    'anyang-gwangmyeong': {'hero': '/img/hero-block-anyang-gwangmyeong.jpg', 1: '/img/block-1-anyang-gwangmyeong.jpg', 2: '/img/block-2-anyang-gwangmyeong.jpg', 3: '/img/block-3-anyang-gwangmyeong.jpg', 4: '/img/block-4-anyang-gwangmyeong.jpg', 5: '/img/block-5-anyang-gwangmyeong.jpg', 6: '/img/block-6-anyang-gwangmyeong.jpg'},
+    'pyeongtaek-anseong': {'hero': '/img/hero-block-seongnam-yongin.jpg', 1: '/img/block-1-pyeongtaek-anseong.jpg', 2: '/img/block-2-pyeongtaek-anseong.jpg', 3: '/img/block-3-pyeongtaek-anseong.jpg', 4: '/img/block-4-pyeongtaek-anseong.jpg', 5: '/img/block-5-pyeongtaek-anseong.jpg', 6: '/img/block-6-pyeongtaek-anseong.jpg'},
+    'icheon-yeoju': {'hero': '/img/hero-block-icheon-yeoju.jpg', 1: '/img/block-1-icheon-yeoju.jpg', 2: '/img/block-2-icheon-yeoju.jpg', 3: '/img/block-3-icheon-yeoju.jpg', 4: '/img/block-4-icheon-yeoju.jpg', 5: '/img/block-5-icheon-yeoju.jpg', 6: '/img/block-6-icheon-yeoju.jpg'},
+    'gwangju-hanam': {'hero': '/img/hero-block-gwangju-hanam.jpg', 1: '/img/block-1-gwangju-hanam.jpg', 2: '/img/block-2-gwangju-hanam.jpg', 3: '/img/block-3-gwangju-hanam.jpg', 4: '/img/block-4-gwangju-hanam.jpg', 5: '/img/block-5-gwangju-hanam.jpg', 6: '/img/block-6-gwangju-hanam.jpg'},
+    'cheongju-jeungpyeong': {'hero': '/img/hero-block-cheongju-jeungpyeong.jpg', 1: '/img/block-1-cheongju-jeungpyeong.jpg', 2: '/img/block-2-cheongju-jeungpyeong.jpg', 3: '/img/block-3-cheongju-jeungpyeong.jpg', 4: '/img/block-4-cheongju-jeungpyeong.jpg', 5: '/img/block-5-cheongju-jeungpyeong.jpg', 6: '/img/block-6-cheongju-jeungpyeong.jpg'},
+    'jincheon-eumseong': {'hero': '/img/hero-block-jincheon-eumseong.jpg', 1: '/img/block-1-jincheon-eumseong.jpg', 2: '/img/block-2-jincheon-eumseong.jpg', 3: '/img/block-3-jincheon-eumseong.jpg', 4: '/img/block-4-jincheon-eumseong.jpg', 5: '/img/block-5-jincheon-eumseong.jpg', 6: '/img/block-6-jincheon-eumseong.jpg'},
+    'chungju-jecheon': {'hero': '/img/hero-block-chungju-jecheon.jpg', 1: '/img/block-1-chungju-jecheon.jpg', 2: '/img/block-2-chungju-jecheon.jpg', 3: '/img/block-3-chungju-jecheon.jpg', 4: '/img/block-4-chungju-jecheon.jpg', 5: '/img/block-5-chungju-jecheon.jpg', 6: '/img/block-6-chungju-jecheon.jpg'},
+    'okcheon-yeongdong': {'hero': '/img/hero-block-okcheon-yeongdong.jpg', 1: '/img/block-1-okcheon-yeongdong.jpg', 2: '/img/block-2-okcheon-yeongdong.jpg', 3: '/img/block-3-okcheon-yeongdong.jpg', 4: '/img/block-4-okcheon-yeongdong.jpg', 5: '/img/block-5-okcheon-yeongdong.jpg', 6: '/img/block-6-okcheon-yeongdong.jpg'},
+    'cheonan-asan': {'hero': '/img/hero-block-cheonan-asan.jpg', 1: '/img/block-1-cheonan-asan.jpg', 2: '/img/block-2-cheonan-asan.jpg', 3: '/img/block-3-cheonan-asan.jpg', 4: '/img/block-4-cheonan-asan.jpg', 5: '/img/block-5-cheonan-asan.jpg', 6: '/img/block-6-cheonan-asan.jpg'},
+    'seosan-dangjin': {'hero': '/img/hero-block-seosan-dangjin.jpg', 1: '/img/block-1-seosan-dangjin.jpg', 2: '/img/block-2-seosan-dangjin.jpg', 3: '/img/block-3-seosan-dangjin.jpg', 4: '/img/block-4-seosan-dangjin.jpg', 5: '/img/block-5-seosan-dangjin.jpg', 6: '/img/block-6-seosan-dangjin.jpg'},
+    'boryeong-buyeo': {'hero': '/img/hero-block-boryeong-buyeo.jpg', 1: '/img/block-1-boryeong-buyeo.jpg', 2: '/img/block-2-boryeong-buyeo.jpg', 3: '/img/block-3-boryeong-buyeo.jpg', 4: '/img/block-4-boryeong-buyeo.jpg', 5: '/img/block-5-boryeong-buyeo.jpg', 6: '/img/block-6-boryeong-buyeo.jpg'},
+    'sejong-gongju': {'hero': '/img/hero-block-sejong-gongju.jpg', 1: '/img/block-1-sejong-gongju.jpg', 2: '/img/block-2-sejong-gongju.jpg', 3: '/img/block-3-sejong-gongju.jpg', 4: '/img/block-4-sejong-gongju.jpg', 5: '/img/block-5-sejong-gongju.jpg', 6: '/img/block-6-sejong-gongju.jpg'},
+    'daejeon': {'hero': '/img/hero-block-daejeon.jpg', 1: '/img/block-1-daejeon.jpg', 2: '/img/block-2-daejeon.jpg', 3: '/img/block-3-daejeon.jpg', 4: '/img/block-4-daejeon.jpg', 5: '/img/block-5-daejeon.jpg', 6: '/img/block-6-daejeon.jpg'},
+    'nonsan-geumsan': {'hero': '/img/hero-block-nonsan-geumsan.jpg', 1: '/img/block-1-nonsan-geumsan.jpg', 2: '/img/block-2-nonsan-geumsan.jpg', 3: '/img/block-3-nonsan-geumsan.jpg', 4: '/img/block-4-nonsan-geumsan.jpg', 5: '/img/block-5-nonsan-geumsan.jpg', 6: '/img/block-6-nonsan-geumsan.jpg'},
+}
+
+# ── 카스토퍼 · 과속방지턱 · 반사경 × 지역 (/carstop/{지역}.html)
+CARSTOP["region_list"] = _regions_like_trench({'seoul': {'story': ('서울에서 한 카스토퍼 공사', ['서울 마포구의 한 건물 필로티 주차장에 카스토퍼를 설치했습니다. 줄자로 주차선에서 위치를 재고, 벽 앞 칸과 기둥 옆 칸에 나란히 놓았습니다.'])}, 'pyeongtaek-anseong': {'story': ('평택·안성에서 한 카스토퍼 공사', ['안성의 한 야외 주차장은 풀숲과 맞닿은 넓은 주차장이었습니다. 칸마다 카스토퍼를 미리 나눠 놓고, 실을 띄워 한 줄로 줄을 맞춘 뒤 고정 자리를 노란 마개로 덮어 마무리했습니다.'])}, 'gwangju-hanam': {'story': ('경기광주·하남에서 한 주차선 공사', ['경기 광주의 한 상가 앞 주차칸은 주차선 자리를 옮기는 작업이었습니다. 예전 흰 선 옆으로 주황 테이프를 붙여 새 선 자리를 잡았습니다.'])}, 'seosan-dangjin': {'story': ('서산·홍성·당진에서 한 카스토퍼 공사', ['예산의 한 야외 주차장에 카스토퍼를 설치했습니다. 실을 띄워 설치 줄을 잡고, 그 선에 맞춰 주차칸 끝에 반듯하게 놓았습니다.'])}})
+CARSTOP['home_label'] = '카스토퍼 · 방지턱 첫 페이지'
+CARSTOP['nav_r_title'] = '카스토퍼 · 과속방지턱 · 반사경 안내 전체 보기'
+CARSTOP['foot_r'] = '카스토퍼 설치 · 교체 · 과속방지턱 · 반사경 · 주차선'
+CARSTOP["gal_p_r"] = _GAL_P_R
+CARSTOP["gal_h2_r"] = '카스토퍼 · 방지턱 <em>설치 현장</em>입니다'
+CARSTOP["faq"] += [_r_quote("주차장 전체 · 설치할 자리 · 바닥 근접 · 기존 제품")]
+CARSTOP["gallery_by_region"] = {
+    'seoul': [('시공 전', '낙엽 쌓인 빈 주차칸', '카스토퍼를 놓기 전 모습입니다'), ('자재', 'STOP 표시 카스토퍼 묶음', '현장에 가져온 설치 자재입니다'), ('자리 잡기', '줄자로 맞춘 카스토퍼 자리', '주차선에서 위치를 재어 놓았습니다'), ('도색', '모서리까지 칠한 주차칸 선', '테이프를 떼기 전 모습입니다'), ('시공 후', '벽 앞에 나란히 놓인 카스토퍼', '칸 양쪽에 균형 있게 설치했습니다'), ('완료', '막힌 벽 앞 안쪽 칸 카스토퍼', '')],
+    'incheon': [('시공 전', '작업 전 넓은 주차장 통로', ''), ('자재', '흰 화살표 붙은 방지턱 조각', '설치 전 꺼내 놓은 검정 조각입니다'), ('자리 잡기', '바닥에 펼쳐 놓은 방지턱 조각', '색을 번갈아 놓을 준비 중입니다'), ('완료', '길게 이어진 방지턱 끝부분', '통로 폭을 따라 이어 놓았습니다'), ('완료', '통로 화살표 옆에 놓인 방지턱', ''), ('완료', '통로에 길게 놓인 방지턱', '')],
+    'goyang-paju': [('시공 전', '방지턱 없는 경사로 앞 통로', '경사로와 이어지는 통로 바닥입니다'), ('자리 잡기', '통로에 줄지어 놓은 방지턱', '조각을 이어 가며 자리를 맞춥니다'), ('조립', '색을 번갈아 이어 놓은 방지턱', '노랑과 검정을 차례로 맞췄습니다'), ('시공 후', '경사로 앞을 가로지른 방지턱', '통로 폭에 맞춰 한 줄로 이었습니다'), ('완료', '경사로 정면에서 본 방지턱', '경사로로 이어지는 길목에 놓였습니다'), ('완료', '화살표가 이어진 방지턱 윗면', '조각마다 흰 화살표가 붙어 있습니다')],
+    'uijeongbu-yangju': [('준비', '칠하기 전 바닥 먼지 털기', '송풍기로 선 자리 먼지를 날립니다'), ('자리 잡기', '벽 앞 칸에 놓은 카스토퍼', '고정 전 간격을 맞춰 놓았습니다'), ('선 긋기', '테이프로 잡은 주차선 자리', '칠할 폭을 테이프로 표시했습니다'), ('도색', '테이프 사이를 채운 흰 선', '테이프 안쪽만 고르게 칠했습니다'), ('시공 후', '새로 칠한 흰 주차칸', '통로 안에 칸이 또렷하게 생겼습니다'), ('완료', '벽 모서리 쪽 카스토퍼', '')],
+    'namyangju-guri': [('시공 전', '방지턱 없는 경사로 앞 통로', '경사로와 이어지는 통로 바닥입니다'), ('자재', '트럭 옆에 쌓은 방지턱 조각', '현장에 내려 둔 노랑·검정 조각입니다'), ('기준 잡기', '레이저로 잡은 설치 기준선', '바닥에 초록 선을 비춰 줄을 맞춥니다'), ('마감', '둥글게 처리된 방지턱 끝 조각', '끝부분까지 매끈하게 마무리했습니다'), ('완료', '요철 무늬 방지턱 표면', '흰 화살표가 또렷하게 붙어 있습니다'), ('완료', '주차 구역 쪽에서 본 방지턱', '')],
+    'suwon-osan': [('시공 전', '주차선 없는 건물 옆 통로', '칸 표시가 없는 바닥입니다'), ('도색', '흰 페인트를 담은 롤러 통', ''), ('도색', '벽을 따라 칠한 주차칸 테두리', ''), ('완료', '반대편에서 본 새 주차칸', ''), ('시공 후', '가로등 옆 칸의 카스토퍼', '노란 마개까지 끼워 마쳤습니다'), ('완료', '노란 줄이 선명한 카스토퍼', '')],
+    'hwaseong-dongtan': [('시공 전', '카스토퍼 없는 기둥 옆 주차칸', '주차선만 그어져 있는 상태입니다'), ('자재', '뒤집어 놓은 카스토퍼 밑면', '밑면이 격자 모양으로 되어 있습니다'), ('자리 잡기', '벽 쪽 칸 앞에 놓은 카스토퍼', '칸마다 위치를 맞춰 보는 중입니다'), ('고정', '바닥에 고정한 카스토퍼', '줄무늬 벽 앞 칸에 단단히 붙였습니다'), ('완료', '화단 옆 칸까지 이은 카스토퍼', '끝 칸까지 같은 줄로 설치했습니다'), ('완료', '안쪽 칸까지 설치한 카스토퍼', '줄무늬 벽 앞까지 한 줄로 놓았습니다')],
+    'seongnam-yongin': [('자리 잡기', '바닥에 펼쳐 놓은 방지턱 조각', '색을 번갈아 놓을 준비 중입니다'), ('자리 잡기', '통로에 줄지어 놓은 방지턱', '조각을 이어 가며 자리를 맞춥니다'), ('완료', '요철 무늬 방지턱 표면', '흰 화살표가 또렷하게 붙어 있습니다'), ('완료', '주차 구역 쪽에서 본 방지턱', ''), ('완료', '경사로 정면에서 본 방지턱', '경사로로 이어지는 길목에 놓였습니다'), ('완료', '통로에 길게 놓인 방지턱', '')],
+    'gimpo-bucheon': [('시공 전', '주차선 없는 건물 옆 통로', '칸 표시가 없는 바닥입니다'), ('자리 잡기', '벽 앞 칸에 놓은 카스토퍼', '고정 전 간격을 맞춰 놓았습니다'), ('도색', '흰 페인트를 담은 롤러 통', ''), ('도색', '벽을 따라 칠한 주차칸 테두리', ''), ('시공 후', '새로 칠한 흰 주차칸', '통로 안에 칸이 또렷하게 생겼습니다'), ('완료', '벽 모서리 쪽 카스토퍼', '')],
+    'siheung-ansan': [('시공 전', '카스토퍼 없는 넓은 주차장', '선만 그어진 빈 주차칸입니다'), ('자재 배치', '칸마다 미리 놓아 둔 카스토퍼', '설치할 자리 옆에 나눠 두었습니다'), ('자재 배치', '나눠 놓은 카스토퍼와 부속', ''), ('자리 잡기', '흰 선 칸마다 놓은 카스토퍼', '고정 전에 줄을 먼저 맞췄습니다'), ('설치', '설치 중인 카스토퍼 줄', '칸 앞마다 카스토퍼를 놓아 갑니다'), ('완료', '풀숲 옆 칸까지 이은 카스토퍼', '')],
+    'anyang-gwangmyeong': [('시공 전', '카스토퍼 없는 기둥 옆 주차칸', '주차선만 그어져 있는 상태입니다'), ('자재', '뒤집어 놓은 카스토퍼 밑면', '밑면이 격자 모양으로 되어 있습니다'), ('자리 잡기', '벽 쪽 칸 앞에 놓은 카스토퍼', '칸마다 위치를 맞춰 보는 중입니다'), ('완료', '기둥 따라 줄 맞춘 카스토퍼', '칸 앞쪽에 가지런히 놓였습니다'), ('완료', '기둥 사이 칸의 카스토퍼', ''), ('시공 후', '주차칸마다 줄 맞춘 카스토퍼', '공사 전과 같은 자리에서 찍었습니다')],
+    'pyeongtaek-anseong': [('시공 전', '카스토퍼 없는 넓은 주차장', '선만 그어진 빈 주차칸입니다'), ('자재 배치', '칸마다 미리 놓아 둔 카스토퍼', '설치할 자리 옆에 나눠 두었습니다'), ('기준 잡기', '실 따라 한 줄로 선 카스토퍼', '칸이 달라도 같은 선에 맞췄습니다'), ('마감', '노란 마개로 덮은 고정 자리', ''), ('시공 후', '긴 줄로 이어진 카스토퍼', '끝 칸까지 한 줄로 설치했습니다'), ('완료', '어두운 선 칸에 놓인 카스토퍼', '칸 끝선에 맞춰 반듯하게 놓였습니다')],
+    'icheon-yeoju': [('시공 전', '낙엽 쌓인 빈 주차칸', '카스토퍼를 놓기 전 모습입니다'), ('자재', 'STOP 표시 카스토퍼 묶음', '현장에 가져온 설치 자재입니다'), ('자리 잡기', '줄자로 맞춘 카스토퍼 자리', '주차선에서 위치를 재어 놓았습니다'), ('도색', '테이프 안에 칠한 선 모서리', '블록 바닥 위에 흰색을 입혔습니다'), ('도색', '블록 바닥 위 흰 주차선', '파란 테이프 사이만 칠했습니다'), ('시공 후', '벽 앞에 나란히 놓인 카스토퍼', '칸 양쪽에 균형 있게 설치했습니다')],
+    'gwangju-hanam': [('자재', '벽 앞에 세워 둔 카스토퍼', '공구와 함께 설치 준비를 마쳤습니다'), ('기준 잡기', '실을 띄워 잡은 설치 줄', '칸마다 같은 선에 놓이도록 했습니다'), ('자리 잡기', '실 따라 늘어놓은 카스토퍼', '고정 전에 한 줄로 먼저 놓아 봅니다'), ('자리 잡기', '옛 주차선 옆에 붙인 테이프', '새 선 자리를 주황 테이프로 잡습니다'), ('설치', '실 선에 맞춘 카스토퍼 위치', '선 하나를 기준으로 줄을 맞췄습니다'), ('시공 후', '주차칸 끝에 가지런한 카스토퍼', '칸 앞쪽에 반듯하게 설치했습니다')],
+    'cheongju-jeungpyeong': [('시공 전', '돌 무늬 바닥 필로티 주차장', '카스토퍼가 없는 상태입니다'), ('자재', '뒤집어 둔 카스토퍼와 부속', '설치 전 부속을 함께 챙겼습니다'), ('자리 잡기', '기둥 옆 칸에 놓은 카스토퍼', '고정 전에 위치를 먼저 맞춥니다'), ('고정', '무늬 바닥에 고정한 카스토퍼', '바닥에 단단히 붙인 모습입니다'), ('사용 중', '앞범퍼 아래 놓인 카스토퍼', '주차한 차 앞에 놓인 모습입니다'), ('시공 후', '배수구 앞 칸에 놓인 카스토퍼', '화단 앞 칸에 나란히 설치했습니다')],
+    'jincheon-eumseong': [('시공 전', '예전 자국이 남은 주차면', '새 카스토퍼를 놓기 전 바닥입니다'), ('확인', '줄자로 위치 확인', '카스토퍼 옆에 줄자를 대 봤습니다'), ('자재', '반사판 달린 노란 띠 카스토퍼', '설치 전에 꺼내 놓은 모습입니다'), ('자리 잡기', '주차칸 안에 놓아 본 카스토퍼', '선에 맞춰 위치를 잡는 중입니다'), ('자리 잡기', '주차선 양쪽에 놓은 카스토퍼', '옆 칸과 줄을 맞춰 놓았습니다'), ('마감', '구멍을 덮은 노란 마개', '구멍 안쪽을 마개로 덮었습니다')],
+    'chungju-jecheon': [('자재', '흰 화살표 붙은 방지턱 조각', '설치 전 꺼내 놓은 검정 조각입니다'), ('자재', '트럭 옆에 쌓은 방지턱 조각', '현장에 내려 둔 노랑·검정 조각입니다'), ('조립', '색을 번갈아 이어 놓은 방지턱', '노랑과 검정을 차례로 맞췄습니다'), ('마감', '둥글게 처리된 방지턱 끝 조각', '끝부분까지 매끈하게 마무리했습니다'), ('완료', '길게 이어진 방지턱 끝부분', '통로 폭을 따라 이어 놓았습니다'), ('시공 후', '경사로 앞을 가로지른 방지턱', '통로 폭에 맞춰 한 줄로 이었습니다')],
+    'okcheon-yeongdong': [('준비', '칠하기 전 바닥 먼지 털기', '송풍기로 선 자리 먼지를 날립니다'), ('선 긋기', '테이프로 잡은 주차선 자리', '칠할 폭을 테이프로 표시했습니다'), ('도색', '테이프 사이를 채운 흰 선', '테이프 안쪽만 고르게 칠했습니다'), ('완료', '반대편에서 본 새 주차칸', ''), ('시공 후', '가로등 옆 칸의 카스토퍼', '노란 마개까지 끼워 마쳤습니다'), ('완료', '노란 줄이 선명한 카스토퍼', '')],
+    'cheonan-asan': [('자재 배치', '나눠 놓은 카스토퍼와 부속', ''), ('기준 잡기', '실 따라 한 줄로 선 카스토퍼', '칸이 달라도 같은 선에 맞췄습니다'), ('자리 잡기', '흰 선 칸마다 놓은 카스토퍼', '고정 전에 줄을 먼저 맞췄습니다'), ('설치', '설치 중인 카스토퍼 줄', '칸 앞마다 카스토퍼를 놓아 갑니다'), ('마감', '노란 마개로 덮은 고정 자리', ''), ('시공 후', '긴 줄로 이어진 카스토퍼', '끝 칸까지 한 줄로 설치했습니다')],
+    'seosan-dangjin': [('자재', '벽 앞에 세워 둔 카스토퍼', '공구와 함께 설치 준비를 마쳤습니다'), ('기준 잡기', '실을 띄워 잡은 설치 줄', '칸마다 같은 선에 놓이도록 했습니다'), ('자리 잡기', '실 따라 늘어놓은 카스토퍼', '고정 전에 한 줄로 먼저 놓아 봅니다'), ('선 긋기', '주황 테이프로 표시한 새 칸', '예전 선 옆으로 새 선 자리를 잡았습니다'), ('설치', '실 선에 맞춘 카스토퍼 위치', '선 하나를 기준으로 줄을 맞췄습니다'), ('시공 후', '주차칸 끝에 가지런한 카스토퍼', '칸 앞쪽에 반듯하게 설치했습니다')],
+    'boryeong-buyeo': [('고정', '바닥에 고정한 카스토퍼', '줄무늬 벽 앞 칸에 단단히 붙였습니다'), ('완료', '기둥 따라 줄 맞춘 카스토퍼', '칸 앞쪽에 가지런히 놓였습니다'), ('완료', '화단 옆 칸까지 이은 카스토퍼', '끝 칸까지 같은 줄로 설치했습니다'), ('완료', '기둥 사이 칸의 카스토퍼', ''), ('완료', '안쪽 칸까지 설치한 카스토퍼', '줄무늬 벽 앞까지 한 줄로 놓았습니다'), ('시공 후', '주차칸마다 줄 맞춘 카스토퍼', '공사 전과 같은 자리에서 찍었습니다')],
+    'sejong-gongju': [('시공 전', '낙엽 쌓인 빈 주차칸', '카스토퍼를 놓기 전 모습입니다'), ('자리 잡기', '줄자로 맞춘 카스토퍼 자리', '주차선에서 위치를 재어 놓았습니다'), ('도색', '테이프 안에 칠한 선 모서리', '블록 바닥 위에 흰색을 입혔습니다'), ('도색', '모서리까지 칠한 주차칸 선', '테이프를 떼기 전 모습입니다'), ('도색', '블록 바닥 위 흰 주차선', '파란 테이프 사이만 칠했습니다'), ('완료', '막힌 벽 앞 안쪽 칸 카스토퍼', '')],
+    'daejeon': [('시공 전', '돌 무늬 바닥 필로티 주차장', '카스토퍼가 없는 상태입니다'), ('자재', '뒤집어 둔 카스토퍼와 부속', '설치 전 부속을 함께 챙겼습니다'), ('자리 잡기', '기둥 옆 칸에 놓은 카스토퍼', '고정 전에 위치를 먼저 맞춥니다'), ('고정', '무늬 바닥에 고정한 카스토퍼', '바닥에 단단히 붙인 모습입니다'), ('완료', '일직선으로 놓인 카스토퍼', ''), ('완료', '주차선 안쪽에 놓인 카스토퍼', '')],
+    'nonsan-geumsan': [('시공 전', '예전 자국이 남은 주차면', '새 카스토퍼를 놓기 전 바닥입니다'), ('확인', '줄자로 위치 확인', '카스토퍼 옆에 줄자를 대 봤습니다'), ('자재', '반사판 달린 노란 띠 카스토퍼', '설치 전에 꺼내 놓은 모습입니다'), ('자리 잡기', '주차칸 안에 놓아 본 카스토퍼', '선에 맞춰 위치를 잡는 중입니다'), ('자리 잡기', '주차선 양쪽에 놓은 카스토퍼', '옆 칸과 줄을 맞춰 놓았습니다'), ('완료', '마개까지 끼워 마친 카스토퍼', '구멍을 막아 깔끔하게 마무리했습니다')],
+}
+CARSTOP["rimg"] = {
+    'seoul': {'hero': '/img/hero-carstop-seoul.jpg', 1: '/img/carstop-1-seoul.jpg', 2: '/img/carstop-2-seoul.jpg', 3: '/img/carstop-3-seoul.jpg', 4: '/img/carstop-4-seoul.jpg', 5: '/img/carstop-5-seoul.jpg', 6: '/img/carstop-6-seoul.jpg'},
+    'incheon': {'hero': '/img/hero-carstop-incheon.jpg', 1: '/img/carstop-1-incheon.jpg', 2: '/img/carstop-2-incheon.jpg', 3: '/img/carstop-3-incheon.jpg', 4: '/img/carstop-4-incheon.jpg', 5: '/img/carstop-5-incheon.jpg', 6: '/img/carstop-6-incheon.jpg'},
+    'goyang-paju': {'hero': '/img/hero-carstop-goyang-paju.jpg', 1: '/img/carstop-1-goyang-paju.jpg', 2: '/img/carstop-2-goyang-paju.jpg', 3: '/img/carstop-3-goyang-paju.jpg', 4: '/img/carstop-4-goyang-paju.jpg', 5: '/img/carstop-5-goyang-paju.jpg', 6: '/img/carstop-6-goyang-paju.jpg'},
+    'uijeongbu-yangju': {'hero': '/img/hero-carstop-uijeongbu-yangju.jpg', 1: '/img/carstop-1-uijeongbu-yangju.jpg', 2: '/img/carstop-2-uijeongbu-yangju.jpg', 3: '/img/carstop-3-uijeongbu-yangju.jpg', 4: '/img/carstop-4-uijeongbu-yangju.jpg', 5: '/img/carstop-5-uijeongbu-yangju.jpg', 6: '/img/carstop-6-uijeongbu-yangju.jpg'},
+    'namyangju-guri': {'hero': '/img/hero-carstop-namyangju-guri.jpg', 1: '/img/carstop-1-goyang-paju.jpg', 2: '/img/carstop-2-namyangju-guri.jpg', 3: '/img/carstop-3-namyangju-guri.jpg', 4: '/img/carstop-4-namyangju-guri.jpg', 5: '/img/carstop-5-namyangju-guri.jpg', 6: '/img/carstop-6-namyangju-guri.jpg'},
+    'suwon-osan': {'hero': '/img/hero-carstop-suwon-osan.jpg', 1: '/img/carstop-1-suwon-osan.jpg', 2: '/img/carstop-2-suwon-osan.jpg', 3: '/img/carstop-3-suwon-osan.jpg', 4: '/img/carstop-4-suwon-osan.jpg', 5: '/img/carstop-5-suwon-osan.jpg', 6: '/img/carstop-6-suwon-osan.jpg'},
+    'hwaseong-dongtan': {'hero': '/img/hero-carstop-hwaseong-dongtan.jpg', 1: '/img/carstop-1-hwaseong-dongtan.jpg', 2: '/img/carstop-2-hwaseong-dongtan.jpg', 3: '/img/carstop-3-hwaseong-dongtan.jpg', 4: '/img/carstop-4-hwaseong-dongtan.jpg', 5: '/img/carstop-5-hwaseong-dongtan.jpg', 6: '/img/carstop-6-hwaseong-dongtan.jpg'},
+    'seongnam-yongin': {'hero': '/img/hero-carstop-seoul.jpg', 1: '/img/carstop-3-incheon.jpg', 2: '/img/carstop-2-goyang-paju.jpg', 3: '/img/carstop-5-namyangju-guri.jpg', 4: '/img/carstop-6-namyangju-guri.jpg', 5: '/img/carstop-5-goyang-paju.jpg', 6: '/img/carstop-6-incheon.jpg'},
+    'gimpo-bucheon': {'hero': '/img/hero-carstop-gimpo-bucheon.jpg', 1: '/img/carstop-1-suwon-osan.jpg', 2: '/img/carstop-2-uijeongbu-yangju.jpg', 3: '/img/carstop-2-suwon-osan.jpg', 4: '/img/carstop-3-suwon-osan.jpg', 5: '/img/carstop-5-uijeongbu-yangju.jpg', 6: '/img/carstop-6-uijeongbu-yangju.jpg'},
+    'siheung-ansan': {'hero': '/img/hero-carstop-siheung-ansan.jpg', 1: '/img/carstop-1-siheung-ansan.jpg', 2: '/img/carstop-2-siheung-ansan.jpg', 3: '/img/carstop-3-siheung-ansan.jpg', 4: '/img/carstop-4-siheung-ansan.jpg', 5: '/img/carstop-5-siheung-ansan.jpg', 6: '/img/carstop-6-siheung-ansan.jpg'},
+    'anyang-gwangmyeong': {'hero': '/img/hero-carstop-anyang-gwangmyeong.jpg', 1: '/img/carstop-1-hwaseong-dongtan.jpg', 2: '/img/carstop-2-hwaseong-dongtan.jpg', 3: '/img/carstop-3-hwaseong-dongtan.jpg', 4: '/img/carstop-4-anyang-gwangmyeong.jpg', 5: '/img/carstop-5-anyang-gwangmyeong.jpg', 6: '/img/carstop-6-anyang-gwangmyeong.jpg'},
+    'pyeongtaek-anseong': {'hero': '/img/hero-carstop-pyeongtaek-anseong.jpg', 1: '/img/carstop-1-siheung-ansan.jpg', 2: '/img/carstop-2-siheung-ansan.jpg', 3: '/img/carstop-3-pyeongtaek-anseong.jpg', 4: '/img/carstop-4-pyeongtaek-anseong.jpg', 5: '/img/carstop-5-pyeongtaek-anseong.jpg', 6: '/img/carstop-6-pyeongtaek-anseong.jpg'},
+    'icheon-yeoju': {'hero': '/img/hero-carstop-icheon-yeoju.jpg', 1: '/img/carstop-1-seoul.jpg', 2: '/img/carstop-2-seoul.jpg', 3: '/img/carstop-3-seoul.jpg', 4: '/img/carstop-4-icheon-yeoju.jpg', 5: '/img/carstop-5-icheon-yeoju.jpg', 6: '/img/carstop-5-seoul.jpg'},
+    'gwangju-hanam': {'hero': '/img/hero-carstop-gwangju-hanam.jpg', 1: '/img/carstop-1-gwangju-hanam.jpg', 2: '/img/carstop-2-gwangju-hanam.jpg', 3: '/img/carstop-3-gwangju-hanam.jpg', 4: '/img/carstop-4-gwangju-hanam.jpg', 5: '/img/carstop-5-gwangju-hanam.jpg', 6: '/img/carstop-6-gwangju-hanam.jpg'},
+    'cheongju-jeungpyeong': {'hero': '/img/hero-carstop-cheongju-jeungpyeong.jpg', 1: '/img/carstop-1-cheongju-jeungpyeong.jpg', 2: '/img/carstop-2-cheongju-jeungpyeong.jpg', 3: '/img/carstop-3-cheongju-jeungpyeong.jpg', 4: '/img/carstop-4-cheongju-jeungpyeong.jpg', 5: '/img/carstop-5-cheongju-jeungpyeong.jpg', 6: '/img/carstop-6-cheongju-jeungpyeong.jpg'},
+    'jincheon-eumseong': {'hero': '/img/hero-carstop-jincheon-eumseong.jpg', 1: '/img/carstop-1-jincheon-eumseong.jpg', 2: '/img/carstop-2-jincheon-eumseong.jpg', 3: '/img/carstop-3-jincheon-eumseong.jpg', 4: '/img/carstop-4-jincheon-eumseong.jpg', 5: '/img/carstop-5-jincheon-eumseong.jpg', 6: '/img/carstop-6-jincheon-eumseong.jpg'},
+    'chungju-jecheon': {'hero': '/img/hero-carstop-goyang-paju.jpg', 1: '/img/carstop-2-incheon.jpg', 2: '/img/carstop-2-namyangju-guri.jpg', 3: '/img/carstop-3-goyang-paju.jpg', 4: '/img/carstop-4-namyangju-guri.jpg', 5: '/img/carstop-4-incheon.jpg', 6: '/img/carstop-4-goyang-paju.jpg'},
+    'okcheon-yeongdong': {'hero': '/img/hero-carstop-suwon-osan.jpg', 1: '/img/carstop-1-uijeongbu-yangju.jpg', 2: '/img/carstop-3-uijeongbu-yangju.jpg', 3: '/img/carstop-4-uijeongbu-yangju.jpg', 4: '/img/carstop-4-suwon-osan.jpg', 5: '/img/carstop-5-suwon-osan.jpg', 6: '/img/carstop-6-suwon-osan.jpg'},
+    'cheonan-asan': {'hero': '/img/hero-carstop-cheonan-asan.jpg', 1: '/img/carstop-3-siheung-ansan.jpg', 2: '/img/carstop-3-pyeongtaek-anseong.jpg', 3: '/img/carstop-4-siheung-ansan.jpg', 4: '/img/carstop-5-siheung-ansan.jpg', 5: '/img/carstop-4-pyeongtaek-anseong.jpg', 6: '/img/carstop-5-pyeongtaek-anseong.jpg'},
+    'seosan-dangjin': {'hero': '/img/hero-carstop-seosan-dangjin.jpg', 1: '/img/carstop-1-gwangju-hanam.jpg', 2: '/img/carstop-2-gwangju-hanam.jpg', 3: '/img/carstop-3-gwangju-hanam.jpg', 4: '/img/carstop-4-seosan-dangjin.jpg', 5: '/img/carstop-5-gwangju-hanam.jpg', 6: '/img/carstop-6-gwangju-hanam.jpg'},
+    'boryeong-buyeo': {'hero': '/img/hero-carstop-boryeong-buyeo.jpg', 1: '/img/carstop-4-hwaseong-dongtan.jpg', 2: '/img/carstop-4-anyang-gwangmyeong.jpg', 3: '/img/carstop-5-hwaseong-dongtan.jpg', 4: '/img/carstop-5-anyang-gwangmyeong.jpg', 5: '/img/carstop-6-hwaseong-dongtan.jpg', 6: '/img/carstop-6-anyang-gwangmyeong.jpg'},
+    'sejong-gongju': {'hero': '/img/hero-carstop-seosan-dangjin.jpg', 1: '/img/carstop-1-seoul.jpg', 2: '/img/carstop-3-seoul.jpg', 3: '/img/carstop-4-icheon-yeoju.jpg', 4: '/img/carstop-4-seoul.jpg', 5: '/img/carstop-5-icheon-yeoju.jpg', 6: '/img/carstop-6-seoul.jpg'},
+    'daejeon': {'hero': '/img/hero-carstop-daejeon.jpg', 1: '/img/carstop-1-cheongju-jeungpyeong.jpg', 2: '/img/carstop-2-cheongju-jeungpyeong.jpg', 3: '/img/carstop-3-cheongju-jeungpyeong.jpg', 4: '/img/carstop-4-cheongju-jeungpyeong.jpg', 5: '/img/carstop-5-daejeon.jpg', 6: '/img/carstop-6-daejeon.jpg'},
+    'nonsan-geumsan': {'hero': '/img/hero-carstop-nonsan-geumsan.jpg', 1: '/img/carstop-1-jincheon-eumseong.jpg', 2: '/img/carstop-2-jincheon-eumseong.jpg', 3: '/img/carstop-3-jincheon-eumseong.jpg', 4: '/img/carstop-4-jincheon-eumseong.jpg', 5: '/img/carstop-5-jincheon-eumseong.jpg', 6: '/img/carstop-6-nonsan-geumsan.jpg'},
+}
+
+
+# ── 에어컨 배관 보온재 교체 · 테이핑 (/aircon/) — 32째방 새 서비스 ─────────────────────
+#  ⚠ 주인님 작업 범위: 배관 보온재 교체 + 테이프 감기만. 냉매 · 드레인 · 매립배관 수리는 하지 않는다 (홈페이지제작 10~13 MD).
+#  ⚠ 근거: 260808 · 260910 작업일지 (주인님 말씀) + 현장 사진. 금액 쓰지 않는다. 원인은 "오래돼서 삭았다" 이상 지어내지 않는다.
+#  ⚠ 로프 하강 방법은 절대 쓰지 않는다 (260910 작업일지 영구 금지). "로프를 이용한 고소작업" 까지만.
+#  ⚠ 서비스 격리 — 다른 서비스로 링크·문구 없음. 아파트 얘기 안 씀.
+AIRCON = {
+    "key": "aircon", "dir": "aircon", "at_root": False, "regions": False,
+    "label": "에어컨 배관 보온재 교체·테이핑",
+    "foot": "에어컨 배관 보온재 교체 / 배관 테이핑 · 케이블타이 마감 / 실외기 연결부 · 외벽 배관 — 서울 · 인천 · 경기 · 충청",
+    "offer": "에어컨 배관 보온재 교체·테이핑 시공",
+    "guide_img": "guide-aircon",
+    "title_m": "에어컨 배관 보온재 교체 · 배관 테이핑 | 서울·경기·충청 | {site}",
+    "desc_m": "삭아서 벗겨지고 찢어진 에어컨 배관 보온재, 배관째 갈지 않고 보온재만 새로 감아 테이핑 · 케이블타이로 마감합니다. 옥상 · 외벽 높은 배관도 작업합니다. 서울·인천·경기 전역, 충청 전역 출장. 사진 보내주시면 바로 견적. {phone}",
+    "title_r": "{region} 에어컨 배관 보온재 교체 · 테이핑 | {site}",
+    "desc_r": "{region} 에어컨 배관 보온재 교체, 배관 테이핑. 사진 보내주시면 바로 견적. {phone}",
+    "h1_top": "삭고 찢어진",
+    "h1_bottom": "에어컨 배관 보온재",
+    "h1_tail": "교체",
+    "sub": "배관째 갈지 않고 &mdash; 보온재만 새로 감아 테이핑 · 케이블타이로 마감합니다",
+    "tri": [
+        ("보온재 교체", "삭음 · 찢어짐 · 없어짐"),
+        ("테이핑 마감", "케이블타이로 꽉 조임"),
+        ("외벽 배관", "옥상 · 높은 벽까지"),
+    ],
+    "gal_h2": "보온재를 새로 감은 <em>현장 사진</em>입니다",
+    "gal_p": "다녀온 현장 %d곳 중 일부입니다." % SITE["sites_done"],
+    # ⚠ 목록 순서 = 사진 파일 aircon-1~6.jpg 번호. (라벨, 제목, 설명) — 캡션은 사진에 찍힌 것만
+    "gallery": [('시공 전', '갈라져 속이 드러난 보온재', '겉면이 삭아 배관이 보입니다'), ('시공 전', '겉면이 없어진 배관 구간', '배관과 전선이 맨살로 드러났습니다'), ('벗겨내기', '삭은 보온재를 걷어낸 자리', '구리색 배관이 그대로 나옵니다'), ('감기', '새 보온재 위로 감는 테이프', '씌운 위를 겹쳐 감습니다'), ('고정', '케이블타이로 조인 이음부', '테이프가 풀리지 않게 조입니다'), ('완료', '실외기 쪽까지 마감한 구간', '연결부까지 빠짐없이 감았습니다')],
+    "area": TRENCH["area"], "cities": TRENCH["cities"],
+    "focus": {
+        "h2": "삭은 건 <em>보온재</em>입니다",
+        "sub": "겉의 보온재가 삭았다고 배관까지 통째로 바꿔야 하는 건 아닌 경우가 많습니다.",
+        "img": "aircon-focus", "alt": "에어컨 배관 보온재 교체 시공",
+        "items": [
+        ("보온재만 새로 감습니다",
+         "삭아서 벗겨지고 찢어진 보온재를 걷어내고, 드러난 배관을 새 보온재로 감쌉니다. 배관은 손대지 않습니다."),
+        ("테이핑 후 케이블타이로 꽉 조입니다",
+         "겉을 테이프로 감아 마감한 뒤 케이블타이로 풀리지 않게 조입니다. 이음부가 풀리지 않게 하는 것이 마감의 핵심입니다."),
+        ("실외기 연결부까지 빠짐없이",
+         "실외기로 들어가는 꺾인 구간까지 끝까지 감아 마감합니다."),
+        ("높은 외벽 배관도 합니다",
+         "옥상에서 외벽을 타고 내려가는 긴 배관처럼 손이 닿지 않는 구간은 로프를 이용한 고소작업으로 새로 감습니다."),
+        ],
+    },
+    "faq": [
+    ("both", "배관까지 통째로 바꿔야 하나요?",
+     "보온재가 삭았다고 배관까지 바꿔야 하는 건 아닌 경우가 많습니다. 삭은 보온재만 걷어내고 새로 감아도 되는 현장이 많아, "
+     "이 작업만 따로 맡기시는 분들이 많습니다. 사진을 보면 보온재 교체로 될지 대체로 판단됩니다."),
+
+    ("both", "어떤 작업까지 해주시나요?",
+     "에어컨 배관의 보온재 교체와 테이핑만 합니다. 냉매 충전이나 냉매 배관 수리, 드레인 배관 수리, 벽 속 매립 배관 수리는 하지 않습니다. "
+     "그런 증상이 같이 있으면 그 부분은 에어컨 설치 · 수리 업체에 맡기셔야 합니다."),
+
+    ("both", "작업은 어떤 순서로 하나요?",
+     "삭은 보온재를 걷어내고, 드러난 배관을 새 보온재로 감싼 뒤 테이프로 감아 마감합니다. "
+     "테이핑한 뒤에는 케이블타이로 풀리지 않게 꽉 조이고, 실외기로 들어가는 연결부까지 빠짐없이 감습니다."),
+
+    ("both", "보온재가 어떤 상태면 바꿔야 하나요?",
+     "오래된 보온재는 겉이 갈라져 부슬부슬 벗겨지거나, 찢어져 속 배관과 전선이 드러납니다. 아예 없어진 구간이 생기기도 합니다. "
+     "이런 모습이 보이면 새로 감을 때입니다."),
+
+    ("both", "시간은 얼마나 걸리나요?",
+     "보온재만 가는 작업이라 오래 걸리지 않습니다. 손이 닿는 짧은 구간은 한 명이 한 시간 안팎에 끝난 현장이 있고, "
+     "옥상에서 외벽을 따라 길게 내려가는 구간은 반나절 걸린 현장이 있습니다. 사진 보내주시면 예상 시간도 같이 알려드립니다."),
+
+    ("both", "옥상이나 높은 외벽 배관도 되나요?",
+     "됩니다. 손이 닿지 않는 높은 외벽 배관은 로프를 이용한 고소작업으로 진행합니다. 건물 외관 사진을 보내주시면 방식을 정해 드립니다."),
+
+    ("both", "비용은 얼마인가요?",
+     "금액은 현장마다 다릅니다. 가격을 정하는 요인은 새로 감을 배관 길이, 손이 닿는 곳인지 고소작업이 필요한 높이인지, "
+     "실외기 연결부까지 감는지입니다. 사진 4장 보내주시면 당일 안에 대략적인 금액을 알려드립니다."),
+
+    ("both", "시공 후 A/S가 되나요?",
+     "시공일로부터 1년간 무상 A/S 해드립니다. 저희가 작업한 구간에 문제가 생기면 연락 주세요."),
+
+    ("both", "현장을 얼마나 다니셨나요?",
+     "지금까지 다녀온 현장이 384곳입니다. 작업 목록을 그대로 세어본 숫자입니다."),
+
+    ("main", "어느 지역까지 작업 가능한가요?",
+     "서울·인천과 경기 전역, 충청 전역이 작업 권역입니다. "
+     "경기는 북부·남부 전 시군, 충청은 충청북도·충청남도 전 시군과 대전·세종까지 갑니다. "
+     "충청에 자리 잡고 있어 수도권이든 충청이든 이동 시간이 비슷합니다. "
+     "그 외 지역도 사진과 함께 현장 위치를 보내주시면 이동 가능 여부와 일정을 바로 알려드립니다."),
+    ],
+    "guide": [
+        ("① 배관 전체",   "실외기에서 벽을 따라 어디까지 이어지는지"),
+        ("② 삭은 부위 근접", "보온재가 얼마나 벗겨졌는지"),
+        ("③ 실외기 쪽",   "실외기로 들어가는 연결부"),
+        ("④ 건물 외관",   "배관이 몇 층 높이를 지나가는지"),
+    ],
+    "info": "에어컨",
+}
+SERVICES.append(AIRCON)
