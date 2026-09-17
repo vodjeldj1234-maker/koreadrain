@@ -327,9 +327,9 @@ def case_cards(svc, region=None):
        지역마다 앞에 오는 사례만 돌려서 페이지끼리 덜 똑같게 한다."""
     if not svc.get("cases"):
         return ""
-    regs = svc.get("region_list") or []
+    regs = svc.get("region_list") or (REGIONS if svc.get("regions", True) else [])
     offset = regs.index(region) if region in regs else 0
-    return cases.section(sys.modules[__name__], svc["cases"], offset)
+    return cases.section(sys.modules[__name__], svc["cases"], svc["case_cfg"], offset)
 
 def faq(svc, region=None):
     items = faq_items(svc, region)
@@ -610,7 +610,7 @@ def main():
     # 시공 사례 — svc["cases"] 가 있는 서비스 (지금은 트렌치)
     for svc in SERVICES:
         if svc.get("cases"):
-            urls += cases.build(sys.modules[__name__], svc["cases"])
+            urls += cases.build(sys.modules[__name__], svc["cases"], svc["case_cfg"])
 
     # 파비콘 — 없으면 네이버 서치어드바이저가 favicon.ico 를 400 으로 잡아
     # "접근 불가한 페이지(수집제한)" 로 기록한다. (2026-08-28 실제로 1건 발생)
