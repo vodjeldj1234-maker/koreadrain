@@ -248,6 +248,8 @@ def gallery(svc, region=None):
         where = (region["name"] + " ") if region else ""
         h2 = "다녀온 현장 <em>%d곳</em>에서 고른 사진입니다" % SITE["sites_done"]
         p = "업체 고르실 때 결국 사진 보시잖아요. %s저희가 시공한 현장 그대로 올렸습니다." % where
+        if region and region.get("gal_p"):   # 사진이 다른 지역 현장이면 "○○ 저희가 시공한" 이라고 쓰지 않는다 (31째방)
+            p = region["gal_p"]
     return """<section><div class="wrap">
   <div class="big-t"><div class="hr"></div><h2>%s</h2>
   <p>%s</p></div>
