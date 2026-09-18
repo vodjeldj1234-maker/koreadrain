@@ -140,7 +140,7 @@ def head(title, desc, canonical, jsonld, is_index, og_img=None):
 <meta property="og:site_name" content="%s">
 %s<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
 <style>%s</style>
 <script type="application/ld+json">%s</script>
 </head><body>
@@ -527,7 +527,7 @@ def jsonld(svc, region=None):
         "@context": "https://schema.org",
         "@type": "HomeAndConstructionBusiness",
         "name": name,
-        "telephone": SITE["phone"],
+        "telephone": "+82-" + SITE["phone"][1:],      # 국제 형식 (+82-10-…) — 34째방
         "url": SITE["domain"] + url_of(svc, region),
         "areaServed": area,
         "image": jsonld_images(svc, region),
@@ -582,7 +582,13 @@ def page(svc, region=None):
             + area(svc, region) + story(svc, region) + case_cards(svc, region) + focus(svc, region) + faq(svc, region)
             + info_list(svc, region) + navlinks(svc, region) + quote(svc, region) + footer(svc, region))
 
+_HASH = {}
 def write(path, text):
+    # 페이지마다 내용 지문을 남긴다 → sitemap lastmod 를 "실제로 바뀐 날"로 쓴다 (34째방). CSS 만 바뀐 건 치지 않는다.
+    if path.endswith(".html"):
+        import hashlib, re as _re
+        _HASH[path.replace(os.sep, "/")] = hashlib.sha1(
+            _re.sub(r"<style>.*?</style>", "", text, flags=_re.S).encode("utf-8")).hexdigest()[:16]
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)
@@ -657,9 +663,25 @@ def main():
     # sitemap.xml  — lastmod 를 넣어야 검색엔진이 "바뀌었다"를 스스로 알다
     import datetime
     today = datetime.date.today().isoformat()
+    # lastmod = 그 페이지 내용이 실제로 바뀐 날 (34째방). lastmod.json {주소: [지문, 날짜]} 을 저장소에 같이 둔다.
+    #   로컬에서 빌드하면 갱신된다 → 같이 커밋한다. Actions 에서는 읽기만 하고, 지문이 다르면 오늘 날짜를 쓴다.
+    import json
+    try:
+        with open("lastmod.json", encoding="utf-8") as f:
+            seen = json.load(f)
+    except (OSError, ValueError):
+        seen = {}
+    mod = {}
+    for u in urls:
+        h = _HASH.get(DIST + u + ("index.html" if u.endswith("/") else ""))
+        old = seen.get(u)
+        mod[u] = old if (old and old[0] == h) else [h, today]
+    if mod != seen and not os.environ.get("GITHUB_ACTIONS"):
+        with open("lastmod.json", "w", encoding="utf-8", newline="\n") as f:
+            json.dump(mod, f, ensure_ascii=False, indent=0, sort_keys=True)
     items = "".join('<url><loc>%s%s</loc><lastmod>%s</lastmod>'
                     '<changefreq>monthly</changefreq></url>'
-                    % (SITE["domain"], u, today) for u in urls)
+                    % (SITE["domain"], u, mod[u][1]) for u in urls)
     write(os.path.join(DIST, "sitemap.xml"),
           '<?xml version="1.0" encoding="UTF-8"?>'
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">%s</urlset>' % items)
@@ -668,11 +690,19 @@ def main():
     write(os.path.join(DIST, "robots.txt"),
           "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % SITE["domain"])
 
-    # _redirects — extra/_redirects 파일이 있으면 그 내용을 그대로 사용
-    extra = os.path.join("extra", "_redirects")
-    rules = open(extra, encoding="utf-8").read() if os.path.exists(extra) else ""
-    rules += "\nhttp://koreadrain.kr/*   https://koreadrain.kr/:splat   301!\n"
-    write(os.path.join(DIST, "_redirects"), rules)
+    # 404.html — GitHub Pages 가 없는 주소에 이 파일을 보여준다 (34째방). 검색엔진에는 안 넣는다(noindex · sitemap 제외).
+    #   서비스 격리 때문에 서비스 목록은 안 보여준다. 연락 수단과 첫 페이지 링크만.
+    nf = head("페이지를 찾을 수 없습니다 | " + SITE["name"], "주소가 바뀌었거나 없는 페이지입니다.",
+              SITE["domain"] + "/", "{}", False).replace(
+              '<meta name="viewport"', '<meta name="robots" content="noindex">\n<meta name="viewport"', 1)
+    nf += header() + """<section class="hero"><div class="wrap"><h1>페이지를 찾을 수 없습니다</h1>
+<p class="sub">주소가 바뀌었거나 없는 페이지입니다. 사진을 문자로 보내주시면 당일 견적 회신드립니다.</p>
+%s<div class="links" style="margin:18px auto 0"><a href="/">첫 페이지로<i>&rsaquo;</i></a></div>
+</div></section>
+<div class="fixed"><a class="f-call" href="tel:%s">📞 전화 걸기</a><a class="f-sms" href="sms:%s">💬 사진 문자</a></div>
+</body></html>""" % (ctabtns(), SITE["phone_raw"], SITE["phone_raw"])
+    write(os.path.join(DIST, "404.html"), nf)
+    # (_redirects 는 Netlify 전용이라 34째방에서 뺐다 — GitHub Pages 는 읽지 않는다. https 강제는 Pages 설정이 한다)
 
     # IndexNow 인증키 파일 - 사이트 루트에 있어야 검색엔진이 우리를 믿는다
     write(os.path.join(DIST, INDEXNOW_KEY + ".txt"), INDEXNOW_KEY)
