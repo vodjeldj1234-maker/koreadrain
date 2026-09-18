@@ -3,6 +3,7 @@
 
 CSS = r"""
 *{margin:0;padding:0;box-sizing:border-box}
+picture{display:contents}
 body{font-family:'Noto Sans KR',sans-serif;background:#fff;color:#16202a;padding-bottom:80px;line-height:1.75;word-break:keep-all;-webkit-font-smoothing:antialiased}
 .wrap{max-width:900px;margin:0 auto;padding:0 16px}
 h1,h2,h3{font-family:'Noto Sans KR',sans-serif;font-weight:900;letter-spacing:-1.2px}

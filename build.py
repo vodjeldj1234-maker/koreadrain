@@ -79,7 +79,18 @@ def imgtag(src, alt, cls="ph", lazy=True):
     extra = ' loading="lazy" decoding="async"' if lazy else ' fetchpriority="high" decoding="async"'
     wh = imgsize(src)
     size = (' width="%d" height="%d"' % wh) if wh else ""
-    return '<img class="%s" src="%s" alt="%s"%s%s>' % (cls, src, html.escape(alt), size, extra)
+    img = '<img class="%s" src="%s" alt="%s"%s%s>' % (cls, src, html.escape(alt), size, extra)
+    # 작은 WebP 가 있으면 <picture> 로 먼저 내보낸다 (34째방 — 사진 용량). jpg 는 그대로 남아 옛 브라우저·og:image 가 쓴다.
+    #   xx-640.webp 는 전부, xx-1080.webp 는 히어로·정보글 사진만 있다. 변환은 로컬 webp34.py (Actions 에는 Pillow 가 없다).
+    #   picture{display:contents} 라서 배치는 그대로다.
+    base = src.lstrip("/")[:-4]
+    if src.endswith(".jpg") and os.path.exists((base + "-640.webp").replace("/", os.sep)):
+        if os.path.exists((base + "-1080.webp").replace("/", os.sep)):
+            ss = '/%s-640.webp 640w, /%s-1080.webp 1080w" sizes="100vw' % (base, base)
+        else:
+            ss = '/%s-640.webp' % base
+        return '<picture><source type="image/webp" srcset="%s">%s</picture>' % (ss, img)
+    return img
 
 # ── 연락 요소 (2026-09-05 추가)
 #   ⚠ 전화 링크 하나뿐이면 PC 로 보는 손님은 연락할 방법이 없다. 문자·번호복사를 같이 낸다.
