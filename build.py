@@ -13,6 +13,7 @@ koreadrain.kr 정적 사이트 빌더
 """
 import os, sys, shutil, html
 from data import SITE, REGIONS, SERVICES
+import lexan                     # 렉산 · 캐노피(/lexan/) — SERVICES 에 네 서비스를 보탠다 (40째방). data.py 32째방 블록과 따로 둔다
 from style import CSS
 import info                      # 정보글(/info/) 빌더 — 2026-09-16 워드프레스 방에서 이관
 import cases                     # 시공 사례(/trench/case/) 빌더 — 2026-09-17 31째방
@@ -651,7 +652,7 @@ def main():
 
     # 시공 사례 — svc["cases"] 가 있는 서비스 (지금은 트렌치)
     for svc in SERVICES:
-        if svc.get("cases"):
+        if svc.get("cases") and svc.get("cases_build", True):   # 같은 사례를 여러 서비스가 나눠 쓰면 한 번만 만든다 (40째방 렉산)
             urls += cases.build(sys.modules[__name__], svc["cases"], svc["case_cfg"])
 
     # 파비콘 — 없으면 네이버 서치어드바이저가 favicon.ico 를 400 으로 잡아
