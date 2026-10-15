@@ -17,6 +17,10 @@ import lexan                     # 렉산 · 캐노피(/lexan/) — SERVICES 에
 from style import CSS
 import info                      # 정보글(/info/) 빌더 — 2026-09-16 워드프레스 방에서 이관
 import cases                     # 시공 사례(/trench/case/) 빌더 — 2026-09-17 31째방
+import cities                    # 도시별 페이지 · 종목 메뉴 — 2026-10-15 48째방 (팔도처럼 개조 · 서비스 격리 해제)
+
+def is_city(region):
+    return bool(region) and region.get("kind") == "city"
 
 DIST = "dist"
 IMG  = "img"
@@ -97,18 +101,24 @@ def imgtag(src, alt, cls="ph", lazy=True):
 #   ⚠ 전화 링크 하나뿐이면 PC 로 보는 손님은 연락할 방법이 없다. 문자·번호복사를 같이 낸다.
 def trust(region=None):
     """첫 화면 신뢰 3줄. 3번째는 그 페이지에 맞는 출장 범위."""
-    where = ("%s 인근까지 출장" % region["name"]) if region \
+    where = ("%s 전 지역 출장" % region["name"]) if is_city(region) \
+            else ("%s 인근까지 출장" % region["name"]) if region \
             else "서울 · 인천 · 경기 전역, 충청 전 시군 출장"
     return '<div class="trust">%s</div>' % "".join(
         '<div><i>✓</i><span>%s</span></div>' % html.escape(t)
         for t in list(SITE["trust"]) + [where])
 
+def kakao_btn(cls="btn kakao"):
+    """카카오톡 상담 (48째방) — SITE["kakao"] 에 채널 채팅 주소(https://pf.kakao.com/_xxxx/chat)를 넣으면 전 페이지에 붙는다. 비어 있으면 안 그린다."""
+    k = SITE.get("kakao")
+    return ('<a class="%s" href="%s" target="_blank" rel="noopener">💛 카카오톡 상담</a>' % (cls, k)) if k else ""
+
 def ctabtns():
-    """전화 + 문자 두 버튼. sms: 는 본문 없이 번호만 넣어야 안드로이드·아이폰 둘 다 열린다."""
+    """전화 + 문자 두 버튼 (+ 카카오톡). sms: 는 본문 없이 번호만 넣어야 안드로이드·아이폰 둘 다 열린다."""
     return ('<div class="btns">'
             '<a class="btn call" href="tel:%s">📞 전화 걸기</a>'
-            '<a class="btn sms" href="sms:%s">💬 사진 문자 보내기</a></div>'
-            % (SITE["phone_raw"], SITE["phone_raw"]))
+            '<a class="btn sms" href="sms:%s">💬 사진 문자 보내기</a>%s</div>'
+            % (SITE["phone_raw"], SITE["phone_raw"], kakao_btn()))
 
 # ─────────────────────────────────────────────────────────── 페이지 조각
 def head(title, desc, canonical, jsonld, is_index, og_img=None):
@@ -175,6 +185,8 @@ def _link(svc):
 def navlinks(svc, region=None):
     home = home_of(svc, region)
     kids = svc.get("children")
+    if is_city(region):
+        return cities.city_nav(sys.modules[__name__], svc, region)
     if region:
         # 지역 페이지 — 우수관 첫 페이지 하나만
         return ('<section class="nav"><div class="wrap">\n'
@@ -211,18 +223,16 @@ def header(svc=None, region=None):
         logo = '<div class="logo">%s</div>' % SITE["name"]
     h = """<header><div class="wrap">%s<a class="hcall" href="tel:%s">%s</a></div></header>
 """ % (logo, SITE["phone_raw"], SITE["phone"])
-    # ⚠ 서비스 격리 원칙 — 서비스 간 링크를 절대 넣지 않는다.
-    #   우수관 문제로 들어온 사람에게 트렌치를, 트렌치 문제로 들어온 사람에게 외벽 작업을
-    #   보여주면 이탈만 늘어난다. 각 서비스 페이지는 그 서비스만 보이는 독립 사이트처럼 동작한다.
-    #   서비스 간 이동 경로는 만들지 않는다. 유입은 검색 + 사이트맵 + 블로그 링크로만 받는다.
-    #   (같은 서비스 안의 링크는 허용 — 로고·crumb·navlinks·푸터. 2026-09-05)
-    return h + (crumb(svc, region) if svc else "")
+    # ★ 48째방(2026-10-15) 서비스 격리 해제 — 주인님 「팔도처럼 개조해 · 1. 이어」.
+    #   헤더 아래 종목 메뉴로 종목 첫 페이지끼리 잇는다. (지역 격리는 그대로 — 메뉴에는 지역 이름이 없다)
+    return h + cities.menu(sys.modules[__name__], svc) + (crumb(svc, region) if svc else "")
 
 def hero(svc, region=None):
     slug = region["slug"] if region else None
     src  = rimg(svc, region, "hero") or pick("hero-" + svc["key"], slug)
     top  = (region["name"] + " ") if region else ""
-    alt  = "%s%s 시공 현장" % (top, svc["label"])
+    # 도시 페이지는 종목 공통 사진이다 → alt 에 도시 이름을 넣지 않는다 (그 도시에서 찍은 사진이 아니다 · 48째방)
+    alt  = "%s%s 시공 현장" % ("" if is_city(region) else top, svc["label"])
     tri  = "".join('<div><b>%s</b><span>%s</span></div>' % (a, b) for a, b in svc["tri"])
     return """<div class="hero">
 %s
@@ -349,7 +359,7 @@ def case_cards(svc, region=None):
     if not svc.get("cases"):
         return ""
     regs = svc.get("region_list") or (REGIONS if svc.get("regions", True) else [])
-    offset = regs.index(region) if region in regs else 0
+    offset = region["idx"] if is_city(region) else (regs.index(region) if region in regs else 0)
     return cases.section(sys.modules[__name__], svc["cases"], svc["case_cfg"], offset)
 
 def info_list(svc, region=None):
@@ -484,10 +494,11 @@ def footer(svc, region=None):
     homeln = ('<br><a class="fhome" href="%s">%s</a>' % (url_of(home), home["home_label"])) if home else ""
     return """<footer>%s · %s<br>%s%s
 <span class="biz">상호 %s &middot; 대표 %s &middot; 사업자등록번호 %s<br>%s</span></footer>
-<div class="fixed"><a class="f-call" href="tel:%s">📞 전화 걸기</a><a class="f-sms" href="sms:%s">💬 사진 문자</a></div>
+<div class="fixed%s"><a class="f-call" href="tel:%s">📞 전화 걸기</a><a class="f-sms" href="sms:%s">💬 사진 문자</a>%s</div>
 %s%s</body></html>""" % (SITE["name"], SITE["phone"], line, homeln,
                      SITE["name"], SITE["biz_owner"], SITE["biz_no"], SITE["biz_addr"],
-                     SITE["phone_raw"], SITE["phone_raw"], COPY_JS, NAVER_WCS)
+                     " k3" if SITE.get("kakao") else "", SITE["phone_raw"], SITE["phone_raw"],
+                     kakao_btn("f-kakao"), COPY_JS, NAVER_WCS)
 
 # ────────────────────────────────────────────────────────── JSON-LD
 def jsonld_images(svc, region=None):
@@ -507,7 +518,7 @@ def jsonld_images(svc, region=None):
             o["width"], o["height"] = wh
         out.append(o)
     add(rimg(svc, region, "hero") or pick("hero-" + svc["key"], slug),
-        "%s%s 시공 현장" % ((region["name"] + " ") if region else "", svc["label"]))  # hero() 의 alt 와 동일
+        "%s%s 시공 현장" % ((region["name"] + " ") if region and not is_city(region) else "", svc["label"]))  # hero() 의 alt 와 동일
     for i, row in enumerate(rows, start=1):
         title = row[1]
         loc = row[3] if len(row) > 3 and not region else None
@@ -570,7 +581,9 @@ def path_of(svc, region=None):
         else os.path.join(DIST, svc["dir"], "index.html")
 
 def page(svc, region=None):
-    if region:
+    if is_city(region):
+        title, desc = region["title"], region["desc"]
+    elif region:
         title = svc["title_r"].format(region=region["name"], site=SITE["name"])
         desc  = svc["desc_r"].format(region=region["name"], phone=SITE["phone"])
     else:
@@ -581,7 +594,11 @@ def page(svc, region=None):
     return (head(title, desc, canonical, jsonld(svc, region), region is None, og_img)
             + header(svc, region) + hero(svc, region) + gallery(svc, region)
             + area(svc, region) + story(svc, region) + case_cards(svc, region) + focus(svc, region) + faq(svc, region)
-            + info_list(svc, region) + navlinks(svc, region) + quote(svc, region) + footer(svc, region))
+            + info_list(svc, region)
+            # 48째방 — 권역 페이지엔 그 권역 도시 목록, 종목 첫 페이지엔 도시 전체 목록
+            + (cities.hub_links(sys.modules[__name__], svc, region) if region and not is_city(region)
+               else cities.directory(sys.modules[__name__], svc) if not region else "")
+            + navlinks(svc, region) + quote(svc, region) + footer(svc, region))
 
 _HASH = {}
 def write(path, text):
@@ -642,6 +659,9 @@ def main():
         regs = svc.get("region_list") or (REGIONS if svc.get("regions", True) else [])
         for r in regs:
             write(path_of(svc, r), page(svc, r));  urls.append(url_of(svc, r))
+        # 도시별 페이지 (48째방) — 우수관 · 트렌치 · 보도블록 × 98곳
+        for c in cities.pages(svc, REGIONS, SITE):
+            write(path_of(svc, c), page(svc, c));  urls.append(url_of(svc, c))
 
     # 사진 복사
     if os.path.isdir(IMG):

@@ -125,5 +125,20 @@ footer .biz{display:block;margin-top:14px;padding-top:12px;border-top:1px solid 
 @media(max-width:760px){.ar{grid-template-columns:1fr;gap:5px;padding:14px 16px}.ar b{font-size:13.5px}.ar span{font-size:14px}}
 @media(max-width:760px){.fq{padding:17px 16px}.fq b{font-size:16px}.fq p{padding-left:0;margin-top:9px}}
 @media(max-width:760px){.btns .btn{font-size:15px;padding:14px 4px}.fixed a{font-size:15.5px;padding:16px 4px}.hero h1{font-size:30px}.big-t h2{font-size:26px}.silbig{grid-template-columns:1fr}.gal{gap:10px}}
+/* 48째방 — 종목 메뉴 · 도시 목록 · 카카오톡 (팔도처럼 개조) */
+.smenu{background:#1f2b36;border-top:1px solid #2c3a47}
+.smenu .wrap{display:flex;gap:4px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;padding-top:7px;padding-bottom:7px}
+.smenu .wrap::-webkit-scrollbar{display:none}
+.smenu a{color:#d9e1e8;text-decoration:none;font-size:13.5px;font-weight:700;letter-spacing:-.4px;padding:6px 10px;border-radius:999px}
+.smenu a.on{background:#FFB443;color:#16202a}
+.cdir{background:#fff;border-top:1px solid #eee}
+.cg{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid #f0e6dc}
+.cg b{color:#E0521A;font-size:14.5px;letter-spacing:-.5px}
+.cg div{display:flex;flex-wrap:wrap;gap:6px 6px}
+.cg a{display:inline-block;padding:6px 10px;border:1px solid #efd9c3;border-radius:7px;color:#16202a;text-decoration:none;font-size:14px;font-weight:700;letter-spacing:-.4px;background:#FFF9F3}
+.btns .btn.kakao{grid-column:1/-1;background:#FEE500;color:#191600}
+.fixed.k3{grid-template-columns:1fr 1fr 1fr}
+.fixed .f-kakao{background:#FEE500;color:#191600}
+@media(max-width:760px){.cg{grid-template-columns:1fr;gap:8px}.smenu a{font-size:13px;padding:6px 9px}}
 @media(min-width:761px){.hero .ph{aspect-ratio:auto;height:min(48vh,470px)}.hero img.ph{height:min(48vh,470px);object-fit:cover}}
 """
