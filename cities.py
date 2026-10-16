@@ -240,6 +240,7 @@ def city_nav(b, svc, page):
         if o:
             rows.append(_a(b.url_of(o), label))
     rows.append(_a(b.url_of(svc), "%s 시공 안내 전체 보기" % SVC[svc["key"]]["short"]))
+    rows.append(_a("/area/%s.html" % c["slug"], "%s에서 하는 공사 한눈에 보기" % c["short"]))     # 49째방 도시 안내 (같은 도시라 지역 격리 그대로)
     return ('<section class="nav"><div class="wrap">\n'
             '  <h2>%s에서 하는 다른 공사</h2><p>같은 업체가 직접 와서 합니다.</p>\n'
             '  <div class="links">%s</div>\n'

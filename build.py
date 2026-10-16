@@ -20,6 +20,7 @@ import cases                     # 시공 사례(/trench/case/) 빌더 — 2026-
 import cities                    # 도시별 페이지 · 종목 메뉴 — 2026-10-15 48째방 (팔도처럼 개조 · 서비스 격리 해제)
 import bld                       # 건물·현장 유형별 페이지 — 2026-10-16 48째방 (실제 사례가 있는 유형만)
 import contact                   # 견적 문의 페이지 /contact.html — 2026-10-17 49째방 (팔도의 문의 접수 페이지 자리)
+import area as area_pages        # 도시 안내 /area/{도시}.html 98장 + 출장 지역 목록 — 2026-10-17 49째방
 
 def is_city(region):
     return bool(region) and region.get("kind") == "city"
@@ -516,7 +517,8 @@ def footer(svc, region=None):
         line = "%s %s" % (region["name"], svc.get("foot_r", line))
     home = home_of(svc, region)
     homeln = ('<br><a class="fhome" href="%s">%s</a>' % (url_of(home), home["home_label"])) if home else ""
-    homeln += '<br><a class="fhome" href="/contact.html">견적 문의 · 사진 보내는 법</a>'     # 49째방 — 모든 페이지에서 문의 페이지로
+    homeln += ('<br><a class="fhome" href="/contact.html">견적 문의 · 사진 보내는 법</a>'     # 49째방 — 모든 페이지에서 문의 페이지로
+               ' &middot; <a class="fhome" href="/area/">출장 지역</a>')
     return """<footer>%s · %s<br>%s%s
 <span class="biz">상호 %s &middot; 대표 %s &middot; 사업자등록번호 %s<br>%s</span></footer>
 <div class="fixed%s"><a class="f-call" href="tel:%s">📞 전화 걸기</a><a class="f-sms" href="sms:%s">💬 사진 문자</a>%s</div>
@@ -708,6 +710,8 @@ def main():
 
     # 견적 문의 페이지 (49째방)
     write(os.path.join(DIST, "contact.html"), contact.page(sys.modules[__name__]));  urls.append(contact.URL)
+    # 도시 안내 98장 + 출장 지역 목록 (49째방)
+    urls += area_pages.build(sys.modules[__name__])
 
     # 시공 사례 — svc["cases"] 가 있는 서비스 (지금은 트렌치)
     for svc in SERVICES:

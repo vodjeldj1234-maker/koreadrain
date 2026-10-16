@@ -68,6 +68,7 @@ def page(b):
     %s
     <button class="copy" type="button" data-num="%s">번호 복사<span>PC 에서 쓰는 버튼</span></button>
   </div>
+  <div class="links" style="margin-top:18px"><a href="/area/">출장 지역 — 사는 곳별 안내<i>&rsaquo;</i></a></div>
 </div></section>
 """ % (b.trust(), b.ctabtns(), steps, guides, more, S["phone"], b.ctabtns(), S["phone"])
     return (b.head(title, desc, canonical, ld, False, None) + b.header(None) + body + b.footer(FOOT))
