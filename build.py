@@ -21,6 +21,7 @@ import cities                    # 도시별 페이지 · 종목 메뉴 — 2026
 import bld                       # 건물·현장 유형별 페이지 — 2026-10-16 48째방 (실제 사례가 있는 유형만)
 import contact                   # 견적 문의 페이지 /contact.html — 2026-10-17 49째방 (팔도의 문의 접수 페이지 자리)
 import area as area_pages        # 도시 안내 /area/{도시}.html 98장 + 출장 지역 목록 — 2026-10-17 49째방
+import place                     # 장소별 안내 /place/ 30장 + 종목×장소 페이지 글 — 2026-10-17 49째방
 
 def is_city(region):
     return bool(region) and region.get("kind") == "city"
@@ -275,12 +276,14 @@ def gallery(svc, region=None):
             items.append('<div class="item">%s<span class="lb">%s</span><div class="cp">%s<span>%s</span></div></div>'
                          % (imgtag(src, title), html.escape(lb), html.escape(title), html.escape(desc)))
         return """<section><div class="wrap">
-  <div class="big-t"><div class="hr"></div><h2>%s <em>현장 사진</em>입니다</h2>
-  <p>실제로 공사한 %s 현장의 시공 전과 마친 뒤입니다.</p></div>
+  <div class="big-t"><div class="hr"></div><h2>%s</h2>
+  <p>%s</p></div>
   <div class="gal">%s</div>
   <div class="more"><a href="tel:%s">전화 주시면 현장 사진 더 보내드립니다</a></div>
 </div></section>
-""" % (html.escape(region["name"]), html.escape(region["name"]), "".join(items), SITE["phone_raw"])
+""" % (region.get("gal_h2") or (html.escape(region["name"]) + " <em>현장 사진</em>입니다"),
+       region.get("gal_p") or ("실제로 공사한 %s 현장의 시공 전과 마친 뒤입니다." % html.escape(region["name"])),
+       "".join(items), SITE["phone_raw"])
     for i, row in enumerate(rows, start=1):
         lb, title, desc = row[0], row[1], row[2]
         loc = row[3] if len(row) > 3 and not region else None   # 촬영지역 — 지역 페이지에선 안 보인다 (지역 격리)
@@ -348,6 +351,7 @@ def faq_items(svc, region=None):
     """이 페이지에 나갈 FAQ 목록을 (질문, 답변) 으로 돌려준다.
        지역 격리 — {region} 은 그 페이지 지역명으로만 치환된다."""
     out = []
+    extra = list(region.get("faq_r", [])) if is_bld(region) else []   # 49째방 종목×장소 전용 질문
     if is_bld(region):                       # 건물 유형 페이지는 첫 페이지와 같은 질문을 쓴다 (지역 질문 아님)
         region = None
     for scope, q, a in svc.get("faq", []):
@@ -360,7 +364,7 @@ def faq_items(svc, region=None):
     # 지역 전용 FAQ (2026-09-05) — 그 지역 페이지에만 붙는다
     if region:
         out += list(region.get("faq_r", []))
-    return out
+    return extra + out
 
 def story(svc, region=None):
     """지역 페이지 살붙이기 — REGIONS[i]["story"] 가 있을 때만 그린다 (2026-09-05).
@@ -381,6 +385,8 @@ def case_cards(svc, region=None):
        지역마다 앞에 오는 사례만 돌려서 페이지끼리 덜 똑같게 한다."""
     if not svc.get("cases"):
         return ""
+    if is_bld(region) and not region["cases"]:   # 49째방 종목×장소(실제 사례 없음) — 그 종목 사례 전체
+        return cases.section(sys.modules[__name__], svc["cases"], svc["case_cfg"], 0)
     if is_bld(region):                       # 그 유형 사례만
         return cases.section(sys.modules[__name__], region["cases"], svc["case_cfg"], 0, total=len(svc["cases"]))
     regs = svc.get("region_list") or (REGIONS if svc.get("regions", True) else [])
@@ -518,7 +524,7 @@ def footer(svc, region=None):
     home = home_of(svc, region)
     homeln = ('<br><a class="fhome" href="%s">%s</a>' % (url_of(home), home["home_label"])) if home else ""
     homeln += ('<br><a class="fhome" href="/contact.html">견적 문의 · 사진 보내는 법</a>'     # 49째방 — 모든 페이지에서 문의 페이지로
-               ' &middot; <a class="fhome" href="/area/">출장 지역</a>')
+               ' &middot; <a class="fhome" href="/area/">출장 지역</a> &middot; <a class="fhome" href="/place/">장소별 안내</a>')
     return """<footer>%s · %s<br>%s%s
 <span class="biz">상호 %s &middot; 대표 %s &middot; 사업자등록번호 %s<br>%s</span></footer>
 <div class="fixed%s"><a class="f-call" href="tel:%s">📞 전화 걸기</a><a class="f-sms" href="sms:%s">💬 사진 문자</a>%s</div>
@@ -712,6 +718,8 @@ def main():
     write(os.path.join(DIST, "contact.html"), contact.page(sys.modules[__name__]));  urls.append(contact.URL)
     # 도시 안내 98장 + 출장 지역 목록 (49째방)
     urls += area_pages.build(sys.modules[__name__])
+    # 장소별 안내 30장 + 목록 (49째방)
+    urls += place.build(sys.modules[__name__])
 
     # 시공 사례 — svc["cases"] 가 있는 서비스 (지금은 트렌치)
     for svc in SERVICES:

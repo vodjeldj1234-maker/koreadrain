@@ -194,6 +194,13 @@ def pages(svc):
         cases = [by[s] for s in cs if s in by]
         assert len(cases) == len(cs), (svc["key"], slug, [s for s in cs if s not in by])
         out.append(dict(kind="bld", slug=slug, name=name, head=head, desc_t=desc, cases=cases, story=(st, paras)))
+    # ★ 49째방 — 실제 사례가 없는 종목×장소 페이지(「아파트 트렌치 시공·교체 업체」 등, 글은 place_data.json)를 뒤에 붙인다.
+    #   사진은 종목 공통 사진 + 「같은 공사를 한 다른 현장 사진」 안내, 사례 칸은 그 종목 전체 사례.
+    import place
+    have = {p["slug"] for p in out}
+    for p in place.combo_pages(svc["key"]):
+        assert p["slug"] not in have, (svc["key"], p["slug"])
+        out.append(p)
     return out
 
 
@@ -202,12 +209,19 @@ def setup(b, svc, p):
     S = b.SITE
     p["title"] = "%s | %s" % (p["head"], S["name"])
     p["desc"] = p["desc_t"].format(phone=S["phone"])
-    c0 = p["cases"][0]
-    p["hero_src"] = "/img/case/%s-%02d.jpg" % (c0["slug"], c0["cover"])
-    p["hero_alt"] = c0["title"]
     p["area"] = svc.get("area")
     regs = svc.get("region_list") or b.REGIONS
     p["cities"] = svc.get("cities") or [c for r in regs for c in r["cities"]]
+    if p.get("combo"):                       # 49째방 종목×장소 — 종목 공통 사진 (그 장소에서 찍은 사진이 아니라고 밝힌다)
+        p["hero_src"] = b.pick("hero-" + svc["key"])
+        p["hero_alt"] = "%s 시공 현장" % svc["label"]
+        p["gal"] = [(b.pick("%s-%d" % (svc["key"], i)), row[0], row[1], row[2]) for i, row in enumerate(svc["gallery"][:6], 1)]
+        p["gal_h2"] = "%s <em>현장 사진</em>" % html.escape(svc["label"])
+        p["gal_p"] = "%s 현장 사진은 시공하는 대로 올립니다. 아래는 같은 공사를 한 다른 현장 사진입니다." % html.escape(p["name"])
+        return p
+    c0 = p["cases"][0]
+    p["hero_src"] = "/img/case/%s-%02d.jpg" % (c0["slug"], c0["cover"])
+    p["hero_alt"] = c0["title"]
     # 사진 6장 = 사례 3곳의 「시공 전」 한 장 + 「완료」 한 장
     gal = []
     for c in p["cases"][:3]:
