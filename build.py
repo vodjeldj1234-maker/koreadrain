@@ -772,6 +772,13 @@ def main():
     for u in urls:
         print("   ", u)
 
+    # ★ 49째방: 매일 예약 빌드(schedule)일 때는 전체가 아니라 오늘 공개된 정보글만 알린다 (안 바뀐 주소를 매일 보내지 않게)
+    if os.environ.get("GITHUB_EVENT_NAME") == "schedule":
+        t = info.today_kst()
+        urls = [info.url_of(p) for p in info.load_posts() if p["날짜"] == t]
+        if not urls:
+            print("IndexNow 건너뜀 (오늘 공개된 정보글 없음)")
+            return
     indexnow(urls)
 
 if __name__ == "__main__":

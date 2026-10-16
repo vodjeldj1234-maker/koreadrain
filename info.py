@@ -156,11 +156,20 @@ def read_post(path):
     meta["파일"] = path
     return meta
 
-def load_posts():
+def today_kst():
+    """한국 날짜 (Actions 는 UTC 로 돈다 — 한국 00:30 은 UTC 로 전날이다)."""
+    return (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).date().isoformat()
+
+def load_posts(include_future=False):
+    """★ 49째방(10/17) 예약 발행: 「날짜」가 오늘(한국)보다 뒤인 글은 빼고 만든다.
+       Actions 가 매일 한국 00:30 쯤 다시 빌드하므로(.github/workflows 의 schedule) 그날이 되면 저절로 공개된다."""
     posts = [read_post(p) for p in sorted(glob.glob(os.path.join(POSTS_DIR, "*.txt")))
              if not os.path.basename(p).startswith(("읽어", "_"))]
     slugs = [p["슬러그"] for p in posts]
     assert len(slugs) == len(set(slugs)), "슬러그가 겹친다: %s" % [s for s in slugs if slugs.count(s) > 1]
+    if not include_future:
+        t = today_kst()
+        posts = [p for p in posts if p["날짜"] <= t]
     posts.sort(key=lambda p: p["날짜"], reverse=True)
     return posts
 

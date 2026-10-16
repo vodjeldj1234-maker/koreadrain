@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # 49째방: 정보글 예약 발행 — 매일 한국 00:30 (UTC 15:30) 다시 빌드. 「날짜」가 된 글이 이때 공개된다
+  schedule:
+    - cron: '30 15 * * *'
 
 permissions:
   contents: read
