@@ -33,8 +33,9 @@ def url(cfg, c=None):
 def img(c, n):
     return "/img/case/%s-%02d.jpg" % (c["slug"], n)
 
-def section(b, cases, cfg, offset=0):
-    """첫 페이지 · 지역 페이지에 붙는 사례 카드. offset 으로 지역마다 앞에 오는 사례를 돌려 쓴다."""
+def section(b, cases, cfg, offset=0, total=None):
+    """첫 페이지 · 지역 페이지에 붙는 사례 카드. offset 으로 지역마다 앞에 오는 사례를 돌려 쓴다.
+       total — 건물 유형 페이지(48째방)처럼 일부만 넘길 때 「전체 N곳 보기」에 쓸 전체 수."""
     if not cases:
         return ""
     k = len(cases)
@@ -49,7 +50,7 @@ def section(b, cases, cfg, offset=0):
   <div class="more"><a href="%s">시공 사례 전체 %d곳 보기</a></div>
 </div></section>
 <style>%s</style>
-""" % (cfg["label"], cards, url(cfg), k, CSS)
+""" % (cfg["label"], cards, url(cfg), total or k, CSS)
 
 def build(b, cases, cfg):
     """b = build 모듈. 만든 URL 목록을 돌려준다."""

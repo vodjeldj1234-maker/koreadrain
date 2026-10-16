@@ -18,9 +18,13 @@ from style import CSS
 import info                      # 정보글(/info/) 빌더 — 2026-09-16 워드프레스 방에서 이관
 import cases                     # 시공 사례(/trench/case/) 빌더 — 2026-09-17 31째방
 import cities                    # 도시별 페이지 · 종목 메뉴 — 2026-10-15 48째방 (팔도처럼 개조 · 서비스 격리 해제)
+import bld                       # 건물·현장 유형별 페이지 — 2026-10-16 48째방 (실제 사례가 있는 유형만)
 
 def is_city(region):
     return bool(region) and region.get("kind") == "city"
+
+def is_bld(region):
+    return bool(region) and region.get("kind") == "bld"
 
 DIST = "dist"
 IMG  = "img"
@@ -102,7 +106,7 @@ def imgtag(src, alt, cls="ph", lazy=True):
 def trust(region=None):
     """첫 화면 신뢰 3줄. 3번째는 그 페이지에 맞는 출장 범위."""
     where = ("%s 전 지역 출장" % region["name"]) if is_city(region) \
-            else ("%s 인근까지 출장" % region["name"]) if region \
+            else ("%s 인근까지 출장" % region["name"]) if region and not is_bld(region) \
             else "서울 · 인천 · 경기 전역, 충청 전 시군 출장"
     return '<div class="trust">%s</div>' % "".join(
         '<div><i>✓</i><span>%s</span></div>' % html.escape(t)
@@ -187,6 +191,8 @@ def navlinks(svc, region=None):
     kids = svc.get("children")
     if is_city(region):
         return cities.city_nav(sys.modules[__name__], svc, region)
+    if is_bld(region):
+        return bld.links(sys.modules[__name__], svc, current=region, title="다른 현장별 안내")
     if region:
         # 지역 페이지 — 우수관 첫 페이지 하나만
         return ('<section class="nav"><div class="wrap">\n'
@@ -233,6 +239,8 @@ def hero(svc, region=None):
     top  = (region["name"] + " ") if region else ""
     # 도시 페이지는 종목 공통 사진이다 → alt 에 도시 이름을 넣지 않는다 (그 도시에서 찍은 사진이 아니다 · 48째방)
     alt  = "%s%s 시공 현장" % ("" if is_city(region) else top, svc["label"])
+    if is_bld(region):                       # 건물 유형 페이지 — 그 유형 실제 사례의 대표 사진, alt 는 사례 제목
+        src, alt = region["hero_src"], region["hero_alt"]
     tri  = "".join('<div><b>%s</b><span>%s</span></div>' % (a, b) for a, b in svc["tri"])
     return """<div class="hero">
 %s
@@ -260,6 +268,17 @@ def gallery(svc, region=None):
     if slug:
         rows = svc.get("gallery_by_region", {}).get(slug, rows)
     items = []
+    if is_bld(region):                       # 건물 유형 페이지 — 사례 3곳의 시공 전 · 완료 사진 (캡션은 사례 데이터 그대로)
+        for src, lb, title, desc in region["gal"]:
+            items.append('<div class="item">%s<span class="lb">%s</span><div class="cp">%s<span>%s</span></div></div>'
+                         % (imgtag(src, title), html.escape(lb), html.escape(title), html.escape(desc)))
+        return """<section><div class="wrap">
+  <div class="big-t"><div class="hr"></div><h2>%s <em>현장 사진</em>입니다</h2>
+  <p>실제로 공사한 %s 현장의 시공 전과 마친 뒤입니다.</p></div>
+  <div class="gal">%s</div>
+  <div class="more"><a href="tel:%s">전화 주시면 현장 사진 더 보내드립니다</a></div>
+</div></section>
+""" % (html.escape(region["name"]), html.escape(region["name"]), "".join(items), SITE["phone_raw"])
     for i, row in enumerate(rows, start=1):
         lb, title, desc = row[0], row[1], row[2]
         loc = row[3] if len(row) > 3 and not region else None   # 촬영지역 — 지역 페이지에선 안 보인다 (지역 격리)
@@ -327,6 +346,8 @@ def faq_items(svc, region=None):
     """이 페이지에 나갈 FAQ 목록을 (질문, 답변) 으로 돌려준다.
        지역 격리 — {region} 은 그 페이지 지역명으로만 치환된다."""
     out = []
+    if is_bld(region):                       # 건물 유형 페이지는 첫 페이지와 같은 질문을 쓴다 (지역 질문 아님)
+        region = None
     for scope, q, a in svc.get("faq", []):
         if scope == "region" and region is None:
             continue
@@ -358,6 +379,8 @@ def case_cards(svc, region=None):
        지역마다 앞에 오는 사례만 돌려서 페이지끼리 덜 똑같게 한다."""
     if not svc.get("cases"):
         return ""
+    if is_bld(region):                       # 그 유형 사례만
+        return cases.section(sys.modules[__name__], region["cases"], svc["case_cfg"], 0, total=len(svc["cases"]))
     regs = svc.get("region_list") or (REGIONS if svc.get("regions", True) else [])
     offset = region["idx"] if is_city(region) else (regs.index(region) if region in regs else 0)
     return cases.section(sys.modules[__name__], svc["cases"], svc["case_cfg"], offset)
@@ -517,6 +540,11 @@ def jsonld_images(svc, region=None):
         if wh:
             o["width"], o["height"] = wh
         out.append(o)
+    if is_bld(region):                       # 화면과 같은 사진 · 같은 설명
+        add(region["hero_src"], region["hero_alt"])
+        for src, lb, title, desc in region["gal"]:
+            add(src, title)
+        return out
     add(rimg(svc, region, "hero") or pick("hero-" + svc["key"], slug),
         "%s%s 시공 현장" % ((region["name"] + " ") if region and not is_city(region) else "", svc["label"]))  # hero() 의 alt 와 동일
     for i, row in enumerate(rows, start=1):
@@ -534,7 +562,7 @@ def jsonld(svc, region=None):
         area = [{"@type": "City", "name": c} for c in svc["cities"]]
     else:
         area = [{"@type": "City", "name": c} for r in REGIONS for c in r["cities"]]
-    name = SITE["name"] + ((" " + region["name"]) if region else "")
+    name = SITE["name"] + ((" " + region["name"]) if region and not is_bld(region) else "")
     d = {
         "@context": "https://schema.org",
         "@type": "HomeAndConstructionBusiness",
@@ -581,7 +609,7 @@ def path_of(svc, region=None):
         else os.path.join(DIST, svc["dir"], "index.html")
 
 def page(svc, region=None):
-    if is_city(region):
+    if is_city(region) or is_bld(region):
         title, desc = region["title"], region["desc"]
     elif region:
         title = svc["title_r"].format(region=region["name"], site=SITE["name"])
@@ -590,14 +618,16 @@ def page(svc, region=None):
         title = svc["title_m"].format(site=SITE["name"])
         desc  = svc["desc_m"].format(phone=SITE["phone"])
     canonical = SITE["domain"] + url_of(svc, region)
-    og_img = rimg(svc, region, "hero") or pick("hero-" + svc["key"], region["slug"] if region else None)
+    og_img = (region["hero_src"] if is_bld(region) else
+              rimg(svc, region, "hero") or pick("hero-" + svc["key"], region["slug"] if region else None))
     return (head(title, desc, canonical, jsonld(svc, region), region is None, og_img)
             + header(svc, region) + hero(svc, region) + gallery(svc, region)
             + area(svc, region) + story(svc, region) + case_cards(svc, region) + focus(svc, region) + faq(svc, region)
             + info_list(svc, region)
-            # 48째방 — 권역 페이지엔 그 권역 도시 목록, 종목 첫 페이지엔 도시 전체 목록
-            + (cities.hub_links(sys.modules[__name__], svc, region) if region and not is_city(region)
-               else cities.directory(sys.modules[__name__], svc) if not region else "")
+            # 48째방 — 권역 페이지엔 그 권역 도시 목록, 종목 첫 페이지엔 도시 전체 목록 + 건물·현장별 안내, 도시 페이지엔 건물·현장별 안내
+            + (cities.hub_links(sys.modules[__name__], svc, region) if region and not is_city(region) and not is_bld(region)
+               else (bld.links(sys.modules[__name__], svc) + cities.directory(sys.modules[__name__], svc)) if not region
+               else bld.links(sys.modules[__name__], svc) if is_city(region) else "")
             + navlinks(svc, region) + quote(svc, region) + footer(svc, region))
 
 _HASH = {}
@@ -662,6 +692,10 @@ def main():
         # 도시별 페이지 (48째방) — 우수관 · 트렌치 · 보도블록 × 98곳
         for c in cities.pages(svc, REGIONS, SITE):
             write(path_of(svc, c), page(svc, c));  urls.append(url_of(svc, c))
+        # 건물·현장 유형별 페이지 (48째방) — 실제 사례가 있는 유형만
+        for p in bld.pages(svc):
+            p = bld.setup(sys.modules[__name__], svc, p)
+            write(path_of(svc, p), page(svc, p));  urls.append(url_of(svc, p))
 
     # 사진 복사
     if os.path.isdir(IMG):
