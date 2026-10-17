@@ -157,7 +157,10 @@ def read_post(path):
     return meta
 
 def today_kst():
-    """한국 날짜 (Actions 는 UTC 로 돈다 — 한국 00:30 은 UTC 로 전날이다)."""
+    """한국 날짜 (Actions 는 UTC 로 돈다 — 한국 00:30 은 UTC 로 전날이다).
+       미리보기: 환경변수 INFO_TODAY=2026-10-21 을 주고 빌드하면 그날까지 예약된 글이 나온다 (커밋 전에 dist 를 다시 빌드할 것)."""
+    if os.environ.get("INFO_TODAY"):
+        return os.environ["INFO_TODAY"]
     return (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).date().isoformat()
 
 def load_posts(include_future=False):
