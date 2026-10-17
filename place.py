@@ -23,7 +23,7 @@ SVC_SHORT = {"usugwan": "우수관", "trench": "트렌치", "block": "보도블�
 
 # 장소 → 실제 사례 slug (사례 제목에 그 장소가 적힌 것만 · 49째방에 사례 제목을 보고 골랐다)
 REAL = {
-    "apartment": ["apartment-office-pvc-to-stainless-45", "apartment-rooftop-canopy-gutter-new", "apt-entrance-canopy-lexan-one-row",
+    "apartment": ["apt-entrance-canopy-lexan-one-row",
                   "apt-walkway-canopy-lexan-full-replace", "apt-office-front-canopy-lexan-replace", "apt-pergola-skylight-lexan-replace",
                   "apt-bike-shelter-lexan-partial-replace", "apt-parking-ramp-roof-silicone", "apt-recycling-shed-roof-silicone",
                   "apt-park-round-pergola-lexan-strips", "apt-recycling-shed-lexan-roof-repair"],
