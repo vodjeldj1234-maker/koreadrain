@@ -13,8 +13,10 @@ img.ph{object-fit:cover;width:100%;height:auto;display:block}
 .ph::after{content:attr(data-f);position:absolute;bottom:8px;left:8px;font-family:'IBM Plex Mono';font-size:10px;color:#7a7466;background:rgba(255,255,255,.6);padding:2px 6px;border-radius:3px}
 header{background:#16202a;color:#fff}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
-.logo{font-weight:900;font-size:18px;letter-spacing:-.8px}
-a.logo{color:#fff;text-decoration:none;border-bottom:2px solid #FFB443;padding-bottom:1px}
+.logo{font-weight:900;font-size:18px;letter-spacing:-.8px;display:flex;align-items:center;gap:9px}
+.logo img{display:block;height:32px;width:auto}
+a.logo{color:#fff;text-decoration:none}
+a.logo span{border-bottom:2px solid #FFB443;padding-bottom:1px}
 .crumb{background:#1f2b36;color:#b7c3cd;font-size:13px}
 .crumb .wrap{display:flex;gap:8px;align-items:center;min-height:36px}
 .crumb a{color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#FFB443;text-underline-offset:3px}

@@ -210,9 +210,9 @@ def _a(href, text):
     return '<a href="%s">%s<i>&rsaquo;</i></a>' % (href, html.escape(text))
 
 
-def menu(b, current=None):
+def menu(b, current=None, home=False):
     """헤더 아래 종목 메뉴 (서비스 격리 해제 — 48째방)."""
-    rows = []
+    rows = ['<a%s href="/">홈</a>' % (' class="on"' if home else '')]      # 51째방 — / 는 회사 소개(home.py)
     for key, label in MENU:
         svc = next((s for s in b.SERVICES if s["key"] == key), None)
         if not svc:

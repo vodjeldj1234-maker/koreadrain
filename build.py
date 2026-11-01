@@ -22,6 +22,7 @@ import bld                       # 건물·현장 유형별 페이지 — 2026-1
 import contact                   # 견적 문의 페이지 /contact.html — 2026-10-17 49째방 (팔도의 문의 접수 페이지 자리)
 import area as area_pages        # 도시 안내 /area/{도시}.html 98장 + 출장 지역 목록 — 2026-10-17 49째방
 import place                     # 장소별 안내 /place/ 30장 + 종목×장소 페이지 글 — 2026-10-17 49째방
+import home                      # 메인 / — 회사 소개 (51째방 · 우수관은 /usugwan/ 으로 옮김)
 
 def is_city(region):
     return bool(region) and region.get("kind") == "city"
@@ -224,17 +225,19 @@ def navlinks(svc, region=None):
                 '</div></section>\n' % (home["nav_title"], rows))
     return ""
 
-def header(svc=None, region=None):
-    home = home_of(svc, region) if svc else None
-    if home:
-        logo = '<a class="logo" href="%s">%s</a>' % (url_of(home), SITE["name"])
+LOGO_IMG = '<img src="/img/logo-fo-w.png" alt="" width="43" height="32">'   # 51째방 — 명함의 「FO 포스원」 로고(흰색)
+
+def header(svc=None, region=None, is_home=False):
+    # 51째방(11/1) — / 가 회사 소개가 됐다 → 로고는 어느 페이지에서나 / 로 간다 (메인에서는 링크 없음)
+    if is_home:
+        logo = '<div class="logo">%s<span>%s</span></div>' % (LOGO_IMG, SITE["name"])
     else:
-        logo = '<div class="logo">%s</div>' % SITE["name"]
+        logo = '<a class="logo" href="/">%s<span>%s</span></a>' % (LOGO_IMG, SITE["name"])
     h = """<header><div class="wrap">%s<a class="hcall" href="tel:%s">%s</a></div></header>
 """ % (logo, SITE["phone_raw"], SITE["phone"])
     # ★ 48째방(2026-10-15) 서비스 격리 해제 — 주인님 「팔도처럼 개조해 · 1. 이어」.
     #   헤더 아래 종목 메뉴로 종목 첫 페이지끼리 잇는다. (지역 격리는 그대로 — 메뉴에는 지역 이름이 없다)
-    return h + cities.menu(sys.modules[__name__], svc) + (crumb(svc, region) if svc else "")
+    return h + cities.menu(sys.modules[__name__], svc, home=is_home) + (crumb(svc, region) if svc else "")
 
 def hero(svc, region=None):
     slug = region["slug"] if region else None
@@ -720,6 +723,8 @@ def main():
     urls += area_pages.build(sys.modules[__name__])
     # 장소별 안내 30장 + 목록 (49째방)
     urls += place.build(sys.modules[__name__])
+    # 메인 / — 회사 소개 (51째방). 정보글·종목 페이지가 다 만들어진 뒤에 (공개된 글로만 잇는다)
+    urls += home.build(sys.modules[__name__])
 
     # 시공 사례 — svc["cases"] 가 있는 서비스 (지금은 트렌치)
     for svc in SERVICES:
