@@ -137,6 +137,12 @@ CITY_PAGES = False
 # 권역 페이지: 광고(포스원-우수관 · 포스원-트렌치, 키워드별 연결 주소)에 물렸을 수 있는 우수관·트렌치 계열은 그대로,
 #   나머지 종목은 그 권역 실제 현장 이야기(story)가 있는 곳만 만든다.
 REGION_KEEP_ALL = ("usugwan", "trench", "musoeum", "gongsa", "parking")
+# ★ 52째방(11/11) — 끈 페이지가 네이버 클릭 27% · 구글 29% 를 데려오고 있었다 → 최근 90일 클릭을 받은 178곳만 다시 켠다(revive.py).
+from revive import REVIVE
+
+
+def _url(svc, slug):
+    return "/%s/%s.html" % (svc.get("rdir", svc["dir"]), slug)
 
 
 def region_pages(svc, REGIONS):
@@ -144,14 +150,14 @@ def region_pages(svc, REGIONS):
     regs = _regs(svc, REGIONS)
     if svc["key"] in REGION_KEEP_ALL:
         return regs
-    return [r for r in regs if r.get("story")]
+    return [r for r in regs if r.get("story") or _url(svc, r["slug"]) in REVIVE]
 
 
 def pages(svc, REGIONS, SITE):
     """이 종목의 도시 페이지(region 꼴 dict) 목록. 권역 slug 와 겹치면: 권역이 그 도시 하나뿐 → 권역 페이지를 쓴다(새로 안 만듦),
        아니면 slug 뒤에 -si."""
     key = svc["key"]
-    if key not in SVC or not CITY_PAGES:          # 51째방 — 도시 페이지 끔
+    if key not in SVC:
         return []
     if key in _PAGES:
         return _PAGES[key]
@@ -166,6 +172,8 @@ def pages(svc, REGIONS, SITE):
                 continue                          # 권역 페이지가 곧 도시 페이지 (대전)
             slug += "-si"
         out.append(_page_dict(svc, c, slug, SITE))
+    if not CITY_PAGES:                            # 51째방 — 도시 페이지 끔 · 52째방 — 클릭 받던 곳만 다시 켬
+        out = [p for p in out if _url(svc, p["slug"]) in REVIVE]
     _PAGES[key] = out
     return out
 
@@ -256,7 +264,8 @@ def city_nav(b, svc, page):
         if o:
             rows.append(_a(b.url_of(o), label))
     rows.append(_a(b.url_of(svc), "%s 시공 안내 전체 보기" % SVC[svc["key"]]["short"]))
-    rows.append(_a("/area/%s.html" % c["slug"], "%s에서 하는 공사 한눈에 보기" % c["short"]))     # 49째방 도시 안내 (같은 도시라 지역 격리 그대로)
+    if CITY_PAGES or ("/area/%s.html" % c["slug"]) in REVIVE:     # 52째방 — 도시 안내는 켜진 곳만 잇는다
+        rows.append(_a("/area/%s.html" % c["slug"], "%s에서 하는 공사 한눈에 보기" % c["short"]))     # 49째방 도시 안내 (같은 도시라 지역 격리 그대로)
     return ('<section class="nav"><div class="wrap">\n'
             '  <h2>%s에서 하는 다른 공사</h2><p>같은 업체가 직접 와서 합니다.</p>\n'
             '  <div class="links">%s</div>\n'

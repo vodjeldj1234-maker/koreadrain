@@ -94,7 +94,7 @@ def index(b):
     canonical = S["domain"] + url()
     blocks = []
     for g in cities.GROUPS:
-        rows = "".join(('<a href="%s">%s</a>' % (url(c), html.escape(c["short"]))) if on else ('<span>%s</span>' % html.escape(c["short"]))
+        rows = "".join(('<a href="%s">%s</a>' % (url(c), html.escape(c["short"]))) if (on or url(c) in cities.REVIVE) else ('<span>%s</span>' % html.escape(c["short"]))
                        for c in cities.CITIES if c["group"] == g)
         if rows:
             blocks.append('<div class="cg"><b>%s</b><div>%s</div></div>' % (g, rows))
@@ -120,8 +120,8 @@ def build(b):
     out = []
     os.makedirs(os.path.join(b.DIST, DIR), exist_ok=True)
     b.write(os.path.join(b.DIST, DIR, "index.html"), index(b)); out.append(url())
-    if cities.CITY_PAGES:                        # 51째방 — 도시 안내 98장도 같은 틀이라 도시 페이지와 함께 끈다 (목록 /area/ 한 장만)
-        for c in cities.CITIES:
+    for c in cities.CITIES:                      # 51째방 — 도시 안내 98장도 같은 틀이라 끈다 · 52째방 — 클릭 받던 곳(revive.py)만 다시 켬
+        if cities.CITY_PAGES or url(c) in cities.REVIVE:
             b.write(os.path.join(b.DIST, DIR, c["slug"] + ".html"), page(b, c)); out.append(url(c))
     print("도시 안내 %d장 + 목록 → /%s/" % (len(out) - 1, DIR))
     return out
