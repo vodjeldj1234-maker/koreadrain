@@ -107,14 +107,16 @@ def imgtag(src, alt, cls="ph", lazy=True):
 
 # ── 연락 요소 (2026-09-05 추가)
 #   ⚠ 전화 링크 하나뿐이면 PC 로 보는 손님은 연락할 방법이 없다. 문자·번호복사를 같이 낸다.
-def trust(region=None):
+def trust_items(region=None):
     """첫 화면 신뢰 3줄. 3번째는 그 페이지에 맞는 출장 범위."""
     where = ("%s 전 지역 출장" % region["name"]) if is_city(region) \
             else ("%s 인근까지 출장" % region["name"]) if region and not is_bld(region) \
             else "서울 · 인천 · 경기 전역, 충청 전 시군 출장"
+    return list(SITE["trust"]) + [where]
+
+def trust(region=None):
     return '<div class="trust">%s</div>' % "".join(
-        '<div><i>✓</i><span>%s</span></div>' % html.escape(t)
-        for t in list(SITE["trust"]) + [where])
+        '<div><i>✓</i><span>%s</span></div>' % html.escape(t) for t in trust_items(region))
 
 def kakao_btn(cls="btn kakao"):
     """카카오톡 상담 (48째방) — SITE["kakao"] 에 채널 채팅 주소(https://pf.kakao.com/_xxxx/chat)를 넣으면 전 페이지에 붙는다. 비어 있으면 안 그린다."""
@@ -239,26 +241,61 @@ def header(svc=None, region=None, is_home=False):
     #   헤더 아래 종목 메뉴로 종목 첫 페이지끼리 잇는다. (지역 격리는 그대로 — 메뉴에는 지역 이름이 없다)
     return h + cities.menu(sys.modules[__name__], svc, home=is_home) + (crumb(svc, region) if svc else "")
 
-def hero(svc, region=None):
-    slug = region["slug"] if region else None
-    src  = rimg(svc, region, "hero") or pick("hero-" + svc["key"], slug)
-    top  = (region["name"] + " ") if region else ""
-    # 도시 페이지는 종목 공통 사진이다 → alt 에 도시 이름을 넣지 않는다 (그 도시에서 찍은 사진이 아니다 · 48째방)
-    alt  = "%s%s 시공 현장" % ("" if is_city(region) else top, svc["label"])
+# 52째방(11/11) — 종목 첫 화면 사진. 주인님 「메인사진 문구랑 사진을 각 시공관련사진으로만 바꿔주면」
+#   예전 공통 첫 사진(hero-{key}.jpg)은 작업 중간에 찍은 것이라 볼품없다 → 사례의 완료 컷으로 바꾼다.
+#   종목 첫 페이지와, 지금 공통 사진을 쓰던 권역 페이지에 쓴다. 권역 전용 사진이 있는 권역(32째방 「공통사진」 규칙)은 그대로.
+#   alt 는 사진에 실제로 찍힌 것만 — 지역 이름을 넣지 않는다(그 지역에서 찍은 사진이 아니다).
+HERO_PICK = {
+    "usugwan":      ("/img/case/six-storey-stainless-pipes-double-wall-08.jpg", "6층 건물 외벽에 새로 낸 스테인리스 우수관"),
+    "trench":       ("/img/case/sidewalk-gutter-rebuild-06.jpg", "측벽을 다시 쌓고 그레이팅을 얹은 인도 옆 측구"),
+    "musoeum":      ("/img/case/outdoor-stone-noiseless-05.jpg", "석재 바닥 사이에 새로 깐 무소음 트렌치 덮개"),
+    "gongsa":       ("/img/case/shop-tile-floor-trench-14.jpg", "매장 타일 바닥에 벽 따라 새로 낸 실내 트렌치"),
+    "parking":      ("/img/case/parking-entrance-grating-repair-07.jpg", "주차장 진입로 배수로에 새로 얹은 그레이팅"),
+    "block":        ("/img/case/tree-walk-curb-block-fix-05.jpg", "나무 둘레 경계석과 보도블록을 다시 맞춘 인도"),
+    "carstop":      ("/img/case/wide-outdoor-lot-carstop-10.jpg", "야외 주차장에 줄지어 설치한 카스토퍼"),
+    "aircon":       ("/img/aircon-5-gimpo-bucheon.jpg", "새 보온재로 감싸 벽으로 들어가는 에어컨 배관"),
+    "lexan":        ("/img/case/house-deck-canopy-lexan-roof-06.jpg", "주택 데크 위 복층렉산 캐노피"),
+    "lexan-bosu":   ("/img/case/apt-bike-shelter-lexan-partial-replace-06.jpg", "구멍 난 한 칸만 새 복층렉산으로 바꾼 지붕"),
+    "lexan-gyoche": ("/img/case/apt-walkway-canopy-lexan-full-replace-11.jpg", "렉산 지붕을 전부 새 판으로 바꾼 통로 캐노피"),
+    "lexan-canopy": ("/img/case/house-eaves-bracket-canopy-install-05.jpg", "주택 처마 아래에 단 브라켓 캐노피"),
+}
+
+def hero_photo(svc, region=None):
+    """첫 화면 사진과 alt. 화면 · og:image · 구조화 데이터가 모두 이걸 쓴다 (52째방)."""
+    import hero_fix                          # 52째방 — 작업 중간 사진을 쓰던 지역·유형 페이지 53장의 바꿈표
+    if region and "%s/%s" % (svc["key"], region["slug"]) in hero_fix.FIX:
+        return hero_fix.FIX["%s/%s" % (svc["key"], region["slug"])] or HERO_PICK[svc["key"]]
     if is_bld(region):                       # 건물 유형 페이지 — 그 유형 실제 사례의 대표 사진, alt 는 사례 제목
-        src, alt = region["hero_src"], region["hero_alt"]
+        if region["hero_src"] == "/img/hero-%s.jpg" % svc["key"] and svc["key"] in HERO_PICK:
+            return HERO_PICK[svc["key"]]     # 사례 사진이 없어 공통 사진을 쓰던 유형 페이지 → 고른 완료 컷
+        return region["hero_src"], region["hero_alt"]
+    slug = region["slug"] if region else None
+    own = rimg(svc, region, "hero") or (pick("hero-" + svc["key"], slug) if region else None)
+    if own and own != "/img/hero-%s.jpg" % svc["key"]:      # 권역 전용 사진 — 예전 그대로
+        top = (region["name"] + " ") if region else ""
+        # 도시 페이지는 종목 공통 사진이다 → alt 에 도시 이름을 넣지 않는다 (그 도시에서 찍은 사진이 아니다 · 48째방)
+        return own, "%s%s 시공 현장" % ("" if is_city(region) else top, svc["label"])
+    if svc["key"] in HERO_PICK:
+        return HERO_PICK[svc["key"]]
+    return pick("hero-" + svc["key"], slug), "%s 시공 현장" % svc["label"]
+
+def hero(svc, region=None):
+    # 52째방 — 메인(/) 첫 화면과 같은 틀: 흰 바탕 · 로고 · 문구 · 오른쪽 사진 + 아래 3칸. 문구와 사진만 종목 것.
+    src, alt = hero_photo(svc, region)
+    top  = (region["name"] + " ") if region else ""
+    lis  = "".join("<li>%s</li>" % html.escape(t) for t in trust_items(region))   # 신뢰 3줄(마지막 = 이 페이지 출장 범위)
     tri  = "".join('<div><b>%s</b><span>%s</span></div>' % (a, b) for a, b in svc["tri"])
-    return """<div class="hero">
-%s
-  <div class="cap"><div class="wrap">
-    <h1>%s%s<br><em>%s</em> %s</h1>
-    <p>%s</p>
-%s%s
-    <div class="tri">%s</div>
-  </div></div>
-</div>
-""" % (imgtag(src, alt, lazy=False), top, svc["h1_top"], svc["h1_bottom"], svc["h1_tail"],
-       svc["sub"], trust(region), ctabtns(), tri)
+    # 큰 로고는 머리글에 이미 있어 종목 페이지엔 안 넣는다 · 전화 걸기 · 사진 문자 버튼은 꼭 (주인님 「당연히 있어야지」)
+    return """<div class="hm sv"><div class="wrap"><div class="tx">
+<h1><span>%s%s</span>%s %s</h1><div class="sl">%s</div>
+<ul>%s</ul>
+<a class="tel" href="tel:%s">%s</a>
+%s</div>
+<div class="pic">%s</div>
+</div></div>
+<div class="hm-trust"><div class="wrap">%s</div></div>
+""" % (top, svc["h1_top"], svc["h1_bottom"], svc["h1_tail"], svc["sub"], lis,
+       SITE["phone_raw"], SITE["phone"], ctabtns(), imgtag(src, alt, cls="hp", lazy=False), tri)
 
 def gal_alt(svc, slug, i, default):
     """갤러리 i번째 사진의 alt. svc["alt"][slug or ""] 에 검색어 문구가 있으면 그걸, 없으면 캡션 title (2026-09-15, 30째방)."""
@@ -558,8 +595,7 @@ def jsonld_images(svc, region=None):
         for src, lb, title, desc in region["gal"]:
             add(src, title)
         return out
-    add(rimg(svc, region, "hero") or pick("hero-" + svc["key"], slug),
-        "%s%s 시공 현장" % ((region["name"] + " ") if region and not is_city(region) else "", svc["label"]))  # hero() 의 alt 와 동일
+    add(*hero_photo(svc, region))            # hero() 와 같은 사진 · 같은 alt (52째방)
     for i, row in enumerate(rows, start=1):
         title = row[1]
         loc = row[3] if len(row) > 3 and not region else None
@@ -568,7 +604,7 @@ def jsonld_images(svc, region=None):
 
 def jsonld(svc, region=None):
     import json
-    hero = rimg(svc, region, "hero") or pick("hero-" + svc["key"], region["slug"] if region else None)
+    hero = hero_photo(svc, region)[0]
     if region:
         area = [{"@type": "City", "name": c} for c in region["cities"]]
     elif svc.get("cities"):                      # 지역 격리를 안 쓰는 서비스는 자기 목록을 쓴다
@@ -631,8 +667,7 @@ def page(svc, region=None):
         title = svc["title_m"].format(site=SITE["name"])
         desc  = svc["desc_m"].format(phone=SITE["phone"])
     canonical = SITE["domain"] + url_of(svc, region)
-    og_img = (region["hero_src"] if is_bld(region) else
-              rimg(svc, region, "hero") or pick("hero-" + svc["key"], region["slug"] if region else None))
+    og_img = hero_photo(svc, region)[0]
     return (head(title, desc, canonical, jsonld(svc, region), region is None, og_img)
             + header(svc, region) + hero(svc, region) + gallery(svc, region)
             + area(svc, region) + story(svc, region) + case_cards(svc, region) + focus(svc, region) + faq(svc, region)

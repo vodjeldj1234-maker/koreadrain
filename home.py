@@ -39,20 +39,6 @@ MORE = [
 ]
 
 CSS = """
-.hm{background:#f7f5f1;border-bottom:1px solid #e7e1d7}
-.hm .wrap{max-width:1040px;display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;padding-top:44px;padding-bottom:44px}
-.hm .mk{display:block;height:120px;width:auto}
-.hm h1{font-size:46px;font-weight:900;letter-spacing:-1.8px;color:#1d3557;line-height:1.15;margin-top:14px}
-.hm .sl{font-size:20px;font-weight:700;color:#1d3557;margin-top:6px}
-.hm ul{list-style:none;margin-top:18px;font-size:17px;color:#2d3a46}
-.hm li{padding-left:16px;position:relative;line-height:1.9}
-.hm li::before{content:"";position:absolute;left:2px;top:.85em;width:6px;height:6px;border-radius:50%;background:#6b7a88}
-.hm .tel{display:inline-block;margin-top:20px;font-family:'IBM Plex Mono';font-size:26px;font-weight:600;color:#16202a;text-decoration:none}
-.hm .pic img{width:100%;height:auto;aspect-ratio:4/3.4;object-fit:cover;border-radius:6px;display:block}
-.hm-trust{background:#f4f1ec;border-bottom:1px solid #e7e1d7}
-.hm-trust .wrap{max-width:1040px;display:grid;grid-template-columns:repeat(3,1fr)}
-.hm-trust div{padding:18px 14px;border-left:1px solid #e2dbcf}.hm-trust div:first-child{border-left:0}
-.hm-trust b{display:block;font-size:16px}.hm-trust span{font-size:13.5px;color:#5d6b78}
 .hs{padding:56px 0}.hs .wrap{max-width:1040px}
 .hs .ey{font-size:13px;font-weight:700;color:#E0521A;letter-spacing:.5px}
 .hs h2{font-size:28px;letter-spacing:-1px;margin-top:4px}
@@ -76,8 +62,6 @@ CSS = """
 .hst div{border-top:3px solid #16202a;padding-top:10px}.hst b{display:block;font-size:15.5px}.hst span{font-size:13.5px;color:#5d6b78}
 .hst div::before{counter-increment:s;content:"0" counter(s);font-family:'IBM Plex Mono';font-size:13px;color:#E0521A;font-weight:600}
 @media(max-width:760px){
- .hm .wrap{grid-template-columns:1fr;gap:22px;padding-top:28px;padding-bottom:28px}.hm .mk{height:84px}.hm h1{font-size:32px}.hm .sl{font-size:16.5px}.hm ul{font-size:15px}.hm .tel{font-size:21px}
- .hm-trust .wrap{grid-template-columns:1fr}.hm-trust div{border-left:0;border-top:1px solid #e2dbcf;padding:12px 4px}.hm-trust div:first-child{border-top:0}
  .hs{padding:40px 0}.hs h2{font-size:23px}.hsv{grid-template-columns:1fr 1fr;gap:10px}.hsv a div{padding:10px 11px 12px}.hsv b{font-size:15px}.hsv p{font-size:12.5px}
  .hmore div{grid-template-columns:1fr;gap:2px}.hcs{grid-template-columns:1fr 1fr}.hst{grid-template-columns:1fr 1fr}}
 """

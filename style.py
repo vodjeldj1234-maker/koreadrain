@@ -144,4 +144,29 @@ footer .biz{display:block;margin-top:14px;padding-top:12px;border-top:1px solid 
 .fixed .f-kakao{background:#FEE500;color:#191600}
 @media(max-width:760px){.cg{grid-template-columns:1fr;gap:8px}.smenu a{font-size:13px;padding:6px 9px}}
 @media(min-width:761px){.hero .ph{aspect-ratio:auto;height:min(48vh,470px)}.hero img.ph{height:min(48vh,470px);object-fit:cover}}
+/* 51째방 메인 첫 화면(.hm) — 52째방부터 종목 페이지 첫 화면도 같은 틀(.hm.sv)이라 여기로 옮김 */
+.hm{background:#f7f5f1;border-bottom:1px solid #e7e1d7}
+.hm .wrap{max-width:1040px;display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;padding-top:44px;padding-bottom:44px}
+.hm .mk{display:block;height:120px;width:auto}
+.hm .sl{font-size:20px;font-weight:700;color:#1d3557;margin-top:6px}
+.hm h1{font-size:46px;font-weight:900;letter-spacing:-1.8px;color:#1d3557;line-height:1.15;margin-top:14px}
+.hm .tel{display:inline-block;margin-top:20px;font-family:'IBM Plex Mono';font-size:26px;font-weight:600;color:#16202a;text-decoration:none}
+.hm ul{list-style:none;margin-top:18px;font-size:17px;color:#2d3a46}
+.hm li{padding-left:16px;position:relative;line-height:1.9}
+.hm li::before{content:"";position:absolute;left:2px;top:.85em;width:6px;height:6px;border-radius:50%;background:#6b7a88}
+.hm .pic img{width:100%;height:auto;aspect-ratio:4/3.4;object-fit:cover;border-radius:6px;display:block}
+.hm-trust{background:#f4f1ec;border-bottom:1px solid #e7e1d7}
+.hm-trust .wrap{max-width:1040px;display:grid;grid-template-columns:repeat(3,1fr)}
+.hm-trust div{padding:18px 14px;border-left:1px solid #e2dbcf}.hm-trust div:first-child{border-left:0}
+.hm-trust b{display:block;font-size:16px}.hm-trust span{font-size:13.5px;color:#5d6b78}
+.hm.sv h1{font-size:38px;letter-spacing:-1.4px;line-height:1.25}
+.hm.sv h1 span{display:block;font-size:19px;font-weight:700;color:#5d6b78;letter-spacing:-.5px;margin-bottom:6px}
+.hm.sv .sl{font-size:16.5px;font-weight:500;color:#2d3a46;line-height:1.65;margin-top:10px}
+.hm.sv h1{margin-top:0}.hm.sv .tel{font-size:22px;margin-top:14px}
+.hm.sv .btns{margin:12px 0 0;max-width:430px}.hm.sv .btn.sms{box-shadow:inset 0 0 0 1.5px #16202a}
+@media(max-width:760px){
+ .hm .wrap{grid-template-columns:1fr;gap:22px;padding-top:28px;padding-bottom:28px}.hm .mk{height:84px}.hm h1{font-size:32px}.hm .sl{font-size:16.5px}.hm ul{font-size:15px}.hm .tel{font-size:21px}
+ .hm-trust .wrap{grid-template-columns:1fr}.hm-trust div{border-left:0;border-top:1px solid #e2dbcf;padding:12px 4px}.hm-trust div:first-child{border-top:0}
+ .hm.sv h1{font-size:28px}.hm.sv h1 span{font-size:16px}.hm.sv .sl{font-size:15px}
+ .hm.sv .wrap{padding-top:0;gap:18px}.hm.sv .pic{order:-1;margin:0 -16px}.hm.sv .pic img{aspect-ratio:16/11;border-radius:0}.hm.sv .tel{display:none}}
 """
