@@ -130,12 +130,28 @@ def _regs(svc, REGIONS):
 
 _PAGES = {}
 
+# ★ 51째방(2026-11-11) — 네이버 「웹 콘텐츠 스팸 사례」(2026-07-06 공식 블로그): 「동일·유사한 템플릿으로 문장 일부만 바꾼 페이지를
+#   수십 개 이상 발행」 = 스팸(노출 제외·순위 하락). 우리 종목×도시 582장이 서로 83~88% 같은 글이었다 → 주인님 「리스크를 없애는게 낫다 · 해봐」.
+#   코드는 그대로 두고 끈다. 지역마다 실제 현장 글이 생기면 그 도시만 다시 켠다.
+CITY_PAGES = False
+# 권역 페이지: 광고(포스원-우수관 · 포스원-트렌치, 키워드별 연결 주소)에 물렸을 수 있는 우수관·트렌치 계열은 그대로,
+#   나머지 종목은 그 권역 실제 현장 이야기(story)가 있는 곳만 만든다.
+REGION_KEEP_ALL = ("usugwan", "trench", "musoeum", "gongsa", "parking")
+
+
+def region_pages(svc, REGIONS):
+    """실제로 만드는 권역 페이지 목록 (51째방)."""
+    regs = _regs(svc, REGIONS)
+    if svc["key"] in REGION_KEEP_ALL:
+        return regs
+    return [r for r in regs if r.get("story")]
+
 
 def pages(svc, REGIONS, SITE):
     """이 종목의 도시 페이지(region 꼴 dict) 목록. 권역 slug 와 겹치면: 권역이 그 도시 하나뿐 → 권역 페이지를 쓴다(새로 안 만듦),
        아니면 slug 뒤에 -si."""
     key = svc["key"]
-    if key not in SVC:
+    if key not in SVC or not CITY_PAGES:          # 51째방 — 도시 페이지 끔
         return []
     if key in _PAGES:
         return _PAGES[key]
@@ -159,7 +175,7 @@ def url_for(svc, c, REGIONS, SITE):
     for p in pages(svc, REGIONS, SITE):
         if p["city"]["slug"] == c["slug"]:
             return "/%s/%s.html" % (svc.get("rdir", svc["dir"]), p["slug"])
-    for r in _regs(svc, REGIONS):
+    for r in region_pages(svc, REGIONS):         # 51째방 — 실제로 만드는 권역 페이지만
         if cities_of_region(r) == [c["slug"]]:
             return "/%s/%s.html" % (svc.get("rdir", svc["dir"]), r["slug"])
     return None
@@ -266,7 +282,7 @@ def hub_links(b, svc, region):
 
 def directory(b, svc):
     """종목 첫 페이지 — 출장 도시 전체 목록 (시·도별)."""
-    if svc["key"] not in SVC or svc.get("parent"):
+    if svc["key"] not in SVC or svc.get("parent") or not CITY_PAGES:     # 51째방 — 도시 페이지를 끄면 목록도 없다
         return ""
     blocks = []
     for g in GROUPS:

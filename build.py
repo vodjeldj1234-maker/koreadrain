@@ -699,7 +699,8 @@ def main():
         write(path_of(svc), page(svc));            urls.append(url_of(svc))
         # regions=False 인 서비스는 지역 페이지를 만들지 않는다 (한 페이지 + 출장지역 공개 방식)
         # region_list 가 있으면 그 서비스 전용 지역 목록으로 만든다 (트렌치 — 2026-09-17, 31째방)
-        regs = svc.get("region_list") or (REGIONS if svc.get("regions", True) else [])
+        # 51째방 — 같은 틀 페이지 줄이기: 우수관·트렌치 계열은 전부, 나머지 종목은 그 권역 현장 이야기가 있는 곳만 (cities.region_pages)
+        regs = cities.region_pages(svc, REGIONS)
         for r in regs:
             write(path_of(svc, r), page(svc, r));  urls.append(url_of(svc, r))
         # 도시별 페이지 (48째방) — 우수관 · 트렌치 · 보도블록 × 98곳

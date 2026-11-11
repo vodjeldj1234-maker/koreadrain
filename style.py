@@ -137,6 +137,7 @@ footer .biz{display:block;margin-top:14px;padding-top:12px;border-top:1px solid 
 .cg{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid #f0e6dc}
 .cg b{color:#E0521A;font-size:14.5px;letter-spacing:-.5px}
 .cg div{display:flex;flex-wrap:wrap;gap:6px 6px}
+.cg span{display:inline-block;padding:6px 10px;border:1px solid #efd9c3;border-radius:7px;color:#16202a;font-size:14px;font-weight:700;letter-spacing:-.4px;background:#FFF9F3}
 .cg a{display:inline-block;padding:6px 10px;border:1px solid #efd9c3;border-radius:7px;color:#16202a;text-decoration:none;font-size:14px;font-weight:700;letter-spacing:-.4px;background:#FFF9F3}
 .btns .btn.kakao{grid-column:1/-1;background:#FEE500;color:#191600}
 .fixed.k3{grid-template-columns:1fr 1fr 1fr}

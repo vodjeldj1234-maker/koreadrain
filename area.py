@@ -88,26 +88,30 @@ def page(b, c):
 def index(b):
     S = b.SITE
     title = "출장 지역 — 서울·인천·경기·충청 | %s" % S["name"]
-    desc = "서울·인천·경기 전역, 충청 전 시군 출장. 사는 곳을 누르면 그 도시에서 하는 공사 안내로 갑니다. 사진 보내주시면 당일 견적 회신. %s" % S["phone"]
+    on = cities.CITY_PAGES                       # 51째방 — 도시 안내를 끄면 이름만 늘어놓는다 (링크 없음)
+    desc = ("서울·인천·경기 전역, 충청 전 시군 출장. %s사진 보내주시면 당일 견적 회신. %s"
+            % ("사는 곳을 누르면 그 도시에서 하는 공사 안내로 갑니다. " if on else "", S["phone"]))
     canonical = S["domain"] + url()
     blocks = []
     for g in cities.GROUPS:
-        rows = "".join('<a href="%s">%s</a>' % (url(c), html.escape(c["short"])) for c in cities.CITIES if c["group"] == g)
+        rows = "".join(('<a href="%s">%s</a>' % (url(c), html.escape(c["short"]))) if on else ('<span>%s</span>' % html.escape(c["short"]))
+                       for c in cities.CITIES if c["group"] == g)
         if rows:
             blocks.append('<div class="cg"><b>%s</b><div>%s</div></div>' % (g, rows))
     ld = json.dumps({"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": canonical,
                      "description": desc, "inLanguage": "ko"}, ensure_ascii=False)
     body = """<section class="hero"><div class="wrap">
 <h1>출장 지역</h1>
-<p class="sub">서울 · 인천 · 경기 전역, 충청 전 시군에 갑니다. 사는 곳을 누르면 그 도시에서 하는 공사 안내로 갑니다.</p>
+<p class="sub">서울 · 인천 · 경기 전역, 충청 전 시군에 갑니다.%s</p>
 %s
 </div></section>
 <section class="cdir"><div class="wrap">
-  <div class="big-t"><div class="hr"></div><h2>도시별 <em>안내</em></h2>
+  <div class="big-t"><div class="hr"></div><h2>%s</h2>
   <p>목록에 없는 곳도 연락 주시면 갈 수 있는지 바로 알려 드립니다.</p></div>
   %s
 </div></section>
-""" % (b.ctabtns(), "".join(blocks))
+""" % (" 사는 곳을 누르면 그 도시에서 하는 공사 안내로 갑니다." if on else "", b.ctabtns(),
+       "도시별 <em>안내</em>" if on else "출장 가는 <em>도시</em>", "".join(blocks))
     return b.head(title, desc, canonical, ld, False, None) + b.header(None) + body + b.footer(FOOT)
 
 
@@ -116,7 +120,8 @@ def build(b):
     out = []
     os.makedirs(os.path.join(b.DIST, DIR), exist_ok=True)
     b.write(os.path.join(b.DIST, DIR, "index.html"), index(b)); out.append(url())
-    for c in cities.CITIES:
-        b.write(os.path.join(b.DIST, DIR, c["slug"] + ".html"), page(b, c)); out.append(url(c))
+    if cities.CITY_PAGES:                        # 51째방 — 도시 안내 98장도 같은 틀이라 도시 페이지와 함께 끈다 (목록 /area/ 한 장만)
+        for c in cities.CITIES:
+            b.write(os.path.join(b.DIST, DIR, c["slug"] + ".html"), page(b, c)); out.append(url(c))
     print("도시 안내 %d장 + 목록 → /%s/" % (len(out) - 1, DIR))
     return out
