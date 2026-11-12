@@ -149,7 +149,7 @@ def head(title, desc, canonical, jsonld, is_index, og_img=None):
     return """<!DOCTYPE html><html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>%s</title>
+%s<title>%s</title>
 <meta name="description" content="%s">
 <link rel="canonical" href="%s">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -165,7 +165,7 @@ def head(title, desc, canonical, jsonld, is_index, og_img=None):
 <style>%s</style>
 <script type="application/ld+json">%s</script>
 </head><body>
-""" % (html.escape(title), html.escape(desc), canonical, verify,
+""" % (ga4_head(), html.escape(title), html.escape(desc), canonical, verify,
        html.escape(title), html.escape(desc), canonical, SITE["name"], og, CSS, jsonld)
 
 # ── 내부 링크 (2026-09-05 추가, 27째방)
@@ -525,6 +525,7 @@ wcs_do();
     sent = true;
     try {
       if (window.wcs && wcs.trans) {
+        wcs_add["wa"] = "%s";   // 아래 애널리틱스 블록이 wa 를 바꿔 두므로 광고 키로 되돌린 뒤 보낸다
         var _conv = {};
         _conv.type = "lead";
         wcs.trans(_conv);
@@ -533,7 +534,43 @@ wcs_do();
   }, true);
 })();
 </script>
-""" % SITE["naver_wa"]
+""" % (SITE["naver_wa"], SITE["naver_wa"])
+# 네이버 애널리틱스 (52째방) — 공식 안내(naver.github.io/conversion-tracking 07): 광고 전환 스크립트가 있어도 따로 설치,
+#   페이지뷰 로그가 s_ 키 1개 + 애널리틱스 키 1개 = 2개 나가는 게 정상. wcslog.js 는 위에서 이미 불렀다.
+if SITE.get("naver_analytics"):
+    NAVER_WCS += """<script type="text/javascript">
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "%s";
+if(window.wcs) { wcs_do(); }
+</script>
+""" % SITE["naver_analytics"]
+
+# 구글 애널리틱스 GA4 (52째방) — <head> 맨 위. 전화·문자·카톡·번호복사 누름을 이벤트로 보낸다(어느 페이지에서 눌렀는지는 GA 가 page_location 으로 붙인다).
+#   보고서: GA → 보고서 → 참여도 → 이벤트 (call_click · sms_click · kakao_click · copy_click). 주요 이벤트로 표시하면 전환으로 셈.
+def ga4_head():
+    gid = SITE.get("ga4")
+    if not gid:
+        return ""
+    return """<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("config", "%s");
+document.addEventListener("click", function (e) {
+  var n = e.target, ev = "";
+  while (n && n.nodeType === 1) {
+    var h = n.tagName === "A" ? (n.getAttribute("href") || "") : "";
+    if (/^tel:/.test(h)) { ev = "call_click"; break; }
+    if (/^sms:/.test(h)) { ev = "sms_click"; break; }
+    if (/pf\\.kakao\\.com/.test(h)) { ev = "kakao_click"; break; }
+    if (n.tagName === "BUTTON" && n.className.indexOf("copy") >= 0) { ev = "copy_click"; break; }
+    n = n.parentNode;
+  }
+  if (ev) gtag("event", ev, {link_text: (n.textContent || "").trim().slice(0, 40)});
+}, true);
+</script>
+""" % (gid, gid)
 
 # 번호 복사 버튼 — PC 손님이 전화번호를 옮겨 적을 수 있게 한다.
 # https 사이트라 clipboard API 가 되지만, 안 되는 브라우저를 위해 옛 방식도 남겨둔다.
