@@ -123,11 +123,22 @@ def kakao_btn(cls="btn kakao"):
     k = SITE.get("kakao")
     return ('<a class="%s" href="%s" target="_blank" rel="noopener">💛 카카오톡 상담</a>' % (cls, k)) if k else ""
 
+# 53째방(11/22) — 조수가 쓴 지역·종목별 추가 글. extra/*.json = {"/경로": {"story": [제목, [문단…]], "faq": [[질문, 답]…]}}
+#   지역마다 다른 사실(행정구역·공식 자료)로 채워 같은 틀 페이지를 벗어난다. 주인님 「빼지 말고 채워」.
+def _load_extra():
+    import json, glob
+    d = {}
+    for f in sorted(glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), "extra", "*.json"))):
+        d.update(json.load(open(f, encoding="utf-8")))
+    return d
+EXTRA = _load_extra()
+
 def ctabtns():
     """전화 + 문자 두 버튼 (+ 카카오톡). sms: 는 본문 없이 번호만 넣어야 안드로이드·아이폰 둘 다 열린다."""
     return ('<div class="btns">'
             '<a class="btn call" href="tel:%s">📞 전화 걸기</a>'
             '<a class="btn sms" href="sms:%s">💬 사진 문자 보내기</a>%s</div>'
+            '<p class="smsnote">현장 작업 중엔 전화를 못 받을 때가 있습니다. 사진과 지역을 문자로 주시면 확인 후 순서대로 연락드립니다.</p>'
             % (SITE["phone_raw"], SITE["phone_raw"], kakao_btn()))
 
 # ─────────────────────────────────────────────────────────── 페이지 조각
@@ -319,7 +330,7 @@ def gallery(svc, region=None):
   <div class="big-t"><div class="hr"></div><h2>%s</h2>
   <p>%s</p></div>
   <div class="gal">%s</div>
-  <div class="more"><a href="tel:%s">전화 주시면 현장 사진 더 보내드립니다</a></div>
+  <div class="more"><a href="sms:%s">현장 사진을 문자로 보내주시면 확인 후 순서대로 견적 드립니다</a></div>
 </div></section>
 """ % (region.get("gal_h2") or (html.escape(region["name"]) + " <em>현장 사진</em>입니다"),
        region.get("gal_p") or ("실제로 공사한 %s 현장의 시공 전과 마친 뒤입니다." % html.escape(region["name"])),
@@ -349,7 +360,7 @@ def gallery(svc, region=None):
   <div class="big-t"><div class="hr"></div><h2>%s</h2>
   <p>%s</p></div>
   <div class="gal">%s</div>
-  <div class="more"><a href="tel:%s">전화 주시면 현장 사진 더 보내드립니다</a></div>
+  <div class="more"><a href="sms:%s">현장 사진을 문자로 보내주시면 확인 후 순서대로 견적 드립니다</a></div>
 </div></section>
 """ % (h2, p, "".join(items), SITE["phone_raw"])
 
@@ -391,6 +402,7 @@ def faq_items(svc, region=None):
     """이 페이지에 나갈 FAQ 목록을 (질문, 답변) 으로 돌려준다.
        지역 격리 — {region} 은 그 페이지 지역명으로만 치환된다."""
     out = []
+    more = [tuple(x) for x in EXTRA.get(url_of(svc, region), {}).get("faq", [])]   # 53째방 extra
     extra = list(region.get("faq_r", [])) if is_bld(region) else []   # 49째방 종목×장소 전용 질문
     if is_bld(region):                       # 건물 유형 페이지는 첫 페이지와 같은 질문을 쓴다 (지역 질문 아님)
         region = None
@@ -404,20 +416,23 @@ def faq_items(svc, region=None):
     # 지역 전용 FAQ (2026-09-05) — 그 지역 페이지에만 붙는다
     if region:
         out += list(region.get("faq_r", []))
-    return extra + out
+    return extra + out + more
 
 def story(svc, region=None):
     """지역 페이지 살붙이기 — REGIONS[i]["story"] 가 있을 때만 그린다 (2026-09-05).
        지역 격리: 이 지역에서 한 일만. 없는 사실은 쓰지 않는다."""
-    if not region or not region.get("story"):
-        return ""
-    title, paras = region["story"]
-    body = "".join("<p>%s</p>" % html.escape(p) for p in paras)
-    return """<section class="story"><div class="wrap">
+    out = ""
+    for st in ((region or {}).get("story"), EXTRA.get(url_of(svc, region), {}).get("story")):   # 53째방 extra 도 같은 모양으로
+        if not st:
+            continue
+        title, paras = st
+        body = "".join("<p>%s</p>" % html.escape(p) for p in paras)
+        out += """<section class="story"><div class="wrap">
   <div class="big-t"><div class="hr"></div><h2>%s</h2></div>
   <div class="stext">%s</div>
 </div></section>
 """ % (html.escape(title), body)
+    return out
 
 def case_cards(svc, region=None):
     """시공 사례 카드 (2026-09-17, 31째방). svc["cases"] 가 있는 서비스의 첫 페이지와 지역 페이지에 붙는다.
@@ -591,6 +606,17 @@ document.addEventListener("click", function (e) {
   if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(num).then(done, old);
   else old();
 });
+/* 53째방(11/22) 주인님 「일할 땐 전화 못 받으니 문자로 사진·문의」 — 문자 버튼을 누르면 양식이 미리 적힌 문자창이 열린다.
+   html 의 href 는 번호만(본문 없이) 그대로 두고, 화면에서만 기기에 맞춰 본문을 붙인다: 아이폰 sms:번호&body= · 안드로이드 sms:번호?body= */
+(function () {
+  var body = encodeURIComponent("[견적 문의]\\n① 현장 사진 2~3장 첨부 (전체 1장 + 가까이 1장)\\n② 지역(시·동): \\n③ 원하시는 작업: ");
+  var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var a = document.querySelectorAll('a[href^="sms:"]');
+  for (var i = 0; i < a.length; i++) {
+    var n = a[i].getAttribute("href").slice(4).split(/[?&]/)[0];
+    a[i].setAttribute("href", "sms:" + n + (ios ? "&" : "?") + "body=" + body);
+  }
+})();
 </script>
 """
 

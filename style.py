@@ -84,6 +84,7 @@ section{padding:52px 0}
 .qnote{color:#b7c3cd;font-size:14px;margin-top:15px}
 /* 전화 + 문자 두 버튼 (2026-09-05) — 전화만 두면 PC 손님이 연락을 못 한다 */
 .btns{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:16px auto 0;max-width:430px}
+.smsnote{max-width:430px;margin:10px auto 0;font-size:13.5px;line-height:1.55;opacity:.85;text-align:center;letter-spacing:-.3px}
 .btns .btn{display:block;text-align:center;padding:15px 6px;border-radius:8px;text-decoration:none;font-weight:900;font-size:16px;letter-spacing:-.6px}
 .btn.call{background:#E0521A;color:#fff}
 .btn.sms{background:#fff;color:#16202a}
