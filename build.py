@@ -619,6 +619,10 @@ document.addEventListener("click", function (e) {
 })();
 </script>
 """
+# AI 상담 채팅창 (53째방) — SITE["ai_chat"] 에 Worker 주소가 있을 때만. COPY_JS 는 모든 꼬리말(정보글 포함)에 붙으므로 여기 얹는다.
+if SITE.get("ai_chat"):
+    COPY_JS += ('<script src="/ai-chat.js" data-site="koreadrain" data-name="%s" data-phone="%s" data-endpoint="%s" defer></script>\n'
+                % (SITE["name"], SITE["phone_raw"], SITE["ai_chat"]))
 
 def footer(svc, region=None):
     line = svc["foot"]
@@ -832,7 +836,7 @@ def main():
 
     # 파비콘 — 없으면 네이버 서치어드바이저가 favicon.ico 를 400 으로 잡아
     # "접근 불가한 페이지(수집제한)" 로 기록한다. (2026-08-28 실제로 1건 발생)
-    for f in ("favicon.ico", "apple-touch-icon.png"):
+    for f in ("favicon.ico", "apple-touch-icon.png", "ai-chat.js"):   # ai-chat.js — 53째방 AI 상담 채팅창
         if os.path.exists(f):
             shutil.copy2(f, os.path.join(DIST, f))
 

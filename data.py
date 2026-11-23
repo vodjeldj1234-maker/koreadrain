@@ -29,6 +29,7 @@ SITE = {
     # ⚠ 이 값이 틀리면 전환 데이터가 하나도 안 잡힌다. 메일 원문과 글자 하나까지 대조할 것
     # 설치 위치: build.py footer() 의 </body> 바로 앞 → 13페이지 전부
     "naver_wa": "s_4b5c6ce4077",
+    "ai_chat": "https://kdys-quote-intake.kdys-quote-intake.workers.dev",   # 53째방 AI 상담 — Cloudflare Worker 주소(https://….workers.dev)를 넣으면 전 페이지에 「💬 AI 상담」이 붙는다. 비면 안 붙는다.
     # 52째방(11/12) 방문자·전화 버튼 기록 — 주인님 「1」「2번도」. 비어 있으면 그 스크립트는 안 붙는다.
     #   ga4 = 구글 애널리틱스 측정 ID (G-XXXXXXXXXX) · 전화/문자/카톡/번호복사 클릭을 call_click 등 이벤트로 보낸다
     #   naver_analytics = 네이버 애널리틱스 사이트 ID (광고 전환용 s_ 키와 다르다 — 공식 안내: 따로 하나 더 설치)
