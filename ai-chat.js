@@ -8,8 +8,9 @@
       NAME = me.getAttribute("data-name") || "", PHONE = me.getAttribute("data-phone") || "";
   if (!EP || !SITE) return;
   var KEY = "aichat_" + SITE, MAXLEN = 600;
-  var state = { msgs: [], summary: "" };
+  var state = { msgs: [], summary: "", cid: "" };
   try { var s = sessionStorage.getItem(KEY); if (s) state = JSON.parse(s); } catch (e) {}
+  if (!state.cid) state.cid = (Date.now().toString(36) + Math.random().toString(36).slice(2, 10)).replace(/[^a-z0-9]/g, "").slice(0, 24);
   function save() { try { sessionStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   function ga(ev) { try { if (window.gtag) gtag("event", ev, { site: SITE }); } catch (e) {} }
 
@@ -64,7 +65,11 @@
     var body = "[견적 문의]\n" + (state.summary ? state.summary + "\n" : "② 지역(시·동): \n③ 원하시는 작업: \n") + "(현장 사진 2~3장 첨부)";
     sms.href = "sms:" + PHONE + (ios ? "&" : "?") + "body=" + encodeURIComponent(body);
   }
-  sms.addEventListener("click", function () { ga("ai_chat_sms"); });
+  sms.addEventListener("click", function () {
+    ga("ai_chat_sms");
+    try { fetch(EP, { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true,
+      body: JSON.stringify({ site: SITE, cid: state.cid, event: "sms" }) }); } catch (e) {}
+  });
 
   function send(text) {
     if (busy) return;
@@ -75,7 +80,7 @@
     var w = document.createElement("div"); w.className = "aic-wait"; w.textContent = "답을 쓰는 중…"; log.appendChild(w); log.scrollTop = log.scrollHeight;
     ga("ai_chat_send");
     fetch(EP, { method: "POST", headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ site: SITE, messages: state.msgs.slice(-24) }) })
+                body: JSON.stringify({ site: SITE, cid: state.cid, page: location.pathname, messages: state.msgs.slice(-24) }) })
       .then(function (r) { return r.json(); })
       .then(function (d) {
         var reply = (d && d.reply) || "지금 상담 연결이 원활하지 않습니다. 아래 초록 버튼으로 사진과 지역을 문자로 보내 주세요.";
