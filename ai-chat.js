@@ -42,7 +42,7 @@
   p.innerHTML = '<div class="aic-hd"><b>AI 견적 접수<small>' + NAME + ' · 24시간 접수</small></b>'
     + '<button class="aic-x" type="button" aria-label="닫기">×</button></div>'
     + '<div class="aic-log"></div><a class="aic-sms" href="#">📩 문자로 사진 보내기</a>'
-    + '<div class="aic-note">AI 접수 직원이 내용을 정리해 대표님께 전달합니다. 금액은 사진을 보고 대표님이 직접 드립니다.</div>'
+    + '<div class="aic-note">AI 접수 직원이 내용을 정리해 대표님께 전달합니다. 남기신 연락처는 견적 연락에만 쓰고 90일 뒤 지웁니다.</div>'
     + '<form class="aic-f"><textarea maxlength="' + MAXLEN + '" placeholder="예: 천안 2층 상가 선홈통이 새요" aria-label="문의 내용"></textarea><button type="submit">보내기</button></form>';
   document.body.appendChild(btn); document.body.appendChild(p);
   var log = p.querySelector(".aic-log"), ta = p.querySelector("textarea"), form = p.querySelector("form"), sms = p.querySelector(".aic-sms");
