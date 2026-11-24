@@ -43,12 +43,12 @@
     + '<button class="aic-x" type="button" aria-label="닫기">×</button></div>'
     + '<div class="aic-log"></div><a class="aic-sms" href="#">📩 문자로 사진 보내기</a>'
     + '<div class="aic-note">AI 접수 직원이 내용을 정리해 대표님께 전달합니다. 남기신 연락처는 견적 연락에만 쓰고 90일 뒤 지웁니다.</div>'
-    + '<form class="aic-f"><textarea maxlength="' + MAXLEN + '" placeholder="예: 천안 2층 상가 선홈통이 새요" aria-label="문의 내용"></textarea><button type="submit">보내기</button></form>';
+    + '<form class="aic-f"><textarea maxlength="' + MAXLEN + '" placeholder="휴대폰 번호 (예: 010-1234-5678)" aria-label="문의 내용"></textarea><button type="submit">보내기</button></form>';
   document.body.appendChild(btn); document.body.appendChild(p);
   var log = p.querySelector(".aic-log"), ta = p.querySelector("textarea"), form = p.querySelector("form"), sms = p.querySelector(".aic-sms");
   var busy = false;
 
-  var HELLO = "안녕하세요, " + NAME + " 견적 접수입니다. 대표님이 현장에 계셔서 제가 내용을 받아 전달해 드립니다. 어떤 공사가 필요하신지, 지역(시·동)과 함께 적어 주세요.";
+  var HELLO = "안녕하세요, " + NAME + " 견적 접수입니다. 대표님이 현장에 계셔서 제가 내용을 받아 전달해 드립니다.\n\n상담이 중간에 끊겨도 연락드릴 수 있게, 먼저 연락받으실 휴대폰 번호를 남겨 주세요. (견적 연락에만 쓰고 90일 뒤 지웁니다)";
 
   function bubble(role, text) {
     var d = document.createElement("div");
@@ -58,7 +58,13 @@
   function render() {
     log.innerHTML = ""; bubble("assistant", HELLO);
     for (var i = 0; i < state.msgs.length; i++) bubble(state.msgs[i].role, state.msgs[i].content);
-    setSms();
+    setSms(); hint();
+  }
+  // 번호를 남기기 전엔 입력칸 안내 = 번호, 남긴 뒤엔 공사 내용 (54째방 주인님 「연락처를 시작부터」)
+  function hint() {
+    var has = false;
+    for (var i = 0; i < state.msgs.length; i++) if (state.msgs[i].role === "user" && /01[016789][-\s.]?\d{3,4}[-\s.]?\d{4}/.test(state.msgs[i].content)) has = true;
+    ta.placeholder = has ? "예: 천안 2층 상가 선홈통이 새요" : "휴대폰 번호 (예: 010-1234-5678)";
   }
   function setSms() {
     var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
@@ -86,7 +92,7 @@
         var reply = (d && d.reply) || "지금 상담 연결이 원활하지 않습니다. 아래 초록 버튼으로 사진과 지역을 문자로 보내 주세요.";
         state.msgs.push({ role: "assistant", content: reply });
         if (d && d.summary) state.summary = d.summary;
-        save(); w.remove(); bubble("assistant", reply); setSms();
+        save(); w.remove(); bubble("assistant", reply); setSms(); hint();
       })
       .catch(function () {
         w.remove(); bubble("assistant", "연결이 끊겼습니다. 아래 초록 버튼으로 사진과 지역을 문자로 보내 주세요.");
